@@ -98,16 +98,7 @@ pickleshare==0.7.4
 Pillow==6.0.0
 prompt-toolkit==1.0.15
 proxybroker==0.3.2
-psycopg2==2.7.5
-psycopg2-binary==2.8.2
-ptyprocess==0.5.2
-pycares==3.1.1
-pycparser==2.20
-pyexcel==0.6.6
-pyexcel-io==0.6.4
-pyexcel-webio==0.1.4
-Pygments==2.2.0
-PySocks==1.7.1
+
 pytest-runner==4.2
 python-dateutil==2.8.1
 python-editor==1.0.4
