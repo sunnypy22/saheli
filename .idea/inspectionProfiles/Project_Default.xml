@@ -1,0 +1,62 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="10">
+            <item index="0" class="java.lang.String" itemvalue="m-minimize-offset" />
+            <item index="1" class="java.lang.String" itemvalue="m-minimize-mobile-offset" />
+            <item index="2" class="java.lang.String" itemvalue="css" />
+            <item index="3" class="java.lang.String" itemvalue="assets" />
+            <item index="4" class="java.lang.String" itemvalue="m-menu-link-redirect" />
+            <item index="5" class="java.lang.String" itemvalue="m-menu-submenu-toggle" />
+            <item index="6" class="java.lang.String" itemvalue="m-dropdown-toggle" />
+            <item index="7" class="java.lang.String" itemvalue="data" />
+            <item index="8" class="java.lang.String" itemvalue="m-menu-vertical" />
+            <item index="9" class="java.lang.String" itemvalue="main" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="7">
+            <item index="0" class="java.lang.String" itemvalue="nobr" />
+            <item index="1" class="java.lang.String" itemvalue="noembed" />
+            <item index="2" class="java.lang.String" itemvalue="comment" />
+            <item index="3" class="java.lang.String" itemvalue="noscript" />
+            <item index="4" class="java.lang.String" itemvalue="embed" />
+            <item index="5" class="java.lang.String" itemvalue="script" />
+            <item index="6" class="java.lang.String" itemvalue="form" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="PyInterpreterInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="N802" />
+          <option value="N801" />
+          <option value="N806" />
+          <option value="N811" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="tuple.commit" />
+          <option value="tuple.close" />
+          <option value="e_com.settings.AUTH" />
+          <option value="django.db.models.fields.IntegerField.__mul__" />
+          <option value="payal_numpy.views.django" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

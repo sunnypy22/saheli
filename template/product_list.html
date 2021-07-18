@@ -1,0 +1,94 @@
+{% for i in cat %}
+<label> {{i.cat_name}}
+<input class="tap_me" data-filter="cat" type="checkbox" name="cat" value="{{i.id}}">
+</label> <br>
+{% endfor %}
+
+{% for size in size %}
+<label> {{size.title}}
+<input class="tap_me" data-filter="cat" type="checkbox" name="cat" value="{{size.id}}">
+</label> <br>
+{% endfor %}
+
+{% for color in color %}
+<label> {{color.color_code}}
+<input class="tap_me" data-filter="cat" type="checkbox" name="cat" value="{{color.id}}">
+</label> <br>
+{% endfor %}
+
+<br>
+<div id="filterProducts">
+    <p class="ajaxLoader">Loading ...</p>
+{% for pro in data %}
+    {{pro.pro_name}}
+{% endfor %}
+</div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+<script>
+    $(document).ready(function(){
+        $(".ajaxLoader").hide();
+        $(".tap_me").on('click',function(){
+            var _filterObj = {};
+
+                var _filterVal = $(this).val();
+                var _filterKey= $(this).data('filter');
+                _filterObj[_filterKey]=Array.from(document.querySelectorAll('input[data-filter='+_filterKey+']:checked'))
+                .map(function(el){
+			 	return el.value;
+
+			});
+
+
+            $.ajax({
+			url:'{%url 'try_ajax'%}',
+			data:_filterObj,
+			dataType:'json',
+			beforeSend:function(){
+				$(".ajaxLoader").show();
+			},
+			success:function(res){
+                $("#filterProducts").html(res.data);
+				$(".ajaxLoader").hide();
+
+			}
+
+		});
+        });
+    });
+</script>
+
+<!--<script>-->
+<!--    $(document).ready(function(){-->
+<!--        $(".ajaxLoader").hide();-->
+<!--        $(".tap_me").on('click',function(){-->
+<!--            var _filterObj = {};-->
+<!--            $(".tap_me").each(function(index,ele){-->
+<!--                var _filterVal = $(this).val();-->
+<!--                var _filterKey= $(this).data('filter');-->
+<!--                _filterObj[_filterKey]=Array.from(document.querySelectorAll('input[data-filter='+_filterKey+']:checked')).map(function(el){-->
+<!--			 	return el.value;-->
+
+<!--			});-->
+
+<!--            });-->
+
+<!--            $.ajax({-->
+<!--			url:'{%url 'filter_data'%}',-->
+<!--			data:_filterObj,-->
+<!--			dataType:'json',-->
+<!--			beforeSend:function(){-->
+<!--				$(".ajaxLoader").show();-->
+<!--			},-->
+<!--			success:function(res){-->
+<!--                $("#filterProducts").html(res.data);-->
+<!--				$(".ajaxLoader").hide();-->
+
+<!--			}-->
+
+<!--		});-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
