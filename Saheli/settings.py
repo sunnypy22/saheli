@@ -26,10 +26,10 @@ SECRET_KEY = 'django-insecure-+1i*!incev5p8s2wym20b*#tj#cq-_#d#7i-i8dv-1xo^ft^b4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['https://saheli.herokuapp.com/',
-'localhost',
-'127.0.0.1']
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['https://saheli.herokuapp.com/',
+# 'localhost',
+# '127.0.0.1']
 
 
 # Application definition
