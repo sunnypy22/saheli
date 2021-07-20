@@ -6,8 +6,6 @@ import razorpay
 from django.views.decorators.csrf import csrf_exempt
 
 
-
-
 def checkout(request):
     data = Cart.objects.filter(cart_user=request.user.id)
     user_id = str(request.user.id)

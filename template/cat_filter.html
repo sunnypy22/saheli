@@ -275,12 +275,12 @@ p.demo_store  {
             <h3 class="wcva_filter-widget-title">Filter by
 				<span class="wcva_layered_widget_attribute_name">color</span></h3>
 		     <div class="wcva_filter_widget">
-				 {% for color in color %}
+
 					 <label>
-			<input class="tap_me" data-filter="cat"  type="checkbox" name="cat" value="{{color.id}}">
-{{color.color_code}}
+			<input class="tap_me" data-filter="cat"  type="checkbox" name="cat" value="Blue">
+Blue
 					 </label>
-				 {% endfor %}
+
              		    </div>
 
 		   </aside>
@@ -292,14 +292,14 @@ p.demo_store  {
 				<span class="wcva_layered_widget_attribute_name">size</span>
 			</h3>
 			   <ul class="product-categories">
-				{% for size in size%}
+
 				<li class="cat-item cat-item-11">
 					<label style="font-size: 12px; font-family: inherit;font-weight: 600;">
 						<input class="tap_me" data-filter="cat" type="checkbox"
-							   name="cat" value="{{size.id}}"> {{size.title}}
+							   name="cat" value="XL"> Xl
 					</label>
 				</li>
-				{% endfor %}
+
 			</ul>
 		   </aside>
 

@@ -14,15 +14,6 @@ class Category(models.Model):
         return self.cat_name
 
 
-class Color(models.Model):
-    color_code = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.color_code
-
-class Size(models.Model):
-    title = models.CharField(max_length=100)
-
 
 CHOICE_STAR = (
     ('1', '1'),
@@ -32,12 +23,17 @@ CHOICE_STAR = (
     ('5', '5'),
 )
 
+CHOICE_SIZE = (
+    ('XXL', 'XXL'),
+    ('XL', 'XL'),
+    ('L', 'L'),
+)
+
 CHOICE_COLOR = (
-    ('Red','Red'),
-    ('White','White'),
-    ('Black','Black'),
-    ('Brown','Brown'),
-    ('Gray','Gray'),
+    ('red', 'red'),
+    ('black', 'black'),
+    ('gray', 'gray'),
+    ('yellow', 'yellow'),
 )
 
 
@@ -47,8 +43,6 @@ class Product(models.Model):
     pro_price = models.BigIntegerField()
     pro_offer_price = models.BigIntegerField(default=0)
     pro_fake_price = models.BigIntegerField(null=True, blank=True)
-    pro_size = models.ForeignKey(Size, on_delete=models.CASCADE)
-    pro_color = models.ForeignKey(Color, on_delete=models.CASCADE,null=True)
     pro_image = models.FileField(blank=True)
     pro_description = models.TextField(null=True, blank=True)
     pro_star = models.CharField(max_length=10, choices=CHOICE_STAR, null=True, blank=True)
@@ -63,6 +57,22 @@ class PostImage(models.Model):
     images = models.FileField(upload_to='images/')
 
 
+class Product_Size(models.Model):
+    size_key = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
+    product_Size = models.CharField(max_length=50, choices=CHOICE_SIZE, default=CHOICE_SIZE[2])
+
+    def __str__(self):
+        return self.product_Size
+
+
+class Product_Color(models.Model):
+    color_key = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
+    product_Color = models.CharField(max_length=50, choices=CHOICE_COLOR, default=CHOICE_COLOR[2])
+
+    def __str__(self):
+        return self.product_Color
+
+
 class Wishlist(models.Model):
     wish_list_user = models.ForeignKey(User, on_delete=models.CASCADE)
     wish_list_product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -75,7 +85,14 @@ class Cart(models.Model):
     cart_quantity = models.IntegerField(default=1)
     cart_status = models.BooleanField(default=False)
     cart_price = models.IntegerField(blank=True, null=True)
+    cart_color = models.CharField(max_length=50,null=True)
+    cart_size = models.CharField(max_length=50,null=True)
     cart_date = models.DateTimeField(auto_now_add=True)
+
+
+
+    def __str__(self):
+        return self.cart_product.pro_name
 
     @property
     def cart_pro_price(self):

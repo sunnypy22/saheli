@@ -297,7 +297,8 @@ woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 
 	  data-product_variations="">
 {% csrf_token %}
 
-
+<input type="text" id="append_color" value="" name="product_color" hidden style="display: contents;">
+<input type="text" id="append_size" value="" name="product_size" hidden style="display: contents;">
 			<table class="variations" cellspacing="0">
 			<tbody>
 				<tr>
@@ -312,24 +313,18 @@ woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 
 						<td class="value">
 							<div class="attribute-swatch" attribute-index="">
 								<div class="swatchinput">
+									{% for color in color %}
 								  <label selectid="pa_color"
-										 class="attribute_pa_color_orange wcvaswatchlabel  wcvaround"
-										 data-option="orange"  selectedtext="Orange" title="Orange"
-										 style="background-color:#ec7a5c;
+										 class="attribute_pa_color_orange wcvaswatchlabel  wcvaround color_to_cart"
+										 data-option="{{color.product_Color}}"  selectedtext="{{color.product_Color}}" title="{{color.product_Color}}"
+										 style="background-color:{{color.product_Color}};
 										 font-size: 20px!important;font-weight: 500; width:32px; height:32px; ">
 
 								  </label>
+									{% endfor %}
 
 							</div>
 
-	          				<div class="swatchinput">
-							<label selectid="pa_color"  class="attribute_pa_color_turquoise wcvaswatchlabel wcvaround"
-					   		data-option="turquoise"  selectedtext="Turquoise" title="Turquoise"
-					   		style="background-color:#728d7f; font-size: 20px!important;font-weight: 500;
-					   		 width:32px; height:32px; ">
-							</label>
-
-			  				</div>
 							</div>
 						</td>
 					</tr>
@@ -343,17 +338,15 @@ woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 
 					<td class="value">
 						<div class="attribute-swatch" attribute-index="">
 							          <div class="swatchinput">
+										  {% for size in size %}
 								  <label  selectid="pa_size"
-										  class="wcva_single_textblock attribute_pa_size_small wcvaswatchlabel  wcvasquare"
-										  data-option="small"  selectedtext="S" title="S" style="min-width:32px; ">
-									  S</label>
+										  class="wcva_single_textblock attribute_pa_size_small
+										   wcvaswatchlabel  wcvasquare size_to_cart"
+										  data-option="{{size.product_Size}}"  selectedtext="{{size.product_Size}}"
+										  title="{{size.product_Size}}" style="min-width:32px; ">
+									  {{size.product_Size}}</label>
 
-				</div>
-	          <div class="swatchinput">
-				  <label  selectid="pa_size"
-						  class="wcva_single_textblock attribute_pa_size_medium wcvaswatchlabel  wcvasquare"
-						  data-option="medium"  selectedtext="M" title="M" style="min-width:32px; ">
-					  M</label>
+											{% endfor %}
 
 				</div>
 						</div>
@@ -533,16 +526,52 @@ woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 
 	<h2>Additional information</h2>
 
 <table class="woocommerce-product-attributes shop_attributes">
-			<tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_color">
-			<th class="woocommerce-product-attributes-item__label">Color</th>
-			<td class="woocommerce-product-attributes-item__value">
-				<p>Orange, Turquoise</p>
-			</td>
-			</tr>
 			<tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_size">
 			<th class="woocommerce-product-attributes-item__label">Size</th>
 			<td class="woocommerce-product-attributes-item__value">
-				<p>S, M, L, XL</p>
+				<p>{% for size in size %} {{size.product_Size}}, {% endfor %}</p>
+			</td>
+			</tr>
+				<tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_color">
+			<th class="woocommerce-product-attributes-item__label">Color</th>
+			<td class="woocommerce-product-attributes-item__value">
+				<p>{% for color in color%} {{color.product_Color}}, {% endfor %}</p>
+			</td>
+			</tr>
+			<tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_color">
+			<th class="woocommerce-product-attributes-item__label">Category</th>
+			<td class="woocommerce-product-attributes-item__value">
+				<p>{{pro.pro_cat_name.cat_name}}</p>
+			</td>
+			</tr>
+			<tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_color">
+			<th class="woocommerce-product-attributes-item__label">Product</th>
+			<td class="woocommerce-product-attributes-item__value">
+				<p>{{pro.pro_name}}</p>
+			</td>
+			</tr>
+			<tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_color">
+			<th class="woocommerce-product-attributes-item__label">Price</th>
+			<td class="woocommerce-product-attributes-item__value">
+				<p>{{pro.pro_price}}</p>
+			</td>
+			</tr>
+			<tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_color">
+			<th class="woocommerce-product-attributes-item__label">Offer Price</th>
+			<td class="woocommerce-product-attributes-item__value">
+				<p>{{pro.pro_offer_price}}</p>
+			</td>
+			</tr>
+			<tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_color">
+			<th class="woocommerce-product-attributes-item__label">Description</th>
+			<td class="woocommerce-product-attributes-item__value">
+				<p>{{pro.pro_description}}</p>
+			</td>
+			</tr>
+			<tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_color">
+			<th class="woocommerce-product-attributes-item__label">Rate</th>
+			<td class="woocommerce-product-attributes-item__value">
+				<p>{{pro.pro_star}}</p>
 			</td>
 			</tr>
 </table>
@@ -932,5 +961,22 @@ var getbowtied_scripts_vars = {"ajax_load_more_locale":"Load More Items","ajax_l
 		</script>
 		<script>var _customizePartialRefreshExports = {"partials":[],"renderQueryVar":"wp_customize_render_partials","l10n":{"shiftClickToEdit":"Shift-click to edit this element.","clickEditMenu":"Click to edit this menu.","clickEditWidget":"Click to edit this widget.","clickEditTitle":"Click to edit the site title.","clickEditMisc":"Click to edit this element.","badDocumentWrite":"document.write() is forbidden"}};</script><script>var _customizePartialRefreshExports = {"partials":[],"renderQueryVar":"wp_customize_render_partials","l10n":{"shiftClickToEdit":"Shift-click to edit this element.","clickEditMenu":"Click to edit this menu.","clickEditWidget":"Click to edit this widget.","clickEditTitle":"Click to edit the site title.","clickEditMisc":"Click to edit this element.","badDocumentWrite":"document.write() is forbidden"}};</script>
 <script defer src="{%static 'wp-content/cache/autoptimize/js/autoptimize_3c492425456aee641c22f220c3a838a2.js'%}"></script></body>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script>
+	$(".color_to_cart").click(function(){
+		var x = $(this).attr('data-option');
+		$("#append_color").val(x);
+});
+
+</script>
+
+<script>
+	$(".size_to_cart").click(function(){
+		var x = $(this).attr('data-option');
+		$("#append_size").val(x);
+});
+
+</script>
 
 </html>

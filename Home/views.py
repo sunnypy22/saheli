@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
-from Product.models import Category, Product, Size, Color
+from Product.models import Category, Product
 
 
 # Create your views here.
@@ -17,35 +17,25 @@ from django.template.loader import render_to_string
 
 def demo(request):
     cat = Category.objects.all()
-    size = Size.objects.all()
-    color = Color.objects.all()
     data = Product.objects.all()
 
-    return render(request, 'demo.html', {'cat': cat, 'data': data, 'size': size, 'color': color})
+    return render(request, 'demo.html', {'cat': cat, 'data': data})
 
 
 def filter_data(request):
     cat = request.GET.getlist('cat[]')
-    size = request.GET.getlist('cat[]')
-    colors = request.GET.getlist('cat[]')
     all_products = Product.objects.all().order_by('-id').distinct()
     if len(cat) > 0:
         all_products = all_products.filter(pro_cat_name__id__in=cat).distinct()
-    if len(size) > 0:
-        all_products = all_products.filter(pro_size__id__in=size).distinct()
-    if len(colors) > 0:
-        all_products = all_products.filter(pro_color__id__in=colors).distinct()
     t = render_to_string('demo.html', {'data': all_products})
     return JsonResponse({'data': t})
 
 
 def product_list(request):
     cat = Category.objects.all()
-    size = Size.objects.all()
-    color = Color.objects.all()
     data = Product.objects.all()
 
-    return render(request, 'product_list.html', {'cat': cat, 'data': data, 'size': size, 'color': color})
+    return render(request, 'product_list.html', {'cat': cat, 'data': data})
 
 @csrf_exempt
 def try_ajax(request):
@@ -55,10 +45,6 @@ def try_ajax(request):
     all_products = Product.objects.all().order_by('-id').distinct()
     if len(cat) > 0:
         all_products = all_products.filter(pro_cat_name__id__in=cat).distinct()
-    if len(size) > 0:
-        all_products = all_products.filter(pro_size__id__in=size).distinct()
-    if len(colors) > 0:
-        all_products = all_products.filter(pro_color__id__in=colors).distinct()
     t = render_to_string('demo.html', {'data': all_products})
     return JsonResponse({'data': t})
 
