@@ -275,7 +275,13 @@ p.demo_store  {
 	{% for i in cart %}
 		<input type="text" name="ammount" value="{{i.total}}" style="display: contents;">
 	{% endfor %}
-	<input type="text" name="product" value="{%	for i in data %} {{i.id}}, {% endfor %}" style="display: contents;">
+	{% for i in data %}
+		<input type="text" name="product[]" value=" {{i.cart_product.pro_name}}" style="display: contents;">
+		<input type="text" name="ord_size[]" value=" {{i.cart_size}}" style="display: contents;">
+		<input type="text" name="ord_color[]" value=" {{i.cart_color}}" style="display: contents;">
+		<input type="text" name="ord_quantity[]" value=" {{i.cart_quantity}}" style="display: contents;">
+	{% endfor %}
+<!--	<input type="text" name="product" value="{%	for i in data %} {{i.id}}, {% endfor %}" style="display: contents;">-->
 		<div class="col2-set" id="customer_details">
 			<div class="col-1">
 				<div class="woocommerce-billing-fields">
