@@ -179,9 +179,13 @@ p.demo_store  {
 
                     <div class="row">
                         <div class="large-10 large-centered columns without-sidebar">
-
+		{% for i in cart %}
+		{% if i.total == 0.0 %}
+							<h1 class="page-title">Add Product To Continue</h1>
+		{% else%}
                                                         <h1 class="page-title">Shopping Cart</h1>
-
+		{% endif %}
+		{% endfor %}
 
                         </div>
                     </div>
@@ -271,7 +275,10 @@ p.demo_store  {
 </div>
 
 
-<div class="cart-collaterals">
+		{% for i in cart %}
+		{% if i.total == 0.0 %}
+		{% else%}
+				<div class="cart-collaterals">
 	<div class="cart_totals ">
 
 
@@ -367,24 +374,26 @@ var subtotal = $('.abcd').sum();
 $(".subtotal_amount").append("<span>&#36;</span>" + subtotal);
 
 </script>
-	<div class="wc-proceed-to-checkout">
 
-<a href="{%url 'checkout'%}" class="checkout-button button alt wc-forward">
+		{% for i in cart %}
+		{% if i.total == 0.0 %}
+
+		{% else %}
+				<div class="wc-proceed-to-checkout">
+					<a href="{%url 'checkout'%}" class="checkout-button button alt wc-forward">
 	Proceed to checkout</a>
 	</div>
+		{% endif %}
+		{% endfor %}
 
 
 </div>
 </div>
-
+		{% endif %}
+        {% endfor %}
 <div class="shopkeeper-continue-shopping">
-    <a href="" class="button">Continue shopping</a></div>
-		<script type="text/javascript">
-			/* <![CDATA[ */
-			window.pysWooRemoveFromCartData = window.pysWooRemoveFromCartData || [];
-			window.pysWooRemoveFromCartData = {"c7b4bb942f0b5d4860d4319772182765":{"facebook":{"content_type":"product","content_ids":"[\"5048\"]","content_name":"Camouflage Hooded Cotton Jacket","category_name":"#stayhome, Accessories, Jackets","num_items":"1","product_price":"276","contents":"[{\"id\":\"5048\",\"quantity\":1}]"},"ga":{"event_category":"ecommerce","currency":"USD","items":[{"id":"5048","name":"Camouflage Hooded Cotton Jacket","category":"#stayhome\/Accessories\/Jackets","quantity":"1","price":"276"}],"non_interaction":false},"google_ads":{"event_category":"ecommerce","currency":"USD","value":276,"items":[{"id":"5048","name":"Camouflage Hooded Cotton Jacket","category":"#stayhome\/Accessories\/Jackets","quantity":"1","price":"276","google_business_vertical":"retail"}]}}};
-			/* ]]&gt; */
-		</script>
+    <a href="{%url 'shop'%}" class="button">Continue shopping</a></div>
+
 
 		</div>
                     </div><!-- .entry-content -->
