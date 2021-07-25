@@ -13,13 +13,14 @@ def checkout(request):
         'SELECT id,total(cart_price) as total FROM Product_cart WHERE cart_user_id="' + user_id + '"')
     if request.method == 'POST':
         ammount = float(request.POST.get("ammount")) * 100
+        main_price = float(request.POST.get("ammount"))
         product = request.POST.getlist("product[]")
         ord_size = request.POST.getlist("ord_size[]")
         ord_color = request.POST.getlist("ord_color[]")
         ord_quantity = request.POST.getlist("ord_quantity[]")
         client = razorpay.Client(auth=("rzp_test_l5VpO7rP3PiD3H", "brki2hlaIjeRC78vVdkm0izV"))
         payment = client.order.create({'amount': ammount, 'currency': 'INR', 'payment_capture': '1'})
-        coffee = Checkout(name=request.user, product=product, ammount=ammount, payment_id=payment['id'])
+        coffee = Checkout(name=request.user, product=product, ammount=main_price, payment_id=payment['id'])
         coffee.save()
 
         ord_payment_id = coffee.payment_id

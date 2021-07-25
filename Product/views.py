@@ -86,8 +86,9 @@ def cart(request):
 def update_cart(request, pid):
     try:
         data = Cart.objects.get(id=pid)
-        size = Product_Size.objects.filter(size_key_id=pid)
-        color = Product_Color.objects.filter(color_key_id=pid)
+        pro_id = data.cart_product.id
+        size = Product_Size.objects.filter(size_key_id = pro_id)
+        color = Product_Color.objects.filter(color_key_id=pro_id)
         if request.method == "POST":
             quantity = request.POST.get('quantity')
             product_id = request.POST.get('product_id')

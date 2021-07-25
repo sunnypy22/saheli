@@ -295,14 +295,14 @@ p.demo_store  {
 				<abbr class="required" title="required">*</abbr>
 			</label>
 			<span class="woocommerce-input-wrapper">
-				<input type="text" class="input-text " name="billing_first_name" id="billing_first_name" placeholder=""
+				<input type="text" class="input-text " required name="billing_first_name" id="billing_first_name" placeholder=""
 					   value="" autocomplete="given-name" /></span>
 		</p>
 		<p class="form-row form-row-last validate-required" id="billing_last_name_field" data-priority="20">
 			<label for="billing_last_name" class="">Last name&nbsp;
 				<abbr class="required" title="required">*</abbr></label>
 			<span class="woocommerce-input-wrapper">
-				<input type="text" class="input-text " name="billing_last_name" id="billing_last_name" placeholder=""  value="" autocomplete="family-name" />
+				<input type="text" class="input-text " required name="billing_last_name" id="billing_last_name" placeholder=""  value="" autocomplete="family-name" />
 			</span></p>
 		<p class="form-row form-row-wide" id="billing_company_field" data-priority="30">
 			<label for="billing_company" class="">Company name&nbsp;<span class="optional">(optional)</span>
@@ -311,45 +311,28 @@ p.demo_store  {
 				<input type="text" class="input-text " name="billing_company" id="billing_company" placeholder=""  value="" autocomplete="organization" />
 			</span>
 		</p>
-		<p class="form-row form-row-wide address-field update_totals_on_change validate-required" id="billing_country_field" data-priority="40">
-			<label for="billing_country" class="">Country / Region&nbsp;<abbr class="required" title="required">*</abbr></label>
-			<span class="woocommerce-input-wrapper">
-				<select name="billing_country" id="billing_country" class="country_to_state country_select "
-						autocomplete="country" data-placeholder="Select a country / region&hellip;" data-label="Country / Region">
-					<option value="">Select a country / region&hellip;</option>
-					<option value="AF" >Afghanistan</option>
-					<option value="AX" >Åland Islands</option>
-					<option value="AL" >Albania</option>
-					<option value="DZ" >Algeria</option>
-					<option value="AS" >American Samoa</option>
-					<option value="AD" >Andorra</option>
-					<option value="AO" >Angola</option>
-					<option value="AI" >Anguilla</option>
-					<option value="AQ" >Antarctica</option>
-					<option value="AG" >Antigua and Barbuda</option>
-					<option value="AR" >Argentina</option>
-					<option value="AM" >Armenia</option>
-					<option value="AW" >Aruba</option>
-					<option value="AU" >Australia</option>
-					<option value="AT" >Austria</option>
-					<option value="AZ" >Azerbaijan</option>
-					<option value="BS" >Bahamas</option>
-		<option value="AP" >Armed Forces (AP)</option>
-				</select>
-			</span>
-		</p>
+
 		<p class="form-row form-row-wide address-field validate-required validate-postcode"
 		   id="billing_postcode_field" data-priority="90">
 			<label for="billing_postcode" class="">ZIP&nbsp;
 				<abbr class="required" title="required">*</abbr></label>
 			<span class="woocommerce-input-wrapper">
-				<input type="text" class="input-text " name="billing_postcode" id="billing_postcode" placeholder=""  value="" autocomplete="postal-code" />
+				<input type="text" class="input-text " required name="billing_postcode" id="billing_postcode" placeholder=""  value="" autocomplete="postal-code" />
 			</span>
 		</p>
-		<p class="form-row form-row-wide validate-required validate-phone" id="billing_phone_field" data-priority="100">
+		<p class="form-row notes"  data-priority="">
+				<label for="order_comments" class="">Address&nbsp;
+				<abbr class="required" title="required">*</abbr></label>
+				<span class="woocommerce-input-wrapper">
+					<textarea name="order_comments" class="input-text" required  placeholder="Notes about your order, e.g. special notes for delivery."  rows="2" cols="5">
+
+					</textarea>
+				</span>
+			</p>
+        <p class="form-row form-row-wide validate-required validate-phone" id="billing_phone_field" data-priority="100">
 			<label for="billing_phone" class="">Phone&nbsp;<abbr class="required" title="required">*</abbr></label>
 			<span class="woocommerce-input-wrapper">
-				<input type="tel" class="input-text " name="billing_phone" id="billing_phone" placeholder=""  value="" autocomplete="tel" />
+				<input type="tel" class="input-text " required name="billing_phone" id="billing_phone" placeholder=""  value="" autocomplete="tel" />
 			</span>
 		</p>
 		<p class="form-row form-row-wide validate-required validate-email" id="billing_email_field" data-priority="110">
@@ -357,7 +340,7 @@ p.demo_store  {
 				&nbsp;<abbr class="required" title="required">*</abbr>
 			</label>
 			<span class="woocommerce-input-wrapper">
-				<input type="email" class="input-text " name="billing_email" id="billing_email" placeholder=""  value="" autocomplete="email username" />
+				<input type="email" class="input-text " required name="billing_email" id="billing_email" placeholder=""  value="" autocomplete="email username" />
 			</span>
 		</p>
 	</div>
@@ -365,67 +348,6 @@ p.demo_store  {
 			</div>
 
 			<div class="col-2">
-				<div class="woocommerce-shipping-fields">
-		<h3 id="ship-to-different-address">
-			<label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
-				<input id="ship-to-different-address-checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox"
-					   type="checkbox" name="ship_to_different_address" value="1" />
-				<span>Ship to a different address?</span>
-			</label>
-		</h3>
-
-		<div class="shipping_address">
-
-
-			<div class="woocommerce-shipping-fields__field-wrapper">
-				<p class="form-row form-row-first validate-required" id="shipping_first_name_field"
-				   data-priority="10"><label for="shipping_first_name" class="">
-					First name&nbsp;<abbr class="required" title="required">*</abbr></label>
-					<span class="woocommerce-input-wrapper">
-						<input type="text" class="input-text " name="shipping_first_name" id="shipping_first_name" placeholder=""  value="" autocomplete="given-name" />
-					</span>
-				</p>
-				<p class="form-row form-row-last validate-required" id="shipping_last_name_field" data-priority="20">
-					<label for="shipping_last_name" class="">Last name&nbsp;
-						<abbr class="required" title="required">*</abbr>
-					</label>
-					<span class="woocommerce-input-wrapper">
-						<input type="text" class="input-text " name="shipping_last_name" id="shipping_last_name" placeholder=""  value="" autocomplete="family-name" />
-					</span>
-				</p>
-				<p class="form-row form-row-wide" id="shipping_company_field" data-priority="30">
-					<label for="shipping_company" class="">Company name
-						&nbsp;<span class="optional">(optional)</span></label>
-					<span class="woocommerce-input-wrapper">
-						<input type="text" class="input-text " name="shipping_company" id="shipping_company" placeholder=""  value="" autocomplete="organization" />
-					</span></p>
-				<p class="form-row form-row-wide address-field update_totals_on_change validate-required" id="shipping_country_field" data-priority="40">
-					<label for="shipping_country" class="">Country / Region
-						&nbsp;<abbr class="required" title="required">*</abbr>
-					</label>
-					<span class="woocommerce-input-wrapper">
-						<select name="shipping_country" id="shipping_country" class="country_to_state country_select " autocomplete="country"
-								data-placeholder="Select a country / region&hellip;" data-label="Country / Region">
-							<option value="AE" >Armed Forces (AE)</option>
-							<option value="AP" >Armed Forces (AP)</option>
-						</select>
-					</span>
-				</p>
-				<p class="form-row form-row-wide address-field validate-required validate-postcode" id="shipping_postcode_field" data-priority="90">
-					<label for="shipping_postcode" class="">ZIP&nbsp;
-						<abbr class="required" title="required">*</abbr>
-					</label>
-					<span class="woocommerce-input-wrapper">
-						<input type="text" class="input-text " name="shipping_postcode" id="shipping_postcode" placeholder=""
-							   value="" autocomplete="postal-code" />
-					</span>
-				</p>
-			</div>
-
-
-		</div>
-
-	</div>
 <div class="woocommerce-additional-fields">
 
 
