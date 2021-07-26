@@ -102,6 +102,10 @@ class Cart(models.Model):
     def cart_offer_price(self):
         return self.cart_product.pro_offer_price * self.cart_quantity
 
+    @property
+    def subtotal(self):
+        return (self.cart_quantity * self.cart_product.pro_price) - (self.cart_product.pro_offer_price * self.cart_quantity)
+
 
 CHOICE = (
     ('one', 'one'),

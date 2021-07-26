@@ -29,7 +29,11 @@ def checkout(request):
                                                 ord_quantity=ord_quantity,history_user_name=request.user,
                                                 ord_payment_id=ord_payment_id)
             data.save()
-        return render(request, 'checkout.html', {'payment': payment})
+        details = Cart.objects.filter(cart_user=request.user.id)
+        user_id = str(request.user.id)
+        cart = Cart.objects.raw(
+            'SELECT id,total(cart_price) as total FROM Product_cart WHERE cart_user_id="' + user_id + '"')
+        return render(request, 'checkout.html', {'payment': payment,'details':details,'pay_cart':cart})
     return render(request, 'checkout.html', {'data': data, 'cart': cart})
 
 

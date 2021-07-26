@@ -1,36 +1,4 @@
 {% load static %}
-{% if payment %}
-<form action="{%url 'success'%}" method="POST">
-{% csrf_token %}
-
-    <p class="h3 mb-3">
-    <i class="fas fa-coffee"></i> Buy With Your Best Service!!
-    </p>
-
-    <p class="mb-3">
-    Help us create more videos by donating 500 INR
-    </p>
-
-<!-- RAZORPAY INTEGRATION HERE -->
-
-<script src="https://checkout.razorpay.com/v1/checkout.js"
-    data-key="rzp_test_l5VpO7rP3PiD3H"
-    data-amount="{{payment.amount}}"
-    data-currency="INR"
-    data-order_id="{{payment.id}}"
-    data-buttontext="Pay with Razorpay"
-    data-name="Professional Cipher"
-    data-description="Django and Data Science"
-    data-image="https://example.com/your_logo.jpg"
-    data-prefill.name="PC"
-    data-prefill.email="pc@studygyaan.com"
-    data-prefill.contact = "9999999999"
-    data-theme.color="#F37254">
-</script>
-    <input type="hidden" custom="Hidden Element" name="hidden">
-</form>
-{% else %}
-
 
 <!DOCTYPE html>
 
@@ -220,6 +188,81 @@ p.demo_store  {
         </div>
     </div>
 </header>
+{% if payment %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<div class="container">
+  <h2>Check Your Order Before You Pay</h2>
+  <p>Please Tap on <a href="{%url 'cart'%}" style="font-style: italic;">Here </a> to Update Your Order.</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Size</th>
+        <th>Colour</th>
+        <th>Price</th>
+        <th>Offer</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+{% for j in details %}
+      <tr class="active">
+        <td>{{j.cart_product.pro_name}}</td>
+        <td>{{j.cart_quantity}}</td>
+        <td>{{j.cart_size}}</td>
+        <td>{{j.cart_color}}</td>
+        <td>{{j.cart_pro_price}}</td>
+        <td>{{j.cart_offer_price}}</td>
+        <td>{{j.subtotal}}</td>
+      </tr>
+{% endfor %}
+
+    </tbody>
+  </table>
+	{% for k in pay_cart %}
+	<p>Total Amount Of your Product : {{k.total}}</p>
+	{% endfor %}
+<form action="{%url 'success'%}" method="POST">
+{% csrf_token %}
+
+<!-- RAZORPAY INTEGRATION HERE -->
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"
+    data-key="rzp_test_l5VpO7rP3PiD3H"
+    data-amount="{{payment.amount}}"
+    data-currency="INR"
+    data-order_id="{{payment.id}}"
+    data-buttontext="Pay with Razorpay"
+    data-name="Professional Cipher"
+    data-description="Django and Data Science"
+    data-image="https://example.com/your_logo.jpg"
+    data-prefill.name="PC"
+    data-prefill.email="pc@studygyaan.com"
+    data-prefill.contact = "9999999999"
+    data-theme.color="#F37254">
+</script>
+    <input type="hidden" custom="Hidden Element" name="hidden">
+</form>
+</div>
+
+</body>
+</html>
+
+{% else %}
+
 
                         </div>
 
@@ -379,24 +422,32 @@ p.demo_store  {
 		</tr>
 	</thead>
 	<tbody>
+	{% for product in data %}
 						<tr class="cart_item">
+
 					<td class="product-name">
-						Camouflage Hooded Cotton Jacket&nbsp;
-						<strong class="product-quantity">&times;&nbsp;1</strong>											</td>
+						{{product.cart_product.pro_name}}&nbsp;
+						<strong class="product-quantity">&times;&nbsp;{{product.cart_quantity}}</strong>
+					</td>
+
 					<td class="product-total">
 						<span class="woocommerce-Price-amount amount">
 							<bdi>
-								<span class="woocommerce-Price-currencySymbol">&#36;</span>276</bdi>
+								<span class="woocommerce-Price-currencySymbol">&#36;</span>{{product.cart_pro_price}}</bdi>
 						</span>
 					</td>
 				</tr>
+	{% endfor %}
 					</tbody>
 	<tfoot>
 
+	{% for pro_price in data%}
+	<input type="text" class="actual_price" style="display: contents;"   value="{{pro_price.cart_pro_price}}">
+	{% endfor %}
 		<tr class="cart-subtotal">
 			<th>Subtotal</th>
 			<td><span class="woocommerce-Price-amount amount"><bdi>
-				<span class="woocommerce-Price-currencySymbol">&#36;</span>276</bdi>
+				<span class="woocommerce-Price-currencySymbol">&#36;</span><span class="actual_append_price"></span></bdi>
 			</span>
 			</td>
 		</tr>
@@ -404,24 +455,20 @@ p.demo_store  {
 
 
 
+{% for k in data %}
+	<input type="text" style="display: contents;"  class="demo_total" value="{{k.cart_offer_price}}">
+{% endfor %}
 			<tr class="woocommerce-shipping-totals shipping">
-	<th>Shipping</th>
+	<th>Offer</th>
 	<td data-title="Shipping">
 					<ul id="shipping_method" class="woocommerce-shipping-methods">
 						<li>
-						<input type="radio" name="shipping_method[0]" data-index="0" id="shipping_method_0_flat_rate4"
-							   value="flat_rate:4" class="shipping_method"  checked='checked' />
-							<label for="shipping_method_0_flat_rate4">Flat Rate:
+
 								<span class="woocommerce-Price-amount amount"><bdi>
-									<span class="woocommerce-Price-currencySymbol">&#36;</span>12</bdi>
+									<span class="woocommerce-Price-currencySymbol">&#36;</span><span class="add_offer"></span></bdi>
 								</span>
-							</label>
 						</li>
-									<li>
-						<input type="radio" name="shipping_method[0]" data-index="0" id="shipping_method_0_free_shipping5"
-							   value="free_shipping:5" class="shipping_method"  />
-										<label for="shipping_method_0_free_shipping5">Free shipping</label>
-									</li>
+
 
 							</ul>
 
@@ -433,36 +480,26 @@ p.demo_store  {
 
 
 
-
+{% for i in cart %}
 		<tr class="order-total">
 			<th>Total</th>
 			<td>
 				<strong>
 					<span class="woocommerce-Price-amount amount"><bdi>
-						<span class="woocommerce-Price-currencySymbol">&#36;</span>288</bdi>
+						<span class="woocommerce-Price-currencySymbol">&#36;</span>{{i.total}}</bdi>
 					</span>
 				</strong>
 			</td>
 		</tr>
-
+{% endfor %}
 
 	</tfoot>
 </table>
 <div id="payment" class="woocommerce-checkout-payment">
 			<ul class="wc_payment_methods payment_methods methods">
 
-<li class="wc_payment_method payment_method_cod">
-	<input id="payment_method_cod" type="radio" class="input-radio" name="payment_method" value="cod"
-		   data-order_button_text="" />
-
-	<label for="payment_method_cod">
-		Cash on delivery 	</label>
-			<div class="payment_box payment_method_cod" style="display:none;">
-			<p>Pay with cash upon delivery.</p>
-		</div>
-	</li>
 <li class="wc_payment_method payment_method_paypal">
-	<input id="payment_method_paypal" type="radio" class="input-radio"
+	<input id="payment_method_paypal" checked='checked' type="radio" class="input-radio"
 		   name="payment_method" value="paypal"  data-order_button_text="Proceed to PayPal" />
 
 	<label for="payment_method_paypal">
@@ -789,6 +826,25 @@ var getbowtied_scripts_vars =
  "ajax_loading_locale":"Loading","ajax_no_more_items_locale":"No more items available.","smooth_transition":"","pagination_blog":"infinite_scroll","layout_blog":"layout-3","shop_pagination_type":"infinite_scroll","option_minicart":"1","option_minicart_open":"1","catalog_mode":"","product_lightbox":"1","product_gallery_zoom":"1","mobile_product_columns":"2","sticky_header":"1","mobile_sticky_header":"1","back_to_top_button":"1","ajax_url":""};
 </script>
 <script defer src="{%static 'wp-content/cache/autoptimize/js/autoptimize_9ad507f7a31600185931b500a7b68100.js'%}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+
+	var sum = 0;
+$('.demo_total').each(function(){
+    sum += +$(this).val();
+});
+$('.add_offer').append(sum);
+</script>
+
+<script>
+
+	var sum = 0;
+$('.actual_price').each(function(){
+    sum += +$(this).val();
+});
+$('.actual_append_price').append(sum);
+</script>
+
 </body>
 </html>
 
