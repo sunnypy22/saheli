@@ -11,16 +11,27 @@ class Checkout(models.Model):
     product = models.CharField(max_length=40, null=True)
     ammount = models.CharField(max_length=40)
     payment_id = models.CharField(max_length=100)
+    billing_company = models.CharField(max_length=100,null=True,blank=True)
+    billing_postcode = models.CharField(max_length=100,null=True,blank=True)
+    order_address = models.CharField(max_length=100,null=True,blank=True)
+    billing_phone = models.CharField(max_length=100,null=True,blank=True)
+    order_comments = models.CharField(max_length=100,null=True,blank=True)
     paid = models.BooleanField(default=False)
+    ord_date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.payment_id
 
 class Order_History(models.Model):
     history_user_name = models.ForeignKey(User, on_delete=models.CASCADE, related_name="history_user_name", null=True,
-                             blank=True)
-    ord_product = models.CharField(max_length=20,null=True)
+                                          blank=True)
+    order_checkout = models.ForeignKey(Checkout, on_delete=models.CASCADE, related_name="History_Checkout", null=True,
+                                       blank=True)
+    ord_product = models.CharField(max_length=20, null=True)
     ord_size = models.CharField(max_length=20)
     ord_color = models.CharField(max_length=20)
     ord_quantity = models.CharField(max_length=20)
-    ord_date = models.DateTimeField(auto_now_add=True)
-    ord_status = models.BooleanField(default=False)
-    ord_payment_id = models.CharField(max_length=100,null=True,blank=True)
+    ord_payment_id = models.CharField(max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        return self.ord_payment_id

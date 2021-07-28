@@ -54,13 +54,18 @@ def product_description(request, pid):
                 price = quantity * final_price
                 cart_color = request.POST.get('product_color')
                 cart_size = request.POST.get('product_size')
-                data = Cart(cart_user=request.user, cart_product_id=pro.id, cart_status=True, cart_quantity=quantity,
-                            cart_price=price,cart_color=cart_color,cart_size=cart_size)
-                data.save()
-                return redirect("cart")
+                if cart_color == "" or cart_size == "":
+                    messages.error(request,'PLease Choose Your Size And Colour for Better Experience')
+
+                else:
+                    data = Cart(cart_user=request.user, cart_product_id=pro.id, cart_status=True,
+                                cart_quantity=quantity,
+                                cart_price=price, cart_color=cart_color, cart_size=cart_size)
+                    data.save()
+                    return redirect("cart")
     else:
         pass
-    return render(request, 'product_description.html', {'pro': pro,'size':size,'color':color})
+    return render(request, 'product_description.html', {'pro': pro, 'size': size, 'color': color})
 
 
 def wishlist(request):
@@ -87,7 +92,7 @@ def update_cart(request, pid):
     try:
         data = Cart.objects.get(id=pid)
         pro_id = data.cart_product.id
-        size = Product_Size.objects.filter(size_key_id = pro_id)
+        size = Product_Size.objects.filter(size_key_id=pro_id)
         color = Product_Color.objects.filter(color_key_id=pro_id)
         if request.method == "POST":
             quantity = request.POST.get('quantity')
@@ -103,7 +108,7 @@ def update_cart(request, pid):
             return render(request, 'cart.html', {'data': update_cart})
         else:
             pass
-        return render(request, 'cart_product_desc.html', {'pro': data,'size':size,'color':color})
+        return render(request, 'cart_product_desc.html', {'pro': data, 'size': size, 'color': color})
     except TypeError:
         return redirect("cart")
 

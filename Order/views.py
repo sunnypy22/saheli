@@ -18,22 +18,30 @@ def checkout(request):
         ord_size = request.POST.getlist("ord_size[]")
         ord_color = request.POST.getlist("ord_color[]")
         ord_quantity = request.POST.getlist("ord_quantity[]")
+        billing_company = request.POST.get("billing_company")
+        billing_postcode = request.POST.get("billing_postcode")
+        order_address = request.POST.get("order_address")
+        billing_phone = request.POST.get("billing_phone")
+        order_comments = request.POST.get("order_comments")
         client = razorpay.Client(auth=("rzp_test_l5VpO7rP3PiD3H", "brki2hlaIjeRC78vVdkm0izV"))
         payment = client.order.create({'amount': ammount, 'currency': 'INR', 'payment_capture': '1'})
-        coffee = Checkout(name=request.user, product=product, ammount=main_price, payment_id=payment['id'])
+        coffee = Checkout(name=request.user, product=product, ammount=main_price, payment_id=payment['id'],
+                          billing_company=billing_company,
+                          billing_postcode=billing_postcode, order_address=order_address, billing_phone=billing_phone,
+                          order_comments=order_comments)
         coffee.save()
 
         ord_payment_id = coffee.payment_id
         for product, ord_size, ord_color, ord_quantity in zip(product, ord_size, ord_color, ord_quantity):
             data = Order_History.objects.create(ord_product=product, ord_size=ord_size, ord_color=ord_color,
-                                                ord_quantity=ord_quantity,history_user_name=request.user,
-                                                ord_payment_id=ord_payment_id)
+                                                ord_quantity=ord_quantity, history_user_name=request.user,
+                                                ord_payment_id=ord_payment_id, order_checkout_id=coffee.id)
             data.save()
         details = Cart.objects.filter(cart_user=request.user.id)
         user_id = str(request.user.id)
         cart = Cart.objects.raw(
             'SELECT id,total(cart_price) as total FROM Product_cart WHERE cart_user_id="' + user_id + '"')
-        return render(request, 'checkout.html', {'payment': payment,'details':details,'pay_cart':cart})
+        return render(request, 'checkout.html', {'payment': payment, 'details': details, 'pay_cart': cart})
     return render(request, 'checkout.html', {'data': data, 'cart': cart})
 
 
@@ -50,13 +58,6 @@ def success(request):
         user.paid = True
         user.save()
 
-        order_history = Order_History.objects.filter(ord_payment_id=order_id)
-        # print(order_history)
-        for save_ord in order_history:
-            save_ord.ord_status = True
-            save_ord.save()
-        # order_history.ord_status = True
-        # order_history.save()
         try:
             if user.paid == True:
                 user = str(request.user.id)
