@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Category, Product, Wishlist, Cart, Product_Size, Product_Color
+from .models import Category, Product, Wishlist, Cart, Product_Size, Product_Color,CHOICE_COLOR,CHOICE_SIZE
 from django.contrib import messages
 
 
@@ -9,13 +9,17 @@ from django.contrib import messages
 def shop(request):
     cat = Category.objects.all()
     pro = Product.objects.all()
-    return render(request, 'category-grid.html', {'cat': cat, 'data': pro})
+    color = Product_Color.objects.all()
+    return render(request, 'category-grid.html', {'cat': cat, 'data': pro,'color':color})
 
 
 def cat_filter(request, pid):
-    pro = Product.objects.get(id=pid)
+    pro = Product.objects.get(pro_cat_name_id=pid)
+    color_choice = CHOICE_COLOR[0:]
+    size_choice = CHOICE_SIZE[0:]
     cat = Category.objects.all()
-    return render(request, 'cat_filter.html', {'cat': cat, 'data': pro})
+    color = Product_Color.objects.all()
+    return render(request, 'cat_filter.html', {'cat': cat, 'data': pro,'color':color,'color_choice':color_choice,'size_choice':size_choice})
 
 
 def product_description(request, pid):
@@ -67,7 +71,7 @@ def product_description(request, pid):
         pass
     return render(request, 'product_description.html', {'pro': pro, 'size': size, 'color': color})
 
-
+@login_required
 def wishlist(request):
     data = Wishlist.objects.filter(wish_list_user=request.user)
     return render(request, 'wishlist.html', {'data': data})

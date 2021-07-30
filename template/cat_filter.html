@@ -234,12 +234,12 @@ p.demo_store  {
 
                         </div>
 
-<div id="primary" class="content-area shop-page shop-has-sidebar">
+<div id="primary" class="content-area shop-page shop-has-sidebar" style="padding: 21px 0 0 !important">
 		<div class="woocommerce-products-header shop_header ">
 			<div class="shop_header_overlay"></div>
 			<div class="row">
 				<div class="large-12 large-centered columns">
-				<h1 class="woocommerce-products-header__title page-title on-shop">{{data.pro_cat_name.cat_name}}</h1>
+				<h1 class="woocommerce-products-header__title page-title">{{data.pro_cat_name.cat_name}}</h1>
 
 
 
@@ -269,55 +269,51 @@ p.demo_store  {
 						<div class="xlarge-2 large-3 columns show-for-large">
 						<div class="shop_sidebar wpb_widgetised_column">
 
-	<div class="widget-area wcva-filter-widget">
+	<div class="widget-area wcva-filter-widget" style="height: 265px;padding-top: 1px;">
 		   <aside class="widget woocommerce widget_layered_nav wcva_layered_nav">
 
             <h3 class="wcva_filter-widget-title">Filter by
 				<span class="wcva_layered_widget_attribute_name">color</span></h3>
 		     <div class="wcva_filter_widget">
+		{% for c_choice in color_choice %}
 
-					 <label>
-			<input class="tap_me" data-filter="cat"  type="checkbox" name="cat" value="Blue">
-Blue
+
+				 <label>
+						 						<input class="tap_me" data-filter="cat"  type="checkbox" name="color_choice" value="{{c_choice.0}}">
+						 <div class="wcvashopswatchlabel wcvaround "
+							 style="background-color:{{c_choice.0}}; width:22px; float:right; height:22px;">
+
+						</div>
+
 					 </label>
-
+{% endfor %}
              		    </div>
 
 		   </aside>
 
 		 </div>
+							<div>&nbsp;</div>
+	<div class="widget-area wcva-filter-widget" style="height: 271px;padding-top: 1px;">
 		   <aside class="widget woocommerce widget_layered_nav wcva_layered_nav">
 
-            <h3 class="wcva_filter-widget-title">Filter by
-				<span class="wcva_layered_widget_attribute_name">size</span>
-			</h3>
-			   <ul class="product-categories">
+            <h3 class="wcva_filter-widget-title">Filter by  <span class="wcva_layered_widget_attribute_name">size</span></h3>
+		     <div class="wcva_filter_widget">
 
-				<li class="cat-item cat-item-11">
+				 <a title="XS" href="" class="wcvaswatchinput" rel="nofollow" style="width:22px; height:22px;">
+
+
+							{% for size_choice in size_choice %}
 					<label style="font-size: 12px; font-family: inherit;font-weight: 600;">
 						<input class="tap_me" data-filter="cat" type="checkbox"
-							   name="cat" value="XL"> Xl
+							   name="cat" value="{{size_choice.0}}"> {{size_choice.0}}
 					</label>
-				</li>
-
-			</ul>
-		   </aside>
-
-
-<aside id="woocommerce_price_filter-3" class="widget woocommerce widget_price_filter">
-	<h3 class="widget-title">Filter by Price</h3>
-
-			<input type="text" id="min_price" name="min_price" value="20" data-min="20" placeholder="Min price" style="display: none;">
-			<input type="text" id="max_price" name="max_price" value="1090" data-max="1090" placeholder="Max price" style="display: none;">
-			<div class="price_label" style="">
-				<input type="number" min="0" placeholder="Min Price">
-				<span class="from"><input type="number" min="0" placeholder="Max Price"></span>
-			</div>
-
-</aside>
+					{% endfor %}
+				 </a>
+             		    </div>		   </aside>
+		 </div>
 
 
-<button class="button class_button">Filter</button>
+
 
 							</div>
 
@@ -364,16 +360,19 @@ Blue
 											<div class="product_thumbnail with_second_image second_image_loaded"
 												 style="background-size: cover;">
 	            <span class="product_thumbnail_background"
-					  style="background-image:url(https://shopkeeper.wp-theme.design/wp-content/uploads/5983760398347411_03-350x435.jpg)">
+					  style="background-image:url(https://shopkeeper.wp-theme.design/wp-content/uploads/5983760398347411_03-350x435.jpg); height: 163px;">
 
 				</span>
 												{% if data.pro_image == ""%}
 												{% else %}
-												<img width="350" height="435" src=""
-													 class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-													 alt="" loading="lazy" srcset="{{ data.pro_image.url}} , ">
+												<img width="350" height="435" src="" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""
+													 loading="lazy" srcset="{{ data.pro_image.url}} ," style="
+    height: 163px;
+">
+
 												{% endif %}
-											</div><!--.product_thumbnail-->
+											</div>
+											<!--.product_thumbnail-->
 										</a>
 
 
@@ -386,7 +385,7 @@ Blue
 
 
 									<h2 class="woocommerce-loop-product__title">
-										<a href="">{{data.pro_name}} {{data.pro_star}}</a>
+										<a href="">{{data.pro_name}}</a>
 									</h2>
 
 
@@ -408,6 +407,22 @@ Blue
 											<strong class="rating">4.00</strong>
 											out of 5</span>
 									</div>
+									<div class="shopswatchinput ">
+										{% for color in color %}
+										{% if color.color_key.id == data.id %}
+										<a href="" class=""
+									   data-o-src="" style="width:22px; height:22px;">
+                            <div class="wcvashopswatchlabel wcvaround" style="background-color:{{color.product_Color}};
+                             width:22px; float:left; height:22px;">
+
+							</div>
+                            </a>
+
+										{% endif %}
+
+										{% endfor %}
+
+             		        	</div>
 									<div class="product_after_shop_loop">
 										<div class="product_after_shop_loop_switcher">
 
@@ -518,58 +533,48 @@ Blue
 
                 <div class="offcanvas_content_left wpb_widgetised_column">
                     <div id="filters-offcanvas">
-                                                    <aside id="woocommerce_product_categories-3" class="widget woocommerce widget_product_categories">
-														<h3 class="widget-title">Product Categories</h3>
-														<ul class="product-categories">
-<li class="cat-item cat-item-13">
-	<a href="">#stayhome</a> <span class="count">28</span>
-</li>
-<li class="cat-item cat-item-11">
-	<a href="">Jackets</a>
-	<span class="count">17</span>
-</li>
-</ul></aside>
-<aside id="woocommerce_price_filter-3" class="widget woocommerce widget_price_filter">
-	<h3 class="widget-title">Filter by Price</h3>
-<form method="get" action="">
-	<div class="price_slider_wrapper">
-		<div class="price_slider ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content" style=""><div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 0%; width: 100%;"></div><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 0%;"></span><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 100%;"></span></div>
-		<div class="price_slider_amount" data-step="10">
-			<input type="text" id="min_price" name="min_price" value="20" data-min="20" placeholder="Min price" style="display: none;">
-			<input type="text" id="max_price" name="max_price" value="1090" data-max="1090" placeholder="Max price" style="display: none;">
-						<button type="submit" class="button">Filter</button>
-			<div class="price_label" style="">
-				Price: <span class="from">$20</span> — <span class="to">$1,090</span>
-			</div>
-			<input type="hidden" name="customize_changeset_uuid" value="b4977664-90af-4423-827d-acbf368566aa">			<div class="clear"></div>
-		</div>
-	</div>
-</form>
 
-</aside>
-		 <br>
-	     <div class="widget-area wcva-filter-widget">
+	     <div class="widget-area wcva-filter-widget" style="height: 271px;padding-top: 1px;">
 		   <aside class="widget woocommerce widget_layered_nav wcva_layered_nav">
 
             <h3 class="wcva_filter-widget-title">Filter by  <span class="wcva_layered_widget_attribute_name">color</span></h3>
 		     <div class="wcva_filter_widget">
 				 <a title="Brown" href="" class="wcvaswatchinput" rel="nofollow" style="width:22px; height:22px;">
-                        <div class="wcvashopswatchlabel wcvaround " style="background-color:#795032; width:22px; float:left; height:22px;"></div>
-						</a>
-                        <div class="wcvashopswatchlabel wcvaround " style="background-color:#e5c250; width:22px; float:left; height:22px;"></div>
-						</a>
+                     {% for c_choice in color_choice %}
+
+
+					 <label>
+						 						<input class="tap_me" data-filter="cat"  type="checkbox" name="color_choice" value="{{c_choice.0}}">
+						 <div class="wcvashopswatchlabel wcvaround "
+							 style="background-color:{{c_choice.0}}; width:22px; float:right; height:22px;">
+
+						</div>
+
+					 </label>
+						{% endfor %}
+
+				 </a>
+
              		    </div>		   </aside>
 		 </div>
-         <br>
 
-	     <div class="widget-area wcva-filter-widget">
+
+	     <div class="widget-area wcva-filter-widget" style="height: 271px;padding-top: 1px;">
 		   <aside class="widget woocommerce widget_layered_nav wcva_layered_nav">
 
             <h3 class="wcva_filter-widget-title">Filter by  <span class="wcva_layered_widget_attribute_name">size</span></h3>
 		     <div class="wcva_filter_widget">
+
 				 <a title="XS" href="" class="wcvaswatchinput" rel="nofollow" style="width:22px; height:22px;">
-                        <div class="wcvashopswatchlabel wcvasquare  wcva_filter_textblock" style="min-width:22px; ">XS</div>
-						</a>
+
+
+							{% for size_choice in size_choice %}
+					<label style="font-size: 12px; font-family: inherit;font-weight: 600;">
+						<input class="tap_me" data-filter="cat" type="checkbox"
+							   name="cat" value="{{size_choice.0}}"> {{size_choice.0}}
+					</label>
+					{% endfor %}
+				 </a>
              		    </div>		   </aside>
 		 </div>
          <br>

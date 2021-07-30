@@ -24,9 +24,13 @@ CHOICE_STAR = (
 )
 
 CHOICE_SIZE = (
+    ('XXXL', 'XXXL'),
     ('XXL', 'XXL'),
     ('XL', 'XL'),
     ('L', 'L'),
+    ('M', 'M'),
+    ('S', 'S'),
+    ('XS', 'XS'),
 )
 
 CHOICE_COLOR = (
@@ -34,6 +38,9 @@ CHOICE_COLOR = (
     ('black', 'black'),
     ('gray', 'gray'),
     ('yellow', 'yellow'),
+    ('brown', 'brown'),
+    ('white', 'white'),
+    ('green', 'green'),
 )
 
 

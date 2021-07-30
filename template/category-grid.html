@@ -232,7 +232,7 @@ p.demo_store  {
 
                         </div>
 
-<div id="primary" class="content-area shop-page shop-has-sidebar">
+<div id="primary" class="content-area shop-page shop-has-sidebar" style="padding: 21px 0 0 !important">
 		<div class="woocommerce-products-header shop_header ">
 			<div class="shop_header_overlay"></div>
 			<div class="row">
@@ -249,7 +249,7 @@ p.demo_store  {
 									</li>
 									{% for cat in cat %}
 									<li class="category_item">
-										<a href="{%url 'cat_filter' cat.id%}" class="category_item_link">
+										<a href="{% url 'cat_filter' cat.id %}" class="category_item_link">
 											<span class="category_name">{{cat.cat_name}}</span>
 										</a>
 									</li>
@@ -306,14 +306,16 @@ p.demo_store  {
 											<div class="product_thumbnail with_second_image second_image_loaded"
 												 style="background-size: cover;">
 	            <span class="product_thumbnail_background"
-					  style="background-image:url(https://shopkeeper.wp-theme.design/wp-content/uploads/5983760398347411_03-350x435.jpg)">
+					  style="background-image:url(https://shopkeeper.wp-theme.design/wp-content/uploads/5983760398347411_03-350x435.jpg); height: 163px;width: 139px;">
 
 				</span>
 												{% if data.pro_image == ""%}
 												{% else %}
 												<img width="350" height="435" src=""
 													 class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-													 alt="" loading="lazy" srcset="{{ data.pro_image.url}} , ">
+													 alt="" loading="lazy" srcset="{{ data.pro_image.url}} ," style="
+    height: 163px;width: 139px;
+">
 												{% endif %}
 											</div><!--.product_thumbnail-->
 										</a>
@@ -328,7 +330,7 @@ p.demo_store  {
 
 
 									<h2 class="woocommerce-loop-product__title">
-										<a href="">{{data.pro_name}} {{data.pro_star}}</a>
+										<a href="{%url 'product_description' data.id%}">{{data.pro_name}}</a>
 									</h2>
 
 
@@ -350,6 +352,22 @@ p.demo_store  {
 											<strong class="rating">4.00</strong>
 											out of 5</span>
 									</div>
+									<div class="shopswatchinput ">
+										{% for color in color %}
+										{% if color.color_key.id == data.id %}
+										<a href="{%url 'product_description' data.id%}" class=""
+									   data-o-src="" style="width:22px; height:22px;">
+                            <div class="wcvashopswatchlabel wcvaround" style="background-color:{{color.product_Color}};
+                             width:22px; float:left; height:22px;">
+
+							</div>
+                            </a>
+
+										{% endif %}
+
+										{% endfor %}
+
+             		        	</div>
 									<div class="product_after_shop_loop">
 										<div class="product_after_shop_loop_switcher">
 
@@ -359,7 +377,7 @@ p.demo_store  {
 			<bdi><span class="woocommerce-Price-currencySymbol">$</span>{{data.pro_fake_price}}</bdi></span></del>
 		<ins><span class="woocommerce-Price-amount amount"><bdi>
 			<span class="woocommerce-Price-currencySymbol">$</span>{{data.pro_price}}</bdi></span></ins></span>
-					<a href="" data-quantity="1"
+					<a href="{%url 'product_description' data.id%}" data-quantity="1"
 					   class="button product_type_simple add_to_cart_button ajax_add_to_cart"
 					   data-product_id="5135" data-product_sku=""
 					   aria-label="Add “Oversized Nylon Sweatshirt” to your cart" rel="nofollow">
