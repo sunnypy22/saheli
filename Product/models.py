@@ -45,7 +45,7 @@ CHOICE_COLOR = (
 
 
 class Product(models.Model):
-    pro_cat_name = models.ForeignKey(Category, on_delete=models.CASCADE)
+    pro_cat_name = models.ForeignKey(Category, on_delete=models.CASCADE,blank=True,null=True,related_name="pro_cat_name")
     pro_name = models.CharField(max_length=100)
     pro_price = models.BigIntegerField()
     pro_offer_price = models.BigIntegerField(default=0)

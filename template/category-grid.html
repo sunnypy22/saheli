@@ -280,12 +280,17 @@ p.demo_store  {
 								<nav class="woocommerce-breadcrumb">
 									<a href="">Home</a>
 									<span class="breadcrump_sep">/</span> The Shop</nav>
+
 							</div>
+<!--						<a href="{%url 'shop'%}?order_by=High-To-Low">Demo</a>-->
 							<div class="small-7 medium-5 large-6 xlarge-4 columns text-right">
 								<div class="catalog-ordering hide-results">
-									<form class="woocommerce-ordering" method="get">
-										<select name="orderby" class="orderby select2-hidden-accessible" aria-label="Shop order" tabindex="-1" aria-hidden="true">
-											<option value="popularity">Sort by popularity</option>
+									<form class="woocommerce-ordering">
+										<select name="order_by" class="orderby select2-hidden-accessible"
+												aria-label="Shop order" tabindex="-1" aria-hidden="true">
+											<option value="#">Sort by Product Price</option>
+											<option value="High-To-Low">High to Low Product Price</option>
+											<option value="Low-To-High">Low To High Product Price</option>
 										</select>
 									</form>
 

@@ -239,7 +239,7 @@ p.demo_store  {
 			<div class="shop_header_overlay"></div>
 			<div class="row">
 				<div class="large-12 large-centered columns">
-				<h1 class="woocommerce-products-header__title page-title">{{data.pro_cat_name.cat_name}}</h1>
+				<h1 class="woocommerce-products-header__title page-title">{% for i in data|slice:":1" %}{{i.pro_cat_name.cat_name}}{% endfor %}</h1>
 
 
 
@@ -338,8 +338,10 @@ p.demo_store  {
 							<div class="small-7 medium-5 large-6 xlarge-4 columns text-right">
 								<div class="catalog-ordering hide-results">
 									<form class="woocommerce-ordering" method="get">
-										<select name="orderby" class="orderby select2-hidden-accessible" aria-label="Shop order" tabindex="-1" aria-hidden="true">
-											<option value="popularity">Sort by popularity</option>
+										<select name="order_by" class="orderby select2-hidden-accessible" aria-label="Shop order" tabindex="-1" aria-hidden="true">
+											<option value="#">Sort by Product Price</option>
+											<option value="High-To-Low">High to Low Product Price</option>
+											<option value="Low-To-High">Low To High Product Price</option>
 										</select>
 									</form>
 
@@ -351,7 +353,7 @@ p.demo_store  {
 
 							<ul class="products columns-6">
 
-
+{% for data in data %}
 								<li class="product">
 
 									<div class="product_thumbnail_wrapper ">
@@ -442,7 +444,7 @@ p.demo_store  {
 
 
 								</li>
-
+{% endfor %}
 
 
 							</ul>

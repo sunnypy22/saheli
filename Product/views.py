@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Category, Product, Wishlist, Cart, Product_Size, Product_Color,CHOICE_COLOR,CHOICE_SIZE
+from .models import Category, Product, Wishlist, Cart, Product_Size, Product_Color, CHOICE_COLOR, CHOICE_SIZE
 from django.contrib import messages
 
 
@@ -10,16 +10,42 @@ def shop(request):
     cat = Category.objects.all()
     pro = Product.objects.all()
     color = Product_Color.objects.all()
-    return render(request, 'category-grid.html', {'cat': cat, 'data': pro,'color':color})
+    key_a = request.GET.get('order_by')
+    if key_a == "High-To-Low":
+        order_by_price_h_to_l = Product.objects.all().order_by('-pro_price')
+        return render(request, 'category-grid.html',
+                      {'cat': cat, 'data': order_by_price_h_to_l, 'color': color })
+    elif key_a == "Low-To-High":
+        order_by_price_l_to_h = Product.objects.all().order_by('pro_price')
+        return render(request, 'category-grid.html',
+                      {'cat': cat, 'data': order_by_price_l_to_h, 'color': color})
+    else:
+        pass
+    return render(request, 'category-grid.html', {'cat': cat, 'data': pro, 'color': color})
 
 
 def cat_filter(request, pid):
-    pro = Product.objects.get(pro_cat_name_id=pid)
+
+    # pro = Product.objects.get(pro_cat_name=pid)
+    pro = Product.objects.all().filter(pro_cat_name_id=pid)
     color_choice = CHOICE_COLOR[0:]
     size_choice = CHOICE_SIZE[0:]
     cat = Category.objects.all()
     color = Product_Color.objects.all()
-    return render(request, 'cat_filter.html', {'cat': cat, 'data': pro,'color':color,'color_choice':color_choice,'size_choice':size_choice})
+    key_a = request.GET.get('order_by')
+    print(key_a)
+    if key_a == "High-To-Low":
+        order_by_price_h_to_l = Product.objects.all().filter(pro_cat_name_id=pid).order_by('-pro_price')
+        return render(request, 'cat_filter.html',{'cat': cat, 'data': order_by_price_h_to_l, 'color': color, 'color_choice': color_choice, 'size_choice': size_choice})
+
+    elif key_a == "Low-To-High":
+        order_by_price_l_to_h = Product.objects.all().filter(pro_cat_name_id=pid).order_by('pro_price')
+        return render(request, 'cat_filter.html',{'cat': cat, 'data': order_by_price_l_to_h, 'color': color, 'color_choice': color_choice, 'size_choice': size_choice})
+
+    else:
+        pass
+    return render(request, 'cat_filter.html',
+                  {'cat': cat, 'data': pro, 'color': color, 'color_choice': color_choice, 'size_choice': size_choice})
 
 
 def product_description(request, pid):
@@ -40,9 +66,9 @@ def product_description(request, pid):
         elif "cart_form" in request.POST:
             product_color = request.POST.get('product_color')
             product_size = request.POST.get('product_size')
-            check_cart = Cart.objects.filter(cart_product_id=pid, cart_color=product_color,cart_size=product_size)
+            check_cart = Cart.objects.filter(cart_product_id=pid, cart_color=product_color, cart_size=product_size)
             if check_cart:
-                data = Cart.objects.get(cart_product_id=pid,cart_color=product_color,cart_size=product_size)
+                data = Cart.objects.get(cart_product_id=pid, cart_color=product_color, cart_size=product_size)
                 data.cart_quantity += int(request.POST.get("quantity"))
                 final_price = pro.pro_price - pro.pro_offer_price
                 data.cart_price = data.cart_quantity * final_price
@@ -58,7 +84,7 @@ def product_description(request, pid):
                 cart_color = request.POST.get('product_color')
                 cart_size = request.POST.get('product_size')
                 if cart_color == "" or cart_size == "":
-                    messages.error(request,'PLease Choose Your Size And Colour for Better Experience')
+                    messages.error(request, 'PLease Choose Your Size And Colour for Better Experience')
 
                 else:
                     data = Cart(cart_user=request.user, cart_product_id=pro.id, cart_status=True,
@@ -69,6 +95,7 @@ def product_description(request, pid):
     else:
         pass
     return render(request, 'product_description.html', {'pro': pro, 'size': size, 'color': color})
+
 
 # def product_description(request, pid):
 #     pro = Product.objects.get(id=pid)
