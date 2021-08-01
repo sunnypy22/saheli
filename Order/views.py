@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-
+from django.contrib.auth.decorators import login_required
 from Order.models import Checkout, Order_History
 from Product.models import Cart
 import razorpay
@@ -69,6 +69,7 @@ def success(request):
             return render(request, 'success.html')
         return render(request, 'success.html')
 
+@login_required
 def order_history(request):
     chckout = Checkout.objects.filter(name=request.user)
     order_history = Order_History.objects.filter(history_user_name=request.user)
