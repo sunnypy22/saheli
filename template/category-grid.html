@@ -288,9 +288,11 @@ p.demo_store  {
 									<form class="woocommerce-ordering">
 										<select name="order_by" class="orderby select2-hidden-accessible"
 												aria-label="Shop order" tabindex="-1" aria-hidden="true">
-											<option value="#">Sort by Product Price</option>
+											<option value="#">Sort by Product</option>
 											<option value="High-To-Low">High to Low Product Price</option>
 											<option value="Low-To-High">Low To High Product Price</option>
+											<option value="High-Rating">High Product Rating</option>
+											<option value="Low-Rating">Low Product Rating</option>
 										</select>
 									</form>
 
@@ -308,14 +310,13 @@ p.demo_store  {
 									<div class="product_thumbnail_wrapper ">
 										<a href="{%url 'product_description' data.id%}"
 										   class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
-											<div class="product_thumbnail with_second_image second_image_loaded"
+											<div class="product_thumbnail "
 												 style="background-size: cover;">
-	            <span class="product_thumbnail_background"
-					  style="background-image:url(https://shopkeeper.wp-theme.design/wp-content/uploads/5983760398347411_03-350x435.jpg); height: 163px;width: 139px;">
 
-				</span>
+
 												{% if data.pro_image == ""%}
 												{% else %}
+
 												<img width="350" height="435" src=""
 													 class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 													 alt="" loading="lazy" srcset="{{ data.pro_image.url}} ," style="

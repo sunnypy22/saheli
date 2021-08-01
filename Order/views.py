@@ -68,3 +68,23 @@ def success(request):
         except TypeError:
             return render(request, 'success.html')
         return render(request, 'success.html')
+
+def order_history(request):
+    chckout = Checkout.objects.filter(name=request.user)
+    order_history = Order_History.objects.filter(history_user_name=request.user)
+    key_a = request.GET.get('sort_by')
+    if key_a == "New-To-Old":
+        New_To_Old = Checkout.objects.all().order_by('-ord_date')
+        return render(request,'order_history.html',{'chckout':New_To_Old,'order_history':order_history})
+    elif key_a == "Old-To-New":
+        Old_To_New = Checkout.objects.all().order_by('ord_date')
+        return render(request, 'order_history.html', {'chckout': Old_To_New, 'order_history': order_history})
+    elif key_a == "Success-Payment":
+        success_checkout = Checkout.objects.filter(name=request.user,paid=True)
+        return render(request, 'order_history.html', {'chckout': success_checkout, 'order_history': order_history})
+    elif key_a == "Fail-Payment":
+        fail_checkout = Checkout.objects.filter(name=request.user, paid=False)
+        return render(request, 'order_history.html', {'chckout': fail_checkout, 'order_history': order_history})
+    else:
+        pass
+    return render(request,'order_history.html',{'chckout':chckout,'order_history':order_history})

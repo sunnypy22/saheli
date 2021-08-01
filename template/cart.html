@@ -1,9 +1,6 @@
 {% load static %}
-<!DOCTYPE html>
 
-<!--[if IE 9]>
-<html class="ie ie9" lang="en-US">
-<![endif]-->
+<!DOCTYPE html>
 
 <html lang="en-US">
 
@@ -26,10 +23,17 @@
 
 <script type='text/javascript'>console.log('PixelYourSite PRO version 7.7.10');</script>
 
-<link rel='stylesheet' id='getbowtied-call-to-action-css'  href='{%static "wp-content/plugins/getbowtied-call-to-action/public/assets/css/getbowtied-call-to-action-public.css"%}' type='text/css' media='all' />
-<link rel='stylesheet' id='woocommerce-layout-css'  href='{%static "wp-content/plugins/woocommerce/assets/css/woocommerce-layout.css"%}' type='text/css' media='all' />
+<link rel='stylesheet' id='wc-block-vendors-style-css'  href='https://shopkeeper.wp-theme.design/wp-content/plugins/woocommerce/packages/woocommerce-blocks/build/vendors-style.css' type='text/css' media='all' />
+<link rel='stylesheet' id='gbt_18_sk_portfolio_styles-css'  href='https://shopkeeper.wp-theme.design/wp-content/plugins/shopkeeper-portfolio/includes/blocks/portfolio/assets/css/style.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='titan-adminbar-styles-css'  href='https://shopkeeper.wp-theme.design/wp-content/plugins/anti-spam/assets/css/admin-bar.css' type='text/css' media='all' />
+<link rel='stylesheet' id='wcva-shop-frontend-css'  href='https://shopkeeper.wp-theme.design/wp-content/plugins/woocommerce-colororimage-variation-select/css/shop-frontend.css' type='text/css' media='all' />
+<link rel='stylesheet' id='wcva-slick-css'  href='https://shopkeeper.wp-theme.design/wp-content/plugins/woocommerce-colororimage-variation-select/css/slick.css' type='text/css' media='all' />
+<link rel='stylesheet' id='select2-css'  href='https://shopkeeper.wp-theme.design/wp-content/plugins/woocommerce/assets/css/select2.css' type='text/css' media='all' />
+<link rel='stylesheet' id='woocommerce-layout-css'  href='https://shopkeeper.wp-theme.design/wp-content/plugins/woocommerce/assets/css/woocommerce-layout.css' type='text/css' media='all' />
+<link rel='stylesheet' id='woocommerce-smallscreen-css'  href='https://shopkeeper.wp-theme.design/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)' />
 <link rel='stylesheet' id='woocommerce-general-css'  href='https://shopkeeper.wp-theme.design/wp-content/plugins/woocommerce/assets/css/woocommerce.css' type='text/css' media='all' />
-<style id='woocommerce-inline-inline-css' type='text/css'>
+
+	<style id='woocommerce-inline-inline-css' type='text/css'>
 .woocommerce form .form-row .required { visibility: visible; }
 </style>
 <link rel='stylesheet' id='sk-social-media-styles-css'  href='{%static "wp-content/plugins/shopkeeper-extender/includes/social-media/assets/css/social-media.min.css"%}' type='text/css' media='all' />
@@ -116,7 +120,9 @@ p.demo_store  {
 }
 
 .onsale, .shopkeeper_new_product, .out_of_stock_badge_loop {border-radius: 3px !important; }		</style>
-		<noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript></head>
+		<noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>
+
+</head>
 <body class="page-template-default page page-id-6 wp-embed-responsive theme-shopkeeper woocommerce-cart woocommerce-page woocommerce-no-js gbt_custom_notif wpb-js-composer js-comp-ver-6.6.0 vc_responsive">
 
 
@@ -183,6 +189,7 @@ p.demo_store  {
 		{% if i.total == 0.0 %}
 							<h1 class="page-title">Add Product To Continue</h1>
 		{% else%}
+
                                                         <h1 class="page-title">Shopping Cart</h1>
 		{% endif %}
 		{% endfor %}
@@ -201,15 +208,18 @@ p.demo_store  {
         <div class="entry-content">
             <div class="woocommerce">
 <div class="woocommerce-cart-form" >
-	<table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents" cellspacing="0">
+	<table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents" >
 		<thead>
 			<tr>
 				<th class="product-remove">&nbsp;</th>
 				<th class="product-thumbnail">&nbsp;</th>
-				<th class="product-name" style="width: 40%;">Product</th>
+				<th class="product-name" >Product</th>
+				<th class="product-size">Size</th>
+				<th class="product-colour">Color</th>
 				<th class="product-price">Price</th>
 				<th class="product-quantity">Quantity</th>
 				<th class="product-total">Total</th>
+
 			</tr>
 		</thead>
 		<tbody>
@@ -229,19 +239,37 @@ p.demo_store  {
 				</a>
 				{% endif %}
 			</td>
-			<td class="product-name" style="width: 15%;" data-title="Product">
-				<a href="">{{cart.cart_product.pro_name}}</a>
+			<td class="product-name" data-title="Product">
+				<a href="" style="font-size: 12px;">{{cart.cart_product.pro_name}}</a>
+			</td>
+			<td class="product-name" data-title="Size">
+				<span class="woocommerce-Price-amount amount"><bdi style="font-size: 12px;">
+
+                    {{cart.cart_size}}</bdi>
+							</span>
+			</td>
+			<td class="product-name" data-title="Color">
+				<span class="woocommerce-Price-amount amount"><bdi style="font-size: 12px;">
+<div class="shopswatchinput ">
+	<a href="" class="" data-o-src="" style="width:22px; height:22px;">
+		<div class="wcvashopswatchlabel wcvaround" style="background-color:{{cart.cart_color}};
+                             width:22px; float:left; height:22px;">
+							</div>
+                            </a>
+
+             		        	</div>
+                    </bdi>
+							</span>
 			</td>
 			<td class="product-price" data-title="Price">
-				<span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">
-					&#36;</span>{{cart.cart_product.pro_price}}</bdi></span>
+				<span class="woocommerce-Price-amount amount"><bdi style="font-size: 12px;">{{cart.cart_product.pro_price}}</bdi></span>
 			</td>
 			<td class="product-quantity" data-title="Quantity">
 				<div class="quantity custom">
 				<label class="screen-reader-text">Quantity</label>
 
 				<input
-				type="number"
+				type="number" style="font-size: 12px;"
 				class="input-text custom-qty qty text"
 
 				step="1"
@@ -257,13 +285,13 @@ p.demo_store  {
 
 				</div>
 			</td>
-
 			<td class="product-subtotal" data-title="Total">
-				<span class="woocommerce-Price-amount amount"><bdi>
-					<span class="woocommerce-Price-currencySymbol">&#36;</span>
+				<span class="woocommerce-Price-amount amount"><bdi style="font-size: 12px;">
+
                     {{cart.cart_pro_price}}</bdi>
 							</span>
 			</td>
+
 		</tr>
 
 {% endfor %}
@@ -504,86 +532,6 @@ $(".subtotal_amount").append("<span>&#36;</span>" + subtotal);
 
 
 
-		<div class="call-to-action-canvas">
-			<button class="call-to-action-toggle"><span class="icon"></span></button>
-			<div class="call-to-action-canvas-content">
-				<div class="call-to-action-header" style="background-image:url(https://shopkeeper.wp-theme.design/wp-content/uploads/shopkeeper-cta-bg.jpg);background-color:#EC7A5C;">
-					<button class="call-to-action-close"></button>
-											<h4 class="call-to-action-title">Is <b class="underline">Shopkeeper</b> suitable for your online store?</h4>
-																<p class="call-to-action-description">In a distracted e-commerce world, Shopkeeper will put your products in the best light, grab your customer’s attention and guide them to your "Thank you" page, beautifully!</p>
-																<a href="" class="call-to-action-purchase-link" style="color:#EC7A5C;">Buy Shopkeeper</a>
-																<p class="call-to-action-refund-text"><b><a href="" style="color:#fff"><u>No Risk Warranty</u>:</a></b> 100% refund within 30 days.  <a href="" style="color:#fff"><u>Learn more</u></a> about our customer satisfaction beliefs.</p>
-									</div>
-
-				<div class="call-to-action-testimonial">
-											<div class="call-to-action-testimonial-rating" style="color:#EC7A5C;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-																<p class="call-to-action-testimonial-text">"An all in one theme. No hassle on customization. Great support team. Answered all my questions and help me customize the site the way i wanted. Great. Highly recommended."</p>
-																<h5 class="call-to-action-testimonial-author"><a target="_blank" href="">View all 1,147 reviews</a></h5>
-									</div>
-
-				<div class="call-to-latest-layout">
-											<h4 class="call-to-action-latest-layout-title">LATEST E-COMMERCE TEMPLATE INCLUDED</h4>
-						<a class="call-to-action-latest-layout-image" href="">
-							<img src="https://shopkeeper.wp-theme.design/wp-content/uploads/call_to_action_latest_layout.jpg" />
-						</a>
-									</div>
-
-				<div class="call-to-action-page-layouts">
-											<p class="call-to-action-layouts-description">Shopkeeper comes with predefined <strong>High Impact Templates</strong>, enabling you to quickly create beautiful pages to <em>market</em>, <em>sell</em> and <em>deliver</em> your products and services.</p>
-										<div class="call-to-action-layouts-grid">
-																					<a href="" class="call-to-action-layout-image">
-																			<span class="call-to-action-layout-badge"  style="background-color:#EC7A5C;">NEW</span>
-																		<img src="https://shopkeeper.wp-theme.design/wp-content/uploads/home_v4.jpg" />
-								</a>
-																												<a href="" class="call-to-action-layout-image">
-																			<span class="call-to-action-layout-badge"  style="background-color:#EC7A5C;">NEW</span>
-																		<img src="https://shopkeeper.wp-theme.design/wp-content/uploads/home_v8.jpg" />
-								</a>
-																												<a href="" class="call-to-action-layout-image">
-																			<span class="call-to-action-layout-badge"  style="background-color:#EC7A5C;">NEW</span>
-																		<img src="https://shopkeeper.wp-theme.design/wp-content/uploads/home_v7.jpg" />
-								</a>
-																												<a href="" class="call-to-action-layout-image">
-																		<img src="https://shopkeeper.wp-theme.design/wp-content/uploads/home_v3-1.png" />
-								</a>
-																												<a href="" class="call-to-action-layout-image">
-																		<img src="https://shopkeeper.wp-theme.design/wp-content/uploads/home_v1.jpg" />
-								</a>
-																												<a href="" class="call-to-action-layout-image">
-																		<img src="https://shopkeeper.wp-theme.design/wp-content/uploads/home_v2.jpg" />
-								</a>
-																												<a href="" class="call-to-action-layout-image">
-																		<img src="https://shopkeeper.wp-theme.design/wp-content/uploads/home_v5.jpg" />
-								</a>
-																												<a href="" class="call-to-action-layout-image">
-																		<img src="https://shopkeeper.wp-theme.design/wp-content/uploads/home_v6.jpg" />
-								</a>
-																												<a href="" class="call-to-action-layout-image">
-																		<img src="https://shopkeeper.wp-theme.design/wp-content/uploads/home_v9.jpg" />
-								</a>
-																										<div class="call-to-action-layout-coming-soon">New Layouts Coming Soon</div>
-														<div class="call-to-action-layout-coming-soon">New Layouts Coming Soon</div>
-														<div class="call-to-action-layout-coming-soon">New Layouts Coming Soon</div>
-												</div>
-											<p class="call-to-action-layouts-footer-text">You can use these as starting points, or mix and match page elements to build something from scratch.</p>
-									</div>
-
-				<div class="call-to-action-testimonial">
-											<div class="call-to-action-testimonial-rating" style="color:#EC7A5C;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-																<p class="call-to-action-testimonial-text">"Shopkeeper looks and works great on all devices, integrates beautifully with WooCommerce and has many useful customizable features and options. We use it to sell digital products. More importantly, the support team behind this theme is very responsive. My support tickets were promptly addressed and they even helped troubleshoot an issue on my site that was not related to the theme. I highly recommend the theme and the development team behind it."</p>
-																<h5 class="call-to-action-testimonial-author"><a target="_blank" href="">View all 1,147 reviews</a></h5>
-									</div>
-
-									<a href="" class="call-to-action-bottom-purchase-link" style="background-color:#EC7A5C;box-shadow: -8px 8px 35px -5px #EC7A5Ca1;">Buy Shopkeeper</a>
-
-				<div class="call-to-action-links">
-											<a href="" class="call-to-action-documentation-link">Documentation</a>
-																<a href="" class="call-to-action-support-link">Support</a>
-																<a href="" class="call-to-action-facebook-link">Follow us on Facebook</a>
-									</div>
-
-		    </div>
-		</div>
 		<div class="call-to-action-canvas-overlay"></div>
 
 		<div class="page-notifications slide-out" id="gbt-custom-notification-notice">

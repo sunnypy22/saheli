@@ -8,8 +8,8 @@ from Product.models import Product
 class Checkout(models.Model):
     name = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_name", null=True,
                              blank=True)
-    product = models.CharField(max_length=40, null=True)
-    ammount = models.CharField(max_length=40)
+    product = models.CharField(max_length=500, null=True)
+    ammount = models.CharField(max_length=200)
     payment_id = models.CharField(max_length=100)
     billing_company = models.CharField(max_length=100,null=True,blank=True)
     billing_postcode = models.CharField(max_length=100,null=True,blank=True)

@@ -204,42 +204,43 @@ p.demo_store  {
 <div class="woocommerce-product-gallery
 woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 images"
 	 data-columns="4" style="opacity: 0; transition: opacity .25s ease-in-out;">
-	<figure class="woocommerce-product-gallery__wrapper">
-		<div data-thumb="https://shopkeeper.wp-theme.design/wp-content/uploads/org-a-150x150.jpg"  class="woocommerce-product-gallery__image">
 
-				<img width="920" height="1140" src="https://shopkeeper.wp-theme.design/wp-content/uploads/org-a-920x1140.jpg" class="wp-post-image" alt="" loading="lazy" title="org-a" data-caption="" data-src="https://shopkeeper.wp-theme.design/wp-content/uploads/org-a.jpg"
-					 data-large_image="https://shopkeeper.wp-theme.design/wp-content/uploads/org-a.jpg"
+
+	<figure class="woocommerce-product-gallery__wrapper">
+		<div data-thumb="{{pro.pro_image.url}}" class="woocommerce-product-gallery__image">
+
+				<img  width="920" height="1140" src="{{pro.pro_image.url}}"
+					 class="wp-post-image" alt="" loading="lazy" title="org-a" data-caption=""
+					 data-src="{{pro.pro_image.url}}"
+
+					 data-large_image="{{pro.pro_image.url}}"
 					 data-large_image_width="1049" data-large_image_height="1300"
-					 srcset="https://shopkeeper.wp-theme.design/wp-content/uploads/org-a-920x1140.jpg 920w, https://shopkeeper.wp-theme.design/wp-content/uploads/org-a-350x435.jpg 350w, https://shopkeeper.wp-theme.design/wp-content/uploads/org-a-242x300.jpg 242w, https://shopkeeper.wp-theme.design/wp-content/uploads/org-a-768x951.jpg 768w, https://shopkeeper.wp-theme.design/wp-content/uploads/org-a-827x1024.jpg 827w, https://shopkeeper.wp-theme.design/wp-content/uploads/org-a.jpg 1049w"
+					 srcset="{{pro.pro_image.url}} 920w,
+					  {{pro.pro_image.url}} 350w,
+					  {{pro.pro_image.url}} 242w,
+					  {{pro.pro_image.url}} 768w,
+					  {{pro.pro_image.url}} 827w,
+					  {{pro.pro_image.url}} 1049w"
 					 sizes="(max-width: 920px) 100vw, 920px" />
 
 		</div>
-		<div data-thumb="https://shopkeeper.wp-theme.design/wp-content/uploads/org-d-150x150.jpg" data-thumb-alt="" class="woocommerce-product-gallery__image">
+{% for i in image %}
+		<div data-thumb="{{i.images.url}}" data-thumb-alt=""
+			 class="woocommerce-product-gallery__image">
 
-				<img width="920" height="1140" src="https://shopkeeper.wp-theme.design/wp-content/uploads/org-d-920x1140.jpg" class="" alt="" loading="lazy" title="org-d" data-caption="" data-src="https://shopkeeper.wp-theme.design/wp-content/uploads/org-d.jpg"
-					 data-large_image="https://shopkeeper.wp-theme.design/wp-content/uploads/org-d.jpg"
+				<img width="920" height="1140" src="" class="" alt="" loading="lazy" title="org-d" data-caption=""
+					 data-src="{{i.images.url}}"
+					 data-large_image="{{i.images.url}}"
 				 	data-large_image_width="1049" data-large_image_height="1300"
-				 	srcset="https://shopkeeper.wp-theme.design/wp-content/uploads/org-d-920x1140.jpg 920w, https://shopkeeper.wp-theme.design/wp-content/uploads/org-d-350x435.jpg 350w, https://shopkeeper.wp-theme.design/wp-content/uploads/org-d-242x300.jpg 242w, https://shopkeeper.wp-theme.design/wp-content/uploads/org-d-768x951.jpg 768w, https://shopkeeper.wp-theme.design/wp-content/uploads/org-d-827x1024.jpg 827w, https://shopkeeper.wp-theme.design/wp-content/uploads/org-d.jpg 1049w"
+				 	srcset="{{i.images.url}} 920w,
+				 	 {{i.images.url}} 350w,
+				 	  {{i.images.url}} 242w,
+				 	   {{i.images.url}} 768w,
+				 	    {{i.images.url}} 827w, {{i.images.url}} 1049w"
 				 	sizes="(max-width: 920px) 100vw, 920px" />
 
 		</div>
-		<div data-thumb="https://shopkeeper.wp-theme.design/wp-content/uploads/org-b-150x150.jpg" data-thumb-alt="" class="woocommerce-product-gallery__image">
-
-		<img width="920" height="1140" src="https://shopkeeper.wp-theme.design/wp-content/uploads/org-b-920x1140.jpg" class="" alt="" loading="lazy" title="org-b" data-caption="" data-src="https://shopkeeper.wp-theme.design/wp-content/uploads/org-b.jpg"
-			 data-large_image="https://shopkeeper.wp-theme.design/wp-content/uploads/org-b.jpg" data-large_image_width="1049" data-large_image_height="1300"
-			 srcset="https://shopkeeper.wp-theme.design/wp-content/uploads/org-b-920x1140.jpg 920w, https://shopkeeper.wp-theme.design/wp-content/uploads/org-b-350x435.jpg 350w, https://shopkeeper.wp-theme.design/wp-content/uploads/org-b-242x300.jpg 242w, https://shopkeeper.wp-theme.design/wp-content/uploads/org-b-768x951.jpg 768w, https://shopkeeper.wp-theme.design/wp-content/uploads/org-b-827x1024.jpg 827w, https://shopkeeper.wp-theme.design/wp-content/uploads/org-b.jpg 1049w"
-			 sizes="(max-width: 920px) 100vw, 920px" />
-		</div>
-		<div data-thumb="https://shopkeeper.wp-theme.design/wp-content/uploads/org-c-150x150.jpg" data-thumb-alt="" class="woocommerce-product-gallery__image">
-
-				<img width="920" height="1140" src="https://shopkeeper.wp-theme.design/wp-content/uploads/org-c-920x1140.jpg" class="" alt="" loading="lazy" title="org-c" data-caption="" data-src="https://shopkeeper.wp-theme.design/wp-content/uploads/org-c.jpg"
-					 data-large_image="https://shopkeeper.wp-theme.design/wp-content/uploads/org-c.jpg" data-large_image_width="1049" data-large_image_height="1300"
-
-					 srcset="https://shopkeeper.wp-theme.design/wp-content/uploads/org-c-920x1140.jpg 920w, https://shopkeeper.wp-theme.design/wp-content/uploads/org-c-350x435.jpg 350w, https://shopkeeper.wp-theme.design/wp-content/uploads/org-c-242x300.jpg 242w,
-					  https://shopkeeper.wp-theme.design/wp-content/uploads/org-c-768x951.jpg 768w, https://shopkeeper.wp-theme.design/wp-content/uploads/org-c-827x1024.jpg 827w,
-					 https://shopkeeper.wp-theme.design/wp-content/uploads/org-c.jpg 1049w"
-					 sizes="(max-width: 920px) 100vw, 920px" /></a>
-		</div>
+{% endfor %}
 	</figure>
 </div>
 

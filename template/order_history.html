@@ -188,140 +188,6 @@ p.demo_store  {
         </div>
     </div>
 </header>
-{% if payment %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-</head>
-<body>
-
-<div class="container">
-  <h3>Check Your Order Before You Pay</h3>
-  <p>Please Tap on <a href="{%url 'cart'%}" style="font-style: italic;">Here </a> to Update Your Order.</p>
-  <div id="post-6" class="post-6 page type-page status-publish hentry">
-
-    <div class="row">
-		<div class="large-12 columns">
-
-        <div class="entry-content">
-            <div class="woocommerce">
-<div class="woocommerce-cart-form">
-	<table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents">
-		<thead>
-			<tr>
-
-				<th class="product-name">Product</th>
-				<th class="product-size">Size</th>
-				<th class="product-colour">Color</th>
-				<th class="product-quantity">Quantity</th>
-				<th class="product-price">Price</th>
-				<th class="product-price">Offer Price</th>
-				<th class="product-total">Subtotal</th>
-
-			</tr>
-		</thead>
-		<tbody>
-{% for j in details %}
-		<tr class="woocommerce-cart-form__cart-item cart_item">
-
-			<td class="product-name" data-title="Product">
-				<a href="" style="font-size: 12px;">{{j.cart_product.pro_name}}</a>
-			</td>
-			<td class="product-name" data-title="Size">
-				<span class="woocommerce-Price-amount amount"><bdi style="font-size: 12px;">
-                    {{j.cart_size}}</bdi>
-							</span>
-			</td>
-			<td class="product-name" data-title="Color">
-				<span class="woocommerce-Price-amount amount"><bdi style="font-size: 12px;">
-<div class="shopswatchinput ">
-	<a href="" class="" data-o-src="" style="width:22px; height:22px;">
-		<div class="wcvashopswatchlabel wcvaround" style="background-color:{{j.cart_color}};
-                             width:22px; float:left; height:22px;">
-							</div>
-                            </a>
-
-             		        	</div>
-                    </bdi>
-							</span>
-			</td>
-			<td class="product-quantity" data-title="Quantity">
-				<div class="quantity custom">
-					<label class="screen-reader-text">Quantity</label>
-
-					<input type="number" style="font-size: 12px;" class="input-text custom-qty qty text" step="1"
-						   min="0" max="" name="quantity" value="{{j.cart_quantity}}" title="Qty" size="4"
-						   inputmode="numeric" placeholder="" aria-labelledby="Camouflage Hooded Cotton Jacket quantity">
-
-				</div>
-			</td>
-			<td class="product-price" data-title="Price">
-				<span class="woocommerce-Price-amount amount"><bdi style="font-size: 12px;">{{j.cart_pro_price}}</bdi></span>
-			</td>
-			<td class="product-price" data-title="Offer Price">
-				<span class="woocommerce-Price-amount amount"><bdi style="font-size: 12px;">{{j.cart_offer_price}}</bdi></span>
-			</td>
-			<td class="product-subtotal" data-title="SubTotal">
-				<span class="woocommerce-Price-amount amount"><bdi style="font-size: 12px;">
-
-                    {{j.subtotal}}</bdi>
-							</span>
-			</td>
-
-		</tr>
-
-{% endfor %}
-		</tbody>
-	</table>
-
-
-</div>
-
-
-		</div>
-                    </div><!-- .entry-content -->
-
-		</div><!-- .columns -->
-    </div><!-- .row -->
-
-</div>
-	{% for k in pay_cart %}
-	<p>Total Amount Of your Product : {{k.total}}</p>
-	{% endfor %}
-<form action="{%url 'success'%}" method="POST">
-{% csrf_token %}
-
-<!-- RAZORPAY INTEGRATION HERE -->
-
-<script src="https://checkout.razorpay.com/v1/checkout.js"
-    data-key="rzp_test_l5VpO7rP3PiD3H"
-    data-amount="{{payment.amount}}"
-    data-currency="INR"
-    data-order_id="{{payment.id}}"
-    data-buttontext="Pay with Razorpay"
-    data-name="Professional Cipher"
-    data-description="Django and Data Science"
-    data-image="https://example.com/your_logo.jpg"
-    data-prefill.name="PC"
-    data-prefill.email="pc@studygyaan.com"
-    data-prefill.contact = "9999999999"
-    data-theme.color="#F37254">
-</script>
-    <input type="hidden" custom="Hidden Element" name="hidden">
-</form>
-</div>
-
-</body>
-</html>
-
-{% else %}
 
 
                         </div>
@@ -339,287 +205,156 @@ p.demo_store  {
                     <div class="row">
                         <div class="large-10 large-centered columns without-sidebar">
 
-							<h1 class="page-title">Checkout</h1>
+							<h1 class="page-title">Order History</h1>
+
                         </div>
                     </div>
 
                 </header><!-- .entry-header -->
 
-                    <div id="post-7" class="post-7 page type-page status-publish hentry">
+<div class="row">
+		<div class="large-12 columns">
+			<div id="content" class="site-content" role="main">
+				<div class="row">
+
+					<div class="xlarge-12 large-9 columns">
+
+						<div class="tob_bar_shop">
+							<div class="small-5 medium-7 large-6 xlarge-8 columns text-left">
+
+								<nav class="woocommerce-breadcrumb">
+									<a href="">Home</a>
+									<span class="breadcrump_sep">/</span> The Shop</nav>
+
+							</div>
+<!--						<a href="/product/shop/?order_by=High-To-Low">Demo</a>-->
+							<div class="small-7 medium-5 large-6 xlarge-4 columns text-right">
+								<div class="catalog-ordering hide-results">
+									<form class="woocommerce-ordering">
+										<select name="sort_by" class="orderby select2-hidden-accessible" aria-label="Shop order" tabindex="-1" aria-hidden="true">
+											<option value="#">Sort by order History</option>
+                                            <option value="New-To-Old">New To Old Date</option>
+                                            <option value="Old-To-New">Old To New Date</option>
+                                            <option value="Success-Payment">Success Payment</option>
+											<option value="Fail-Payment">Fail Payment</option>
+										</select>
+									</form>
+
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="container">
+
+  <div id="post-6" class="post-6 page type-page status-publish hentry">
 
     <div class="row">
 		<div class="large-12 columns">
 
         <div class="entry-content">
             <div class="woocommerce">
-				<div class="woocommerce-notices-wrapper"></div>
+<div class="woocommerce-cart-form">
+	<table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents">
+		<thead>
+			<tr>
 
+				<th class="product-name">Product</th>
+				<th class="product-size">Size</th>
+				<th class="product-colour">Color</th>
+				<th class="product-quantity">Quantity</th>
+				<th class="product-price">ammount</th>
+				<th class="product-price">payment_id</th>
+				<th class="product-total">paid</th>
+				<th class="product-total">ord. Date</th>
 
-<div class="checkout_coupon_box">
+			</tr>
+		</thead>
+		<tbody>
+{% for j in chckout %}
+{% for k in order_history %}
+{% if k.order_checkout.payment_id == j.payment_id %}
 
-	<div class="shopkeeper_checkout_coupon">
-		Have a coupon? <a href="#" class="showcoupon">Click here to enter your code</a>	</div>
+		<tr class="woocommerce-cart-form__cart-item cart_item">
 
-	<div class="row">
-		<form class="checkout_coupon woocommerce-form-coupon" method="" style="display:none">
-			<div class="checkout_coupon_inner">
-				<input type="text" name="coupon_code" class="input-text" placeholder="Coupon code" id="coupon_code" value="" />
-				<button type="submit" class="button" name="apply_coupon" value="Apply coupon">Apply coupon</button>
-				<div class="clear"></div>
-			</div>
-		</form>
-	</div><!-- .row-->
-
-</div><!-- .checkout_coupon_box-->
-<div class="woocommerce-notices-wrapper"></div>
-<form name="checkout" method="post" class="checkout woocommerce-checkout"
-	  action="" enctype="multipart/form-data">
-	{% csrf_token %}
-	{% for i in cart %}
-		<input type="text" name="ammount" value="{{i.total}}" style="display: contents;">
-	{% endfor %}
-	{% for i in data %}
-		<input type="text" name="product[]" value=" {{i.cart_product.pro_name}}" style="display: contents;">
-		<input type="text" name="ord_size[]" value=" {{i.cart_size}}" style="display: contents;">
-		<input type="text" name="ord_color[]" value=" {{i.cart_color}}" style="display: contents;">
-		<input type="text" name="ord_quantity[]" value=" {{i.cart_quantity}}" style="display: contents;">
-	{% endfor %}
-<!--	<input type="text" name="product" value="{%	for i in data %} {{i.id}}, {% endfor %}" style="display: contents;">-->
-		<div class="col2-set" id="customer_details">
-			<div class="col-1">
-				<div class="woocommerce-billing-fields">
-
-		<h3>Billing details</h3>
-
-	<div class="woocommerce-billing-fields__field-wrapper">
-		<p class="form-row form-row-first validate-required"
-		   id="billing_first_name_field" data-priority="10">
-			<label for="billing_first_name" class="">First name&nbsp;
-				<abbr class="required" title="required">*</abbr>
-			</label>
-			<span class="woocommerce-input-wrapper">
-				<input type="text" class="input-text " required name="billing_first_name" id="billing_first_name" placeholder=""
-					   value="{{request.user.first_name}}" autocomplete="given-name" /></span>
-		</p>
-		<p class="form-row form-row-last validate-required" id="billing_last_name_field" data-priority="20">
-			<label for="billing_last_name" class="">Last name&nbsp;
-				<abbr class="required" title="required">*</abbr></label>
-			<span class="woocommerce-input-wrapper">
-				<input type="text" class="input-text " required name="billing_last_name" id="billing_last_name" placeholder=""
-					   value="{{request.user.last_name}}" autocomplete="family-name" />
-			</span></p>
-		<p class="form-row form-row-wide" id="billing_company_field" data-priority="30">
-			<label for="billing_company" class="">Company name&nbsp;<span class="optional">(optional)</span>
-			</label>
-			<span class="woocommerce-input-wrapper">
-				<input type="text" class="input-text " name="billing_company" id="billing_company" placeholder=""  value="" autocomplete="organization" />
-			</span>
-		</p>
-
-		<p class="form-row form-row-wide address-field validate-required validate-postcode"
-		   id="billing_postcode_field" data-priority="90">
-			<label for="billing_postcode" class="">ZIP&nbsp;
-				<abbr class="required" title="required">*</abbr></label>
-			<span class="woocommerce-input-wrapper">
-				<input type="text" class="input-text " required name="billing_postcode" id="billing_postcode" placeholder=""  value="" autocomplete="postal-code" />
-			</span>
-		</p>
-		<p class="form-row notes"  data-priority="">
-				<label for="order_comments" class="">Address&nbsp;
-				<abbr class="required" title="required">*</abbr></label>
-				<span class="woocommerce-input-wrapper">
-					<textarea name="order_address" class="input-text" required  placeholder="Notes about your order, e.g. special notes for delivery."  rows="2" cols="5">
-
-					</textarea>
-				</span>
-			</p>
-        <p class="form-row form-row-wide validate-required validate-phone" id="billing_phone_field" data-priority="100">
-			<label for="billing_phone" class="">Phone&nbsp;<abbr class="required" title="required">*</abbr></label>
-			<span class="woocommerce-input-wrapper">
-				<input type="tel" class="input-text " required name="billing_phone" id="billing_phone" placeholder=""  value="" autocomplete="tel" />
-			</span>
-		</p>
-		<p class="form-row form-row-wide validate-required validate-email" id="billing_email_field" data-priority="110">
-			<label for="billing_email" class="">Email address
-				&nbsp;<abbr class="required" title="required">*</abbr>
-			</label>
-			<span class="woocommerce-input-wrapper">
-				<input type="email" class="input-text " required name="billing_email" id="billing_email" placeholder=""
-					   value="{{request.user.email}}" autocomplete="email username" />
-			</span>
-		</p>
-	</div>
-	</div>
-			</div>
-
-			<div class="col-2">
-<div class="woocommerce-additional-fields">
-
-
-
-		<div class="woocommerce-additional-fields__field-wrapper">
-			<p class="form-row notes" id="order_comments_field" data-priority="">
-				<label for="order_comments" class="">Order notes&nbsp;
-					<span class="optional">(optional)</span>
-				</label>
-				<span class="woocommerce-input-wrapper">
-					<textarea name="order_comments" class="input-text " id="order_comments" placeholder="Notes about your order, e.g. special notes for delivery."  rows="2" cols="5">
-
-					</textarea>
-				</span>
-			</p>
-		</div>
-
-
-	</div>
-			</div>
-		</div>
-	<h3 id="order_review_heading">Your order</h3>
-	<div id="order_review" class="woocommerce-checkout-review-order">
-		<table class="shop_table woocommerce-checkout-review-order-table">
-	<thead>
-		<tr>
-			<th class="product-name">Product</th>
-			<th class="product-total">Subtotal</th>
-		</tr>
-	</thead>
-	<tbody>
-	{% for product in data %}
-						<tr class="cart_item">
-
-					<td class="product-name">
-						{{product.cart_product.pro_name}}&nbsp;
-						<strong class="product-quantity">&times;&nbsp;{{product.cart_quantity}}</strong>
-					</td>
-
-					<td class="product-total">
-						<span class="woocommerce-Price-amount amount">
-							<bdi>
-								<span class="woocommerce-Price-currencySymbol">&#36;</span>{{product.cart_pro_price}}</bdi>
-						</span>
-					</td>
-				</tr>
-	{% endfor %}
-					</tbody>
-	<tfoot>
-
-	{% for pro_price in data%}
-	<input type="text" class="actual_price" style="display: contents;"   value="{{pro_price.cart_pro_price}}">
-	{% endfor %}
-		<tr class="cart-subtotal">
-			<th>Subtotal</th>
-			<td><span class="woocommerce-Price-amount amount"><bdi>
-				<span class="woocommerce-Price-currencySymbol">&#36;</span><span class="actual_append_price"></span></bdi>
-			</span>
+			<td class="product-name" data-title="Product">
+				<a href="" style="font-size: 12px;">{{k.ord_product}}</a>
 			</td>
+			<td class="product-name" data-title="Size">
+				<span class="woocommerce-Price-amount amount"><bdi style="font-size: 12px;">
+                    {{k.ord_size}}</bdi>
+							</span>
+			</td>
+			<td class="product-name" data-title="Color">
+				<span class="woocommerce-Price-amount amount"><bdi style="font-size: 12px;">
+<div class="shopswatchinput ">
+	<a href="" class="" data-o-src="" style="width:22px; height:22px;">
+		<div class="wcvashopswatchlabel wcvaround" style="background-color:{{k.ord_color}};
+                             width:22px; float:left; height:22px;">
+							</div>
+                            </a>
+
+             		        	</div>
+                    </bdi>
+							</span>
+			</td>
+			<td class="product-quantity" data-title="Quantity">
+				<div class="quantity custom">
+					<label class="screen-reader-text">Quantity</label>
+
+					<input type="number" style="font-size: 12px;" class="input-text custom-qty qty text" step="1"
+						   min="0" max="" name="quantity" value="{{k.ord_quantity}}" title="Qty" size="4"
+						   inputmode="numeric" placeholder="" aria-labelledby="Camouflage Hooded Cotton Jacket quantity">
+
+				</div>
+			</td>
+			<td class="product-price" data-title="Amount">
+				<span class="woocommerce-Price-amount amount"><bdi style="font-size: 12px;">{{j.ammount}}</bdi></span>
+			</td>
+			<td class="product-price" data-title="Payment ID">
+				<span class="woocommerce-Price-amount amount"><bdi style="font-size: 12px;">{{j.payment_id}}</bdi></span>
+			</td>
+			<td class="product-subtotal" data-title="Paid">
+				<span class="woocommerce-Price-amount amount"><bdi style="font-size: 12px;">
+                {% if j.paid == True %}
+                    Success
+                {% else %}
+                    Fail
+                {% endif %}
+                    </bdi>
+							</span>
+			</td>
+			<td class="product-subtotal" data-title="ord. Date">
+				<span class="woocommerce-Price-amount amount"><bdi style="font-size: 12px;">
+
+                    {{j.ord_date}}</bdi>
+							</span>
+			</td>
+
 		</tr>
-
-
-
-
-{% for k in data %}
-	<input type="text" style="display: contents;"  class="demo_total" value="{{k.cart_offer_price}}">
+{% endif %}
 {% endfor %}
-			<tr class="woocommerce-shipping-totals shipping">
-	<th>Offer</th>
-	<td data-title="Shipping">
-					<ul id="shipping_method" class="woocommerce-shipping-methods">
-						<li>
-
-								<span class="woocommerce-Price-amount amount"><bdi>
-									<span class="woocommerce-Price-currencySymbol">&#36;</span><span class="add_offer"></span></bdi>
-								</span>
-						</li>
-
-
-							</ul>
-
-
-			</td>
-</tr>
-
-
-
-
-
-{% for i in cart %}
-		<tr class="order-total">
-			<th>Total</th>
-			<td>
-				<strong>
-					<span class="woocommerce-Price-amount amount"><bdi>
-						<span class="woocommerce-Price-currencySymbol">&#36;</span>{{i.total}}</bdi>
-					</span>
-				</strong>
-			</td>
-		</tr>
 {% endfor %}
+		</tbody>
+	</table>
 
-	</tfoot>
-</table>
-<div id="payment" class="woocommerce-checkout-payment">
-			<ul class="wc_payment_methods payment_methods methods">
 
-<li class="wc_payment_method payment_method_paypal">
-	<input id="payment_method_paypal" checked='checked' type="radio" class="input-radio"
-		   name="payment_method" value="paypal"  data-order_button_text="Proceed to PayPal" />
-
-	<label for="payment_method_paypal">
-		Razorpay
-		<img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" alt="PayPal acceptance mark" />
-		<a href="" class="about_paypal"
-		   onclick="javascript:window.open('https://www.paypal.com/us/webapps/mpp/paypal-popup',
-		   'WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes,
-		    resizable=yes, width=1060, height=700'); return false;">What is razorpay?
-		</a>
-	</label>
-	</li>
-		</ul>
-		<div class="form-row place-order">
-		<noscript>
-			Since your browser does not support JavaScript, or it is disabled,
-			please ensure you click the <em>Update Totals</em>
-			button before placing your order. You may be charged more than the amount stated above if you
-			fail to do so.			<br/>
-			<button type="submit" class="button alt" name="woocommerce_checkout_update_totals" value="Update totals">Update totals</button>
-		</noscript>
-
-			<div class="woocommerce-terms-and-conditions-wrapper">
-		<div class="woocommerce-privacy-policy-text">
-			<p>Your personal data will be used to process your order,
-				support your experience throughout this website, and for other purposes described in our
-				<a href="" class="woocommerce-privacy-policy-link" target="_blank">privacy policy</a>.</p>
 </div>
-					<p class="form-row validate-required">
-				<label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
-				<input type="checkbox" required class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" name="terms"  id="terms" />
-					<span class="woocommerce-terms-and-conditions-checkbox-text">I have read and agree to the website <a href="" class="woocommerce-terms-and-conditions-link" target="_blank">terms and conditions</a></span>&nbsp;<span class="required">*</span>
-				</label>
-				<input type="hidden" name="terms-field" value="1" />
-			</p>
-			</div>
 
 
-		<button type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="Place order" data-value="Place order">Place order</button>
-				<div id="woo_pp_ec_button_checkout"></div>
-
-		<input type="hidden" id="woocommerce-process-checkout-nonce"
-			   name="woocommerce-process-checkout-nonce" value="6061354274" />
-			<input type="hidden" name="_wp_http_referer" value="/checkout/" />
 		</div>
-</div>
-	</div>
-
-
-</form>
-
-</div>
                     </div><!-- .entry-content -->
 
 		</div><!-- .columns -->
     </div><!-- .row -->
 
-</div><!-- #post -->
+</div>
+</div>
 
                                         <div class="clearfix"></div>
                     <footer class="entry-meta"></footer>
@@ -909,5 +644,3 @@ $('.actual_append_price').append(sum);
 
 </body>
 </html>
-
-{% endif %}

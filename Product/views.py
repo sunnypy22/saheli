@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Category, Product, Wishlist, Cart, Product_Size, Product_Color, CHOICE_COLOR, CHOICE_SIZE
+from .models import Category, Product, Wishlist, Cart, Product_Size, Product_Color, CHOICE_COLOR, CHOICE_SIZE,PostImage
 from django.contrib import messages
 
 
@@ -19,6 +19,14 @@ def shop(request):
         order_by_price_l_to_h = Product.objects.all().order_by('pro_price')
         return render(request, 'category-grid.html',
                       {'cat': cat, 'data': order_by_price_l_to_h, 'color': color})
+    elif key_a == "High-Rating":
+        order_by_high_rating = Product.objects.all().order_by('-pro_star')
+        return render(request, 'category-grid.html',
+                      {'cat': cat, 'data': order_by_high_rating, 'color': color})
+    elif key_a == "Low-Rating":
+        order_by_low_rating = Product.objects.all().order_by('pro_star')
+        return render(request, 'category-grid.html',
+                      {'cat': cat, 'data': order_by_low_rating, 'color': color})
     else:
         pass
     return render(request, 'category-grid.html', {'cat': cat, 'data': pro, 'color': color})
@@ -41,7 +49,16 @@ def cat_filter(request, pid):
     elif key_a == "Low-To-High":
         order_by_price_l_to_h = Product.objects.all().filter(pro_cat_name_id=pid).order_by('pro_price')
         return render(request, 'cat_filter.html',{'cat': cat, 'data': order_by_price_l_to_h, 'color': color, 'color_choice': color_choice, 'size_choice': size_choice})
-
+    elif key_a == "High-Rating":
+        order_by_high_rating = Product.objects.all().filter(pro_cat_name_id=pid).order_by('-pro_star')
+        return render(request, 'cat_filter.html',
+                      {'cat': cat, 'data': order_by_high_rating, 'color': color, 'color_choice': color_choice,
+                       'size_choice': size_choice})
+    elif key_a == "Low-Rating":
+        order_by_low_rating = Product.objects.all().filter(pro_cat_name_id=pid).order_by('pro_star')
+        return render(request, 'cat_filter.html',
+                      {'cat': cat, 'data': order_by_low_rating, 'color': color, 'color_choice': color_choice,
+                       'size_choice': size_choice})
     else:
         pass
     return render(request, 'cat_filter.html',
@@ -50,6 +67,7 @@ def cat_filter(request, pid):
 
 def product_description(request, pid):
     pro = Product.objects.get(id=pid)
+    image = PostImage.objects.filter(post_id = pid)
     size = Product_Size.objects.filter(size_key_id=pid)
     color = Product_Color.objects.filter(color_key_id=pid)
     check_cart = Cart.objects.filter(cart_product_id=pid)
@@ -66,9 +84,9 @@ def product_description(request, pid):
         elif "cart_form" in request.POST:
             product_color = request.POST.get('product_color')
             product_size = request.POST.get('product_size')
-            check_cart = Cart.objects.filter(cart_product_id=pid, cart_color=product_color, cart_size=product_size)
+            check_cart = Cart.objects.filter(cart_user=request.user,cart_product_id=pid, cart_color=product_color, cart_size=product_size)
             if check_cart:
-                data = Cart.objects.get(cart_product_id=pid, cart_color=product_color, cart_size=product_size)
+                data = Cart.objects.get(cart_user=request.user,cart_product_id=pid, cart_color=product_color, cart_size=product_size)
                 data.cart_quantity += int(request.POST.get("quantity"))
                 final_price = pro.pro_price - pro.pro_offer_price
                 data.cart_price = data.cart_quantity * final_price
@@ -94,7 +112,7 @@ def product_description(request, pid):
                     return redirect("cart")
     else:
         pass
-    return render(request, 'product_description.html', {'pro': pro, 'size': size, 'color': color})
+    return render(request, 'product_description.html', {'pro': pro, 'size': size, 'color': color,'image':image})
 
 
 # def product_description(request, pid):
@@ -181,22 +199,25 @@ def update_cart(request, pid):
         pro_id = data.cart_product.id
         size = Product_Size.objects.filter(size_key_id=pro_id)
         color = Product_Color.objects.filter(color_key_id=pro_id)
+
+        image = PostImage.objects.filter(post_id = pro_id)
         if request.method == "POST":
             quantity = request.POST.get('quantity')
             product_id = request.POST.get('product_id')
             cart_color = request.POST.get('product_color')
             cart_size = request.POST.get('product_size')
+            cart_id = request.POST.get('cart_id')
 
             final_price = data.cart_product.pro_price - data.cart_product.pro_offer_price
             conv_price = int(quantity) * final_price
             price = str(conv_price)
             user = str(request.user.id)
             update_cart = Cart.objects.raw(
-                'UPDATE Product_cart SET cart_quantity= "' + quantity + '", cart_price= "' + price + '", cart_color= "' + cart_color + '", cart_size= "' + cart_size + '" WHERE cart_product_id = "' + product_id + '" AND cart_user_id="' + user + '" ')
+                'UPDATE Product_cart SET cart_quantity= "' + quantity + '", cart_price= "' + price + '", cart_color= "' + cart_color + '", cart_size= "' + cart_size + '" WHERE id = "' + cart_id + '" AND cart_user_id="' + user + '" ')
             return render(request, 'cart.html', {'data': update_cart})
         else:
             pass
-        return render(request, 'cart_product_desc.html', {'pro': data, 'size': size, 'color': color})
+        return render(request, 'cart_product_desc.html', {'pro': data, 'size': size, 'color': color,'image':image})
     except TypeError:
         return redirect("cart")
 

@@ -11,17 +11,6 @@
 
 						</li>
 
-					<li class="mega-menu menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
-						<a href="#">The Portfolio</a>
-
-					<ul class="sub-menu  level-0" >
-					<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
-						<a href="#">Grid Examples</a>
-
-					<ul class="sub-menu  level-1" >
-
-					</ul></li></ul></li>
-
 					<li class="">
                     	<a href="#">The Blog</a></li>
 
@@ -30,6 +19,36 @@
 
 					<li class="">
                     	<a href="#">Contact</a></li>
+						<li id="shopkeeper-menu-item-33" class="mega-menu menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+							<a href="">Profile</a>
+<ul class="sub-menu level-0" style="left: 0px;">
+
+	{% if user.is_authenticated %}
+		<li  class="menu-item menu-item-type-post_type menu-item-object-page ">
+		<a href="">WelCome {{request.user}}</a>
+	<ul class="sub-menu level-1">
+		<li>
+			<a  href="{%url 'password_change'%}">Reset Password</a></li>
+		<li>
+			<a  href="{%url 'logout'%}">Logout</a></li>
+	</ul>
+</li>
+
+	{% else %}
+	<li  class="menu-item menu-item-type-post_type menu-item-object-page ">
+		<a href="{%url 'signin'%}">Signin</a> / <a href="{%url 'signup'%}">Signup</a>
+
+</li>
+
+
+	{% endif %}
+
+
+</ul>
+</li>
+
+					<li class="">
+                    	<a href="{%url 'order_history'%}">Order_History</a></li>
 					</ul>
 				 </nav>
 
@@ -55,29 +74,6 @@
                     <!-- Mini Cart -->
                 		</li>
 
-					 <li class="shopping-bag-button">
-                    	<a class="tools_button" href="#">
-                        <span class="tools_button_icon">
-							<i class="spk-icon spk-icon-user-account"></i>
-						</span>
-                    	</a>
-						  <div class="shopkeeper-mini-cart">
-                        <div class="widget woocommerce widget_shopping_cart">
-							<h2 class="widgettitle"></h2>
-							<div class="widget_shopping_cart_content">
-							</div></div>
-						{% if user.is_authenticated %}
-                        <div class="minicart-message">WelCome {{request.user}} <br><br>
-							<a href="{%url 'password_change'%}" style="color: white;">Reset Password</a>  <br><br>
-							<a href="{%url 'logout'%}" style="color: white;">Logout</a>
-						</div>
-						{% else %}
-						<div class="minicart-message"><a href="{%url 'signin'%}" style="color: white;">Signin</a>
-						 &nbsp;/ &nbsp;<a href="{%url 'signup'%}" style="color: white;">Signup</a>
-						</div>
-						{% endif %}
-					</div>
-                	</li>
 
                     <li class="offcanvas-menu-button search-button">
                 		<a class="tools_button" data-toggle="offCanvasTop1">

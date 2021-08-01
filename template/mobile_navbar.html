@@ -38,7 +38,35 @@
                     <a href="#">About</a></li>
 
 <li class="">
-                    <a href="#">Contact</a></li>
+                    <a href="#">Contact</a>
+</li>
+
+<li class="mega-menu menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+	<a href="#">Profile</a>
+{% if user.is_authenticated %}
+<ul class="sub-menu level-0" style="left: 0px;">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
+		<a href="#">Welcome {{request.user}}</a>
+	<ul class="sub-menu level-1">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page">
+			<a  href="{%url 'password_change'%}">Reset Password</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page">
+			<a  href="{%url 'logout'%}">Logout</a></li>
+	</ul>
+</li>
+</ul>
+{% else %}
+<ul class="sub-menu level-0" style="left: 0px;">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
+		<a href="{%url 'signin'%}">Signin</a> / <a href="{%url 'signup'%}">Signup</a>
+	</li>
+</ul>
+
+{% endif %}
+</li>
+<li class="">
+                    <a href="{%url 'order_history'%}">Order_history</a>
+</li>
 </ul>
 
             </nav>
