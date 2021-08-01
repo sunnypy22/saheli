@@ -186,6 +186,7 @@ def update_cart(request, pid):
             product_id = request.POST.get('product_id')
             cart_color = request.POST.get('product_color')
             cart_size = request.POST.get('product_size')
+
             final_price = data.cart_product.pro_price - data.cart_product.pro_offer_price
             conv_price = int(quantity) * final_price
             price = str(conv_price)
