@@ -268,7 +268,6 @@ p.demo_store  {
 				<th class="product-size">Size</th>
 				<th class="product-colour">Color</th>
 				<th class="product-quantity">Quantity</th>
-				<th class="product-price">ammount</th>
 				<th class="product-price">payment_id</th>
 				<th class="product-total">paid</th>
 				<th class="product-total">ord. Date</th>
@@ -303,19 +302,12 @@ p.demo_store  {
                     </bdi>
 							</span>
 			</td>
-			<td class="product-quantity" data-title="Quantity">
-				<div class="quantity custom">
-					<label class="screen-reader-text">Quantity</label>
-
-					<input type="number" style="font-size: 12px;" class="input-text custom-qty qty text" step="1"
-						   min="0" max="" name="quantity" value="{{k.ord_quantity}}" title="Qty" size="4"
-						   inputmode="numeric" placeholder="" aria-labelledby="Camouflage Hooded Cotton Jacket quantity">
-
-				</div>
+			<td class="product-name" data-title="Quantity">
+				<span class="woocommerce-Price-amount amount"><bdi style="font-size: 12px;">
+                    {{k.ord_quantity}}</bdi>
+							</span>
 			</td>
-			<td class="product-price" data-title="Amount">
-				<span class="woocommerce-Price-amount amount"><bdi style="font-size: 12px;">{{j.ammount}}</bdi></span>
-			</td>
+
 			<td class="product-price" data-title="Payment ID">
 				<span class="woocommerce-Price-amount amount"><bdi style="font-size: 12px;">{{j.payment_id}}</bdi></span>
 			</td>
