@@ -274,24 +274,27 @@ p.demo_store  {
 
 					<td class="product-name">
 
-						<a href="">
-							Camouflage Hooded Cotton Jacket
+						<a href="{%url 'product_description' i.wish_list_product.id%}">
+							{{i.wish_list_product.pro_name}}
 						</a>
 
 
 					</td>
 						<td class="product-price" style="text-align: left;">
 							<span class="woocommerce-Price-amount amount"><bdi>
-								<span class="woocommerce-Price-currencySymbol" >&#36;</span>276</bdi>
+								<span class="woocommerce-Price-currencySymbol" >&#36;</span>{{i.wish_list_product.pro_price}}</bdi>
 							</span>
 						</td>
-
+					{% if i.wish_list_product.pro_availability == True %}
 						<td class="product-stock-status" style="text-align: left;">
 							<span class="wishlist-in-stock">In Stock</span>
 						</td>
-						<td class="product-add-to-cart">
-							<!-- Date added -->
+					{% else %}
+						<td class="product-stock-status" style="text-align: left;">
+							<span class="wishlist-in-stock" style="color: red;">Out of Stock</span>
 						</td>
+					{% endif %}
+
 					</tr>
 	{% endfor %}
 	</tbody>

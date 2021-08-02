@@ -266,6 +266,10 @@ p.demo_store  {
 		<div class="large-12 columns">
 			<div id="content" class="site-content" role="main">
 				<div class="row">
+					<div class="large-12 columns">
+						<div class="catalog_top">
+							<div class="woocommerce-notices-wrapper"></div>						</div>
+					</div>
 						<div class="xlarge-2 large-3 columns show-for-large">
 						<div class="shop_sidebar wpb_widgetised_column">
 
@@ -339,11 +343,11 @@ p.demo_store  {
 								<div class="catalog-ordering hide-results">
 									<form class="woocommerce-ordering" method="get">
 										<select name="order_by" class="orderby select2-hidden-accessible" aria-label="Shop order" tabindex="-1" aria-hidden="true">
-											<option value="#">Sort by Product</option>
-											<option value="High-To-Low">High to Low Product Price</option>
-											<option value="Low-To-High">Low To High Product Price</option>
-											<option value="High-Rating">High Product Rating</option>
-											<option value="Low-Rating">Low Product Rating</option>
+											<option value="#">Sort by Latest</option>
+											<option value="High-To-Low">Sort by price: high to low</option>
+											<option value="Low-To-High">Sort by price: low to high</option>
+											<option value="High-Rating">Sort by popularity</option>
+											<option value="Low-Rating">Sort by average rating</option>
 										</select>
 									</form>
 
@@ -356,17 +360,14 @@ p.demo_store  {
 							<ul class="products columns-6">
 
 {% for data in data %}
-								<li class="product">
+								<li class="product type-product post-5135 status-publish">
 
 									<div class="product_thumbnail_wrapper ">
 										<a href="{%url 'product_description' data.id%}"
 										   class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
-											<div class="product_thumbnail with_second_image second_image_loaded"
+											<div class="product_thumbnail"
 												 style="background-size: cover;">
-	            <span class="product_thumbnail_background"
-					  style="background-image:url(https://shopkeeper.wp-theme.design/wp-content/uploads/5983760398347411_03-350x435.jpg); height: 163px;">
 
-				</span>
 												{% if data.pro_image == ""%}
 												{% else %}
 												<img width="350" height="435" src="" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""
@@ -410,23 +411,24 @@ p.demo_store  {
 											Rated
 											<strong class="rating">4.00</strong>
 											out of 5</span>
+											</span>
 									</div>
-									<div class="shopswatchinput ">
-										{% for color in color %}
-										{% if color.color_key.id == data.id %}
-										<a href="" class=""
-									   data-o-src="" style="width:22px; height:22px;">
-                            <div class="wcvashopswatchlabel wcvaround" style="background-color:{{color.product_Color}};
-                             width:22px; float:left; height:22px;">
+<!--									<div class="shopswatchinput ">-->
+<!--										{% for color in color %}-->
+<!--										{% if color.color_key.id == data.id %}-->
+<!--										<a href="" class=""-->
+<!--									   data-o-src="" style="width:22px; height:22px;">-->
+<!--                            <div class="wcvashopswatchlabel wcvaround" style="background-color:{{color.product_Color}};-->
+<!--                             width:22px; float:left; height:22px;">-->
 
-							</div>
-                            </a>
+<!--							</div>-->
+<!--                            </a>-->
 
-										{% endif %}
+<!--										{% endif %}-->
 
-										{% endfor %}
+<!--										{% endfor %}-->
 
-             		        	</div>
+<!--             		        	</div>-->
 									<div class="product_after_shop_loop">
 										<div class="product_after_shop_loop_switcher">
 
@@ -443,7 +445,6 @@ p.demo_store  {
 						Add to cart</a>
 										</div>
 									</div>
-
 
 								</li>
 {% endfor %}

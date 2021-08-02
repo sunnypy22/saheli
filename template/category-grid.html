@@ -269,13 +269,6 @@ p.demo_store  {
 
 						<div class="tob_bar_shop">
 							<div class="small-5 medium-7 large-6 xlarge-8 columns text-left">
-								<div id="button_offcanvas_sidebar_left"
-									 data-toggle="offCanvasLeft1" aria-expanded="false"
-									 aria-controls="offCanvasLeft1">
-										<span class="filters-text">
-											<i class="spk-icon spk-icon-menu-filters"></i>
-											Filter										</span>
-								</div>
 
 								<nav class="woocommerce-breadcrumb">
 									<a href="">Home</a>
@@ -288,11 +281,11 @@ p.demo_store  {
 									<form class="woocommerce-ordering">
 										<select name="order_by" class="orderby select2-hidden-accessible"
 												aria-label="Shop order" tabindex="-1" aria-hidden="true">
-											<option value="#">Sort by Product</option>
-											<option value="High-To-Low">High to Low Product Price</option>
-											<option value="Low-To-High">Low To High Product Price</option>
-											<option value="High-Rating">High Product Rating</option>
-											<option value="Low-Rating">Low Product Rating</option>
+											<option value="#">Sort by Latest</option>
+											<option value="High-To-Low">Sort by price: high to low</option>
+											<option value="Low-To-High">Sort by price: low to high</option>
+											<option value="High-Rating">Sort by popularity</option>
+											<option value="Low-Rating">Sort by average rating</option>
 										</select>
 									</form>
 
@@ -338,7 +331,21 @@ p.demo_store  {
 									<h2 class="woocommerce-loop-product__title">
 										<a href="{%url 'product_description' data.id%}">{{data.pro_name}}</a>
 									</h2>
+<!--									<div class="shopswatchinput ">-->
+<!--										{% for color in color %}-->
+<!--										{% if color.color_key.id == data.id %}-->
+<!--										<a href="{%url 'product_description' data.id%}">-->
+<!--                            <div class=" wcvaround" style="background-color:{{color.product_Color}};-->
+<!--                             width:22px; float:left; height:22px;">-->
 
+<!--							</div>-->
+<!--                            </a>-->
+
+<!--										{% endif %}-->
+
+<!--										{% endfor %}-->
+
+<!--             		        	</div>-->
 
 									<div class="star-rating" role="img" aria-label="">
 										{% if data.pro_star == "1" %}
@@ -358,22 +365,6 @@ p.demo_store  {
 											<strong class="rating">4.00</strong>
 											out of 5</span>
 									</div>
-									<div class="shopswatchinput ">
-										{% for color in color %}
-										{% if color.color_key.id == data.id %}
-										<a href="{%url 'product_description' data.id%}" class=""
-									   data-o-src="" style="width:22px; height:22px;">
-                            <div class="wcvashopswatchlabel wcvaround" style="background-color:{{color.product_Color}};
-                             width:22px; float:left; height:22px;">
-
-							</div>
-                            </a>
-
-										{% endif %}
-
-										{% endfor %}
-
-             		        	</div>
 									<div class="product_after_shop_loop">
 										<div class="product_after_shop_loop_switcher">
 
@@ -473,78 +464,7 @@ p.demo_store  {
 	</div><!-- .st-container -->
 
     <!-- Filters Offcanvas -->
-		<div class="off-canvas-wrapper">
-            <div class="off-canvas position-left hide-for-large shop-has-sidebar is-transition-overlap is-closed" id="offCanvasLeft1" data-off-canvas="" aria-hidden="true" data-e="pbuypf-e">
 
-                <div class="menu-close hide-for-medium">
-                    <button class="close-button" aria-label="Close menu" type="button" data-close="">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-
-                <div class="offcanvas_content_left wpb_widgetised_column">
-                    <div id="filters-offcanvas">
-                                                    <aside id="woocommerce_product_categories-3" class="widget woocommerce widget_product_categories">
-														<h3 class="widget-title">Product Categories</h3>
-														<ul class="product-categories">
-<li class="cat-item cat-item-13">
-	<a href="">#stayhome</a> <span class="count">28</span>
-</li>
-<li class="cat-item cat-item-11">
-	<a href="">Jackets</a>
-	<span class="count">17</span>
-</li>
-</ul></aside>
-<aside id="woocommerce_price_filter-3" class="widget woocommerce widget_price_filter">
-	<h3 class="widget-title">Filter by Price</h3>
-<form method="get" action="">
-	<div class="price_slider_wrapper">
-		<div class="price_slider ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content" style=""><div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 0%; width: 100%;"></div><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 0%;"></span><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 100%;"></span></div>
-		<div class="price_slider_amount" data-step="10">
-			<input type="text" id="min_price" name="min_price" value="20" data-min="20" placeholder="Min price" style="display: none;">
-			<input type="text" id="max_price" name="max_price" value="1090" data-max="1090" placeholder="Max price" style="display: none;">
-						<button type="submit" class="button">Filter</button>
-			<div class="price_label" style="">
-				Price: <span class="from">$20</span> — <span class="to">$1,090</span>
-			</div>
-			<input type="hidden" name="customize_changeset_uuid" value="b4977664-90af-4423-827d-acbf368566aa">			<div class="clear"></div>
-		</div>
-	</div>
-</form>
-
-</aside>
-		 <br>
-	     <div class="widget-area wcva-filter-widget">
-		   <aside class="widget woocommerce widget_layered_nav wcva_layered_nav">
-
-            <h3 class="wcva_filter-widget-title">Filter by  <span class="wcva_layered_widget_attribute_name">color</span></h3>
-		     <div class="wcva_filter_widget">
-				 <a title="Brown" href="" class="wcvaswatchinput" rel="nofollow" style="width:22px; height:22px;">
-                        <div class="wcvashopswatchlabel wcvaround " style="background-color:#795032; width:22px; float:left; height:22px;"></div>
-						</a>
-                        <div class="wcvashopswatchlabel wcvaround " style="background-color:#e5c250; width:22px; float:left; height:22px;"></div>
-						</a>
-             		    </div>		   </aside>
-		 </div>
-         <br>
-
-	     <div class="widget-area wcva-filter-widget">
-		   <aside class="widget woocommerce widget_layered_nav wcva_layered_nav">
-
-            <h3 class="wcva_filter-widget-title">Filter by  <span class="wcva_layered_widget_attribute_name">size</span></h3>
-		     <div class="wcva_filter_widget">
-				 <a title="XS" href="" class="wcvaswatchinput" rel="nofollow" style="width:22px; height:22px;">
-                        <div class="wcvashopswatchlabel wcvasquare  wcva_filter_textblock" style="min-width:22px; ">XS</div>
-						</a>
-             		    </div>		   </aside>
-		 </div>
-         <br>
-
-		                                            </div>
-                </div>
-
-            </div><div class="js-off-canvas-overlay is-overlay-fixed"></div>
-        </div>
     <!-- Back To Top Button -->
 		<a href="" class="cd-top progress-wrap">
             <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">

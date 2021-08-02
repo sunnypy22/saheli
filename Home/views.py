@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
-from Product.models import Category, Product
+from Product.models import Category, Product, Product_Color
 
 
 # Create your views here.
@@ -33,9 +33,28 @@ def filter_data(request):
 
 def product_list(request):
     cat = Category.objects.all()
-    data = Product.objects.all()
-
-    return render(request, 'product_list.html', {'cat': cat, 'data': data})
+    pro = Product.objects.all()
+    color = Product_Color.objects.all()
+    key_a = request.GET.get('order_by')
+    if key_a == "High-To-Low":
+        order_by_price_h_to_l = Product.objects.all().order_by('-pro_price')
+        return render(request, 'category-grid.html',
+                      {'cat': cat, 'data': order_by_price_h_to_l, 'color': color})
+    elif key_a == "Low-To-High":
+        order_by_price_l_to_h = Product.objects.all().order_by('pro_price')
+        return render(request, 'category-grid.html',
+                      {'cat': cat, 'data': order_by_price_l_to_h, 'color': color})
+    elif key_a == "High-Rating":
+        order_by_high_rating = Product.objects.all().order_by('-pro_star')
+        return render(request, 'category-grid.html',
+                      {'cat': cat, 'data': order_by_high_rating, 'color': color})
+    elif key_a == "Low-Rating":
+        order_by_low_rating = Product.objects.all().order_by('pro_star')
+        return render(request, 'category-grid.html',
+                      {'cat': cat, 'data': order_by_low_rating, 'color': color})
+    else:
+        pass
+    return render(request, 'product_list.html',{'cat': cat, 'data': pro, 'color': color})
 
 @csrf_exempt
 def try_ajax(request):

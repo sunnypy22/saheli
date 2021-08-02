@@ -101,15 +101,22 @@ def product_description(request, pid):
                 price = quantity * final_price
                 cart_color = request.POST.get('product_color')
                 cart_size = request.POST.get('product_size')
-                if cart_color == "" or cart_size == "":
-                    messages.error(request, 'PLease Choose Your Size And Colour for Better Experience')
-
-                else:
+                if len(size) ==0 or len(color) == 0:
                     data = Cart(cart_user=request.user, cart_product_id=pro.id, cart_status=True,
                                 cart_quantity=quantity,
-                                cart_price=price, cart_color=cart_color, cart_size=cart_size)
+                                cart_price=price)
                     data.save()
                     return redirect("cart")
+                else:
+                    if cart_color == "" or cart_size == "":
+                        messages.error(request, 'PLease Choose Your Size And Colour for Better Experience')
+
+                    else:
+                        data = Cart(cart_user=request.user, cart_product_id=pro.id, cart_status=True,
+                                    cart_quantity=quantity,
+                                    cart_price=price, cart_color=cart_color, cart_size=cart_size)
+                        data.save()
+                        return redirect("cart")
     else:
         pass
     return render(request, 'product_description.html', {'pro': pro, 'size': size, 'color': color,'image':image})
