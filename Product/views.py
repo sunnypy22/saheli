@@ -119,21 +119,27 @@ def ajax_filter(request):
 def product_description(request, pid):
     pro = Product.objects.get(id=pid)
     image = PostImage.objects.filter(post_id=pid)
-    size = Product_Size.objects.filter(id=pid)
-    color = Product_Color.objects.filter(id=pid)
+    size = Product_Size.objects.filter(size_key_id=pid)
+    color = Product_Color.objects.filter(color_key_id=pid)
     check_cart = Cart.objects.filter(cart_product_id=pid)
-    if request.user.is_authenticated:
-        if request.method == "POST":
-            if "wishlist_form" in request.POST:
+    if request.method == "POST":
 
-                if Wishlist.objects.filter(wish_list_product=pro.id).exists():
-                    messages.warning(request, 'Product {} already exists in wishlist!'.format(pro.pro_name))
-                else:
+        if "wishlist_form" in request.POST:
+
+            if Wishlist.objects.filter(wish_list_product=pro.id).exists():
+                messages.warning(request, 'Product {} already exists in wishlist!'.format(pro.pro_name))
+            else:
+                if request.user.is_authenticated:
+
                     data = Wishlist.objects.create(wish_list_product_id=pro.id, wish_list_user=request.user,
-                                                   wish_list_status=True)
+                                               wish_list_status=True)
+
                     data.save()
                     return redirect("wishlist")
-            elif "cart_form" in request.POST:
+                else:
+                    return redirect("signin")
+        elif "cart_form" in request.POST:
+            if request.user.is_authenticated:
                 product_color = request.POST.get('product_color')
                 product_size = request.POST.get('product_size')
                 check_cart = Cart.objects.filter(cart_user=request.user, cart_product_id=pid, cart_color=product_color,
@@ -149,6 +155,7 @@ def product_description(request, pid):
 
                     data.save()
                     return redirect("cart")
+
                 else:
                     quantity = int(request.POST.get("quantity"))
                     final_price = pro.pro_price - pro.pro_offer_price
@@ -159,8 +166,11 @@ def product_description(request, pid):
                         data = Cart(cart_user=request.user, cart_product_id=pro.id, cart_status=True,
                                     cart_quantity=quantity,
                                     cart_price=price)
+
                         data.save()
                         return redirect("cart")
+
+
                     else:
                         if cart_color == "" or cart_size == "":
                             messages.error(request, 'PLease Choose Your Size And Colour for Better Experience')
@@ -169,71 +179,17 @@ def product_description(request, pid):
                             data = Cart(cart_user=request.user, cart_product_id=pro.id, cart_status=True,
                                         cart_quantity=quantity,
                                         cart_price=price, cart_color=cart_color, cart_size=cart_size)
+
                             data.save()
                             return redirect("cart")
-        else:
-            pass
-        return render(request, 'product_description.html', {'pro': pro, 'size': size, 'color': color, 'image': image})
+            else:
+                return redirect("signin")
+
     else:
-        return redirect("signin")
+        pass
+    return render(request, 'product_description.html', {'pro': pro, 'size': size, 'color': color, 'image': image})
 
 
-# def product_description(request, pid):
-#     pro = Product.objects.get(id=pid)
-#     size = Product_Size.objects.filter(size_key_id=pid)
-#     color = Product_Color.objects.filter(color_key_id=pid)
-#     check_cart = Cart.objects.filter(cart_product_id=pid)
-#     if request.method == "POST":
-#         product_color = request.POST.get('product_color')
-#         check_cart = Cart.objects.filter(cart_product_id=pid, cart_color=product_color)
-#         if check_cart:
-#             print("Exist")
-#
-#         else:
-#             print("Not Exist")
-#     if check_cart:
-#         start = 1
-#     else:
-#         start = 0
-#     if request.method == "POST":
-#         if "wishlist_form" in request.POST:
-#
-#             if Wishlist.objects.filter(wish_list_product=pro.id).exists():
-#                 messages.warning(request, 'Product {} already exists in wishlist!'.format(pro.pro_name))
-#             else:
-#                 data = Wishlist.objects.create(wish_list_product_id=pro.id, wish_list_user=request.user,
-#                                                wish_list_status=True)
-#                 data.save()
-#                 return redirect("wishlist")
-#         elif "cart_form" in request.POST:
-#             if start == 1:
-#                 data = Cart.objects.get(cart_product_id=pid)
-#                 data.cart_quantity += int(request.POST.get("quantity"))
-#                 final_price = pro.pro_price - pro.pro_offer_price
-#                 data.cart_price = data.cart_quantity * final_price
-#                 data.cart_color = request.POST.get('product_color')
-#                 data.cart_size = request.POST.get('product_size')
-#
-#                 data.save()
-#                 return redirect("cart")
-#             else:
-#                 quantity = int(request.POST.get("quantity"))
-#                 final_price = pro.pro_price - pro.pro_offer_price
-#                 price = quantity * final_price
-#                 cart_color = request.POST.get('product_color')
-#                 cart_size = request.POST.get('product_size')
-#                 if cart_color == "" or cart_size == "":
-#                     messages.error(request,'PLease Choose Your Size And Colour for Better Experience')
-#
-#                 else:
-#                     data = Cart(cart_user=request.user, cart_product_id=pro.id, cart_status=True,
-#                                 cart_quantity=quantity,
-#                                 cart_price=price, cart_color=cart_color, cart_size=cart_size)
-#                     data.save()
-#                     return redirect("cart")
-#     else:
-#         pass
-#     return render(request, 'product_description.html', {'pro': pro, 'size': size, 'color': color})
 
 @login_required
 def wishlist(request):
