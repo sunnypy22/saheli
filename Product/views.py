@@ -109,7 +109,8 @@ def ajax_filter(request):
             return JsonResponse({'data': t})
         else:
             pass
-        t = render_to_string('cat_filter.html', {'cat': cat, 'data': '', 'color': color, 'color_choice': color_choice,
+        pro = Product.objects.all().filter(pro_cat_name_id=request_path)
+        t = render_to_string('cat_filter.html', {'cat': cat, 'data': pro, 'color': color, 'color_choice': color_choice,
                                                  'size_choice': size_choice})
         return JsonResponse({'data': t})
     else:
@@ -118,8 +119,8 @@ def ajax_filter(request):
 def product_description(request, pid):
     pro = Product.objects.get(id=pid)
     image = PostImage.objects.filter(post_id=pid)
-    size = Product_Size.objects.filter(size_key_id=pid)
-    color = Product_Color.objects.filter(color_key_id=pid)
+    size = Product_Size.objects.filter(id=pid)
+    color = Product_Color.objects.filter(id=pid)
     check_cart = Cart.objects.filter(cart_product_id=pid)
     if request.user.is_authenticated:
         if request.method == "POST":
