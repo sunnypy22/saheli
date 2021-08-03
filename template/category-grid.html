@@ -249,7 +249,7 @@ p.demo_store  {
 									</li>
 									{% for cat in cat %}
 									<li class="category_item">
-										<a href="{% url 'cat_filter' cat.id %}" class="category_item_link">
+										<a href="{% url 'cat_filter' cat.id %}?cat_id={{cat.id}}" class="category_item_link">
 											<span class="category_name">{{cat.cat_name}}</span>
 										</a>
 									</li>

@@ -171,10 +171,10 @@ p.demo_store  {
 }
 </style>
 </head>
-
+<!--<input type="text" id="request_path" name="request_path" value="{{ request.get_full_path }}">-->
 <body class="archive post-type-archive post-type-archive-product wp-embed-responsive
  theme-shopkeeper woocommerce-shop woocommerce woocommerce-page woocommerce-js gbt_custom_notif
-  wpb-js-composer js-comp-ver-6.6.0 vc_responsive"
+  wpb-js-composer js-comp-ver-6.6.0 vc_responsive" id="filterProducts"
 	  data-new-gr-c-s-check-loaded="14.1014.0" data-gr-ext-installed="">
 <div id="yith-wcwl-popup-message" style="display: none;">
 	<div id="yith-wcwl-message">
@@ -201,6 +201,7 @@ p.demo_store  {
                                     						<div class="top-clear"></div>
 
 <header id="masthead" class="site-header default custom-header-width" role="banner">
+
     <div class="row">
         <div class="site-header-wrapper">
 
@@ -251,7 +252,7 @@ p.demo_store  {
 									</li>
 									{% for cat in cat %}
 									<li class="category_item">
-										<a href="{%url 'cat_filter' cat.id%}" class="category_item_link">
+										<a href="{%url 'cat_filter' cat.id%}?cat_id={{cat.id}}" class="category_item_link">
 											<span class="category_name">{{cat.cat_name}}</span>
 										</a>
 									</li>
@@ -283,7 +284,8 @@ p.demo_store  {
 
 
 				 <label>
-						 						<input class="tap_me" data-filter="cat"  type="checkbox" name="color_choice" value="{{c_choice.0}}">
+						 						<input class="tap_me"  data-filter="cat"  type="checkbox"
+													   name="color_choice" value="{{c_choice.0}}">
 						 <div class="wcvashopswatchlabel wcvaround "
 							 style="background-color:{{c_choice.0}}; width:22px; float:right; height:22px;">
 
@@ -756,6 +758,38 @@ var getbowtied_scripts_vars =
  "ajax_loading_locale":"Loading","ajax_no_more_items_locale":"No more items available.","smooth_transition":"","pagination_blog":"infinite_scroll","layout_blog":"layout-3","shop_pagination_type":"infinite_scroll","option_minicart":"1","option_minicart_open":"1","catalog_mode":"","product_lightbox":"1","product_gallery_zoom":"1","mobile_product_columns":"2","sticky_header":"1","mobile_sticky_header":"1","back_to_top_button":"1","ajax_url":""};
 </script>
 <script defer src="{%static 'wp-content/cache/autoptimize/js/autoptimize_9ad507f7a31600185931b500a7b68100.js'%}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function () {
+  var request = document.URL
+  var split_with =  request.split("=");
+  var request_path = split_with[1];
+    var ckbox = $('.tap_me');
+    $('.tap_me').on('click',function () {
+        if (ckbox.is(':checked')) {
+            var checkedValue = $(this).val();
+             $.ajax(
+                {
+                    type:"POST",
+                    url: "{% url 'ajax_filter' %}",
 
+                    data:{
+                        post_id: checkedValue,
+                        request_path : request_path
+                        },
+                    dataType:'json',
+                    success:function(res){
+                $("#filterProducts").html(res.data);
+
+
+			}
+
+                }
+                    )
+
+        }
+    });
+});
+</script>
 </body>
 </html>
