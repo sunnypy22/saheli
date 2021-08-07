@@ -8,7 +8,9 @@ from Product.models import Category, Product, Product_Color,CHOICE_COLOR,CHOICE_
 
 
 def index(request):
-    return render(request, 'index.html')
+    data = Product.objects.all().order_by('-id')[0:4]
+    high_data = Product.objects.filter(pro_star = 5)[0:3]
+    return render(request, 'index.html',{'data':data,'high_data':high_data})
 
 
 from django.http import JsonResponse, HttpResponse

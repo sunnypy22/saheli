@@ -16,9 +16,11 @@
 
     				<script>document.documentElement.className = document.documentElement.className + ' yes-js js_active js'</script>
 				<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 	<link media="all" href="{%static 'wp-content/cache/autoptimize/css/autoptimize_29b0a208ad1433caf6bd4e493abd7682.css'%}" rel="stylesheet" />
 	<link media="only screen and (max-width: 768px)" href="{%static 'wp-content/cache/autoptimize/css/autoptimize_541e2ced151704f4ff1844c6de47ec02.css'%}" rel="stylesheet" />
+
 	<title>Home — Classic eCommerce 1 &raquo; Shopkeeper</title>
 	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"","@graph":[{"@type":"Organization","@id":"","name":"Get Bowtied S.R.L.","url":"","sameAs":[],"logo":{"@type":"ImageObject","@id":"","inLanguage":"en-US","url":"","contentUrl":"","width":256,"height":256,"caption":"Get Bowtied S.R.L."},"image":{"@id":""}},{"@type":"WebSite","@id":"","url":"","name":"Shopkeeper","description":"Premium WooCommerce Theme","publisher":{"@id":""},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":""},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"CollectionPage","@id":"","url":"","name":"Categories Grid Archives &raquo; Shopkeeper","isPartOf":{"@id":""},"breadcrumb":{"@id":""},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":[""]}]},{"@type":"BreadcrumbList","@id":"","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":""},{"@type":"ListItem","position":2,"name":"Categories Grid"}]}]}</script>
 	<!-- / Yoast SEO plugin. -->
@@ -247,184 +249,58 @@ p.demo_store  {
 
 		</div>
 	</div>
-<div class="woocommerce columns-4 "><ul class="products columns-4">
-<li class="product type-product post-5048 status-publish first instock product_cat-stayhome product_cat-accessories product_cat-jackets has-post-thumbnail shipping-taxable purchasable product-type-simple">
 
-	
-    <div class="product_thumbnail_wrapper ">
+<div class="row">
 
-		<a href="" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+{% for data in data%}
+	<div class="col-xs-6 col-sm-3">
+		<div class="product type-product post-5048 status-publish
+first instock product_cat-stayhome product_cat-accessories product_cat-jackets
+ has-post-thumbnail shipping-taxable purchasable product-type-simple">
+		 <div class="product_thumbnail_wrapper ">
 
-	        <div class="product_thumbnail with_second_image">
-	            <span class="product_thumbnail_background" style="background-image:url(https://shopkeeper.wp-theme.design/wp-content/uploads/14203267_1-350x435.jpg)"></span>
-	            <img width="350" height="435" src="https://shopkeeper.wp-theme.design/wp-content/uploads/14203267_0-350x435.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy" srcset="https://shopkeeper.wp-theme.design/wp-content/uploads/14203267_0-350x435.jpg 350w, https://shopkeeper.wp-theme.design/wp-content/uploads/14203267_0-242x300.jpg 242w, https://shopkeeper.wp-theme.design/wp-content/uploads/14203267_0-400x497.jpg 400w" sizes="(max-width: 350px) 100vw, 350px" />	        </div><!--.product_thumbnail-->
+		<a href="{%url 'product_description' data.id %}" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+
+	        <div class="product_thumbnail">
+	            <img width="350" height="435" src="{{data.pro_image.url}}" class="attachment-woocommerce_thumbnail
+	             size-woocommerce_thumbnail" alt="" loading="lazy"
+					 srcset="{{data.pro_image.url}} 350w,
+					  {{data.pro_image.url}} 242w,
+					   {{data.pro_image.url}} 400w" sizes="(max-width: 350px) 100vw, 350px" />
+			</div><!--.product_thumbnail-->
 		</a>
 
-							
-		
+
+
 		        <div class="product_thumbnail_icons">
             <a href="#" id="product_id_5048" class="product_quickview_button" data-product_id="5048"></a>                            <div class="icons-separator"></div>
-                        
+
 <div class="yith-wcwl-add-to-wishlist add-to-wishlist-5048 exists wishlist-fragment on-first-load" data-fragment-ref="5048" data-fragment-options="{&quot;base_url&quot;:&quot;&quot;,&quot;in_default_wishlist&quot;:true,&quot;is_single&quot;:false,&quot;show_exists&quot;:false,&quot;product_id&quot;:5048,&quot;parent_product_id&quot;:5048,&quot;product_type&quot;:&quot;simple&quot;,&quot;show_view&quot;:false,&quot;browse_wishlist_text&quot;:&quot;Browse Wishlist&quot;,&quot;already_in_wishslist_text&quot;:&quot;You love this!&quot;,&quot;product_added_text&quot;:&quot;Product added!&quot;,&quot;heading_icon&quot;:&quot;&quot;,&quot;available_multi_wishlist&quot;:false,&quot;disable_wishlist&quot;:false,&quot;show_count&quot;:false,&quot;ajax_loading&quot;:false,&quot;loop_position&quot;:false,&quot;item&quot;:&quot;add_to_wishlist&quot;}">
-			
+
 			<!-- ADD TO WISHLIST -->
-			
+
 <!-- BROWSE WISHLIST MESSAGE -->
-<div class="yith-wcwl-wishlistexistsbrowse" data-product-id="5048" data-original-product-id="5048">
-	<span class="feedback">
-				You love this!	</span>
-	<a href="" rel="nofollow" data-title="Browse Wishlist">
-				Browse Wishlist	</a>
-</div>
 
 			<!-- COUNT TEXT -->
-			
+
 			</div>
         </div>
-    
-		
+
+
     </div><!--.product_thumbnail_wrapper-->
+		</div>
 
-    
-	<h2 class="woocommerce-loop-product__title">
-		<a href="">Camouflage Hooded Cotton Jacket</a>
-	</h2>
+	<span class="woocommerce-loop-product__title">
+		<a href="{%url 'product_description' data.id %}" style="font-size: 14px;">{{data.pro_name}}</a>
+	</span>
 
-	
-        <div class="product_after_shop_loop">
-        <div class="product_after_shop_loop_switcher">
-    
-            
-	<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>276</bdi></span></span>
-<a href="" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="5048" data-product_sku="" aria-label="Add &ldquo;Camouflage Hooded Cotton Jacket&rdquo; to your cart" rel="nofollow">Add to cart</a>
-            </div>
-    </div>
-    
-	
-		<script type="text/javascript">
-			/* <![CDATA[ */
-			window.pysWooProductData = window.pysWooProductData || [];
-			window.pysWooProductData[ 5048 ] = {"facebook":{"params":{"content_type":"product","content_ids":"[\"5048\"]","content_name":"Camouflage Hooded Cotton Jacket","category_name":"#stayhome, Accessories, Jackets","value":276,"currency":"USD","contents":[{"id":"5048","quantity":"1"}]},"pixelIds":["734492269948266"]},"ga":{"event_category":"ecommerce","items":[{"id":"5048","name":"Camouflage Hooded Cotton Jacket","category":"#stayhome\/Accessories\/Jackets","quantity":"1","price":"276"}],"non_interaction":false,"ecomm_prodid":"5048","ecomm_pagetype":"cart","ecomm_totalvalue":"276"},"google_ads":{"params":{"event_category":"ecommerce","value":276,"items":[{"id":"5048","name":"Camouflage Hooded Cotton Jacket","category":"#stayhome\/Accessories\/Jackets","quantity":"1","price":"276","google_business_vertical":"retail"}]},"ids":[]}};
-			/* ]]&gt; */
-		</script>
 
-		
-</li>
-<li class="product type-product post-5095 status-publish instock product_cat-stayhome product_cat-accessories has-post-thumbnail shipping-taxable purchasable product-type-variable has-default-attributes">
+	</div>
+{% endfor %}
 
-	
-    <div class="product_thumbnail_wrapper ">
-
-		<a href="" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
-	        <div class="product_thumbnail with_second_image">
-	            <span class="product_thumbnail_background" style="background-image:url(https://shopkeeper.wp-theme.design/wp-content/uploads/4146401443863639_02-350x435.jpg)"></span>
-	            <img width="350" height="435" src="https://shopkeeper.wp-theme.design/wp-content/uploads/4146401443863639_01-350x435.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy" srcset="https://shopkeeper.wp-theme.design/wp-content/uploads/4146401443863639_01-350x435.jpg 350w, https://shopkeeper.wp-theme.design/wp-content/uploads/4146401443863639_01-920x1140.jpg 920w, https://shopkeeper.wp-theme.design/wp-content/uploads/4146401443863639_01-242x300.jpg 242w, https://shopkeeper.wp-theme.design/wp-content/uploads/4146401443863639_01.jpg 1049w" sizes="(max-width: 350px) 100vw, 350px" />	        </div><!--.product_thumbnail-->
-		</a>
-
-		<span class="shopkeeper_new_product">New</span>
-		        <div class="product_thumbnail_icons">
-            <a href="#" id="product_id_5095" class="product_quickview_button" data-product_id="5095"></a>                            <div class="icons-separator"></div>
-<div class="yith-wcwl-add-to-wishlist add-to-wishlist-5095  wishlist-fragment on-first-load" data-fragment-ref="5095" data-fragment-options="{&quot;base_url&quot;:&quot;&quot;,&quot;in_default_wishlist&quot;:false,&quot;is_single&quot;:false,&quot;show_exists&quot;:false,&quot;product_id&quot;:5095,&quot;parent_product_id&quot;:5095,&quot;product_type&quot;:&quot;variable&quot;,&quot;show_view&quot;:false,&quot;browse_wishlist_text&quot;:&quot;Browse Wishlist&quot;,&quotquot;already_in_wishslist_text&quot;:&quot;You love this!&quot;,&quot;product_added_text&quot;:&quot;Product added!&quot;,&quot;heading_icon&quot;:&quot;&quot;,&quot;available_multi_wishlist&quot;:false,&quot;disable_wishlist&quot;:false,&quot;show_count&quot;:false,&quot;ajax_loading&quot;:false,&quot;loop_position&quot;:false,&quot;item&quot;:&quot;add_to_wishlist&quot;}">
-<div class="yith-wcwl-add-button">
-	<a href="" rel="nofollow" data-product-id="5095" data-product-type="variable" data-original-product-id="5095" class="add_to_wishlist single_add_to_wishlist" data-title="Add to Wishlist">
-				<span>Add to Wishlist</span>
-	</a>
 </div>
-			</div>
-        </div>
-    </div><!--.product_thumbnail_wrapper-->
-	<h2 class="woocommerce-loop-product__title">
-		<a href="">Folk Striped Slub Cotton-Jersey T-Shirt</a>
-	</h2>
-		<div class="shopswatchinput " swatch-count="3" start-slider-count="5" prod-img="https://shopkeeper.wp-theme.design/wp-content/uploads/4146401443863639_01-350x435.jpg">
-	                                <a  href=""  class=" wcvaswatchinput" data-o-src="https://shopkeeper.wp-theme.design/wp-content/uploads/4146401443863639_06-350x435.jpg" >
-                            <div class="wcvashopswatchlabel wcvaround"  style="background-image:url(https://shopkeeper.wp-theme.design/wp-content/uploads/th03.jpg); background-size: 20px 20px; float:left; width:22px; height:22px;"></div>
-                            </a>
-             		                                    <a  href=""  class=" wcvaswatchinput" data-o-src="https://shopkeeper.wp-theme.design/wp-content/uploads/4146401443863639_01-350x435.jpg" >
-                            <div class="wcvashopswatchlabel wcvaround"  style="background-image:url(https://shopkeeper.wp-theme.design/wp-content/uploads/th01.jpg); background-size: 20px 20px; float:left; width:22px; height:22px;"></div>
-                            </a>
-             		                                    <a  href=""  class=" wcvaswatchinput" data-o-src="https://shopkeeper.wp-theme.design/wp-content/uploads/4146401443863639_05-350x435.jpg" >
-                            <div class="wcvashopswatchlabel wcvaround"  style="background-image:url(https://shopkeeper.wp-theme.design/wp-content/uploads/th02.jpg); background-size: 20px 20px; float:left; width:22px; height:22px;"></div>
-                            </a>
-             		        	</div>
-        <div class="product_after_shop_loop">
-        <div class="product_after_shop_loop_switcher">
-	<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>75</bdi></span></span>
-<a href="" data-quantity="1" class="button product_type_variable add_to_cart_button" data-product_id="5095" data-product_sku="" aria-label="Select options for &ldquo;Folk Striped Slub Cotton-Jersey T-Shirt&rdquo;" rel="nofollow">Select options</a>
-            </div>
-    </div>
-</li>
-<li class="product type-product post-5135 status-publish instock product_cat-stayhome product_cat-accessories has-post-thumbnail sale shipping-taxable purchasable product-type-simple">
-    <div class="product_thumbnail_wrapper ">
-		<a href="" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
-
-	        <div class="product_thumbnail with_second_image">
-	            <span class="product_thumbnail_background" style="background-image:url(https://shopkeeper.wp-theme.design/wp-content/uploads/5983760398347411_03-350x435.jpg)"></span>
-	            <img width="350" height="435" src="https://shopkeeper.wp-theme.design/wp-content/uploads/5983760398347411_01-350x435.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy" srcset="https://shopkeeper.wp-theme.design/wp-content/uploads/5983760398347411_01-350x435.jpg 350w, https://shopkeeper.wp-theme.design/wp-content/uploads/5983760398347411_01-920x1140.jpg 920w, https://shopkeeper.wp-theme.design/wp-content/uploads/5983760398347411_01-242x300.jpg 242w, https://shopkeeper.wp-theme.design/wp-content/uploads/5983760398347411_01.jpg 1049w" sizes="(max-width: 350px) 100vw, 350px" />	        </div><!--.product_thumbnail-->
-		</a>
-	<span class="onsale">19%</span>
-	<span class="shopkeeper_new_product">New</span>
-		        <div class="product_thumbnail_icons">
-            <a href="#" id="product_id_5135" class="product_quickview_button" data-product_id="5135"></a>                            <div class="icons-separator"></div>
-                        
-<div class="yith-wcwl-add-to-wishlist add-to-wishlist-5135  wishlist-fragment on-first-load" data-fragment-ref="5135" data-fragment-options="{&quot;base_url&quot;:&quot;&quot;,&quot;in_default_wishlist&quot;:false,&quot;is_single&quot;:false,&quot;show_exists&quot;:false,&quot;product_id&quot;:5135,&quot;parent_product_id&quot;:5135,&quot;product_type&quot;:&quot;simple&quot;,&quot;show_view&quot;:false,&quot;browse_wishlist_text&quot;:&quot;Browse Wishlist&quot;,&quot;already_in_wishslist_text&quot;:&quot;You love this!&quot;,&quot;product_added_text&quot;:&quot;Product added!&quot;,&quot;heading_icon&quot;:&quot;&quot;,&quot;available_multi_wishlist&quot;:false,&quot;disable_wishlist&quot;:false,&quot;show_count&quot;:false,&quot;ajax_loading&quot;:false,&quot;loop_position&quot;:false,&quot;item&quot;:&quot;add_to_wishlist&quot;}">
-<div class="yith-wcwl-add-button">
-	<a href="" rel="nofollow" data-product-id="5135" data-product-type="simple" data-original-product-id="5135" class="add_to_wishlist single_add_to_wishlist" data-title="Add to Wishlist">
-				<span>Add to Wishlist</span>
-	</a>
-</div>
-			</div>
-        </div>
-    </div><!--.product_thumbnail_wrapper-->
-	<h2 class="woocommerce-loop-product__title">
-		<a href="">Oversized Nylon Sweatshirt</a>
-	</h2>
-	<div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5</span></div>
-        <div class="product_after_shop_loop">
-        <div class="product_after_shop_loop_switcher">
-	<span class="price"><del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>270</bdi></span></del> <ins><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>220</bdi></span></ins></span>
-<a href="" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="5135" data-product_sku="" aria-label="Add &ldquo;Oversized Nylon Sweatshirt&rdquo; to your cart" rel="nofollow">Add to cart</a>
-            </div>
-    </div>
-		<script type="text/javascript">
-			window.pysWooProductData = window.pysWooProductData || [];
-			window.pysWooProductData[ 5135 ] = {"facebook":{"params":{"content_type":"product","content_ids":"[\"5135\"]","content_name":"Oversized Nylon Sweatshirt","category_name":"#stayhome, Accessories","value":220,"currency":"USD","contents":[{"id":"5135","quantity":"1"}]},"pixelIds":["734492269948266"]},"ga":{"event_category":"ecommerce","items":[{"id":"5135","name":"Oversized Nylon Sweatshirt","category":"#stayhome\/Accessories","quantity":"1","price":"220"}],"non_interaction":false,"ecomm_prodid":"5135","ecomm_pagetype":"cart","ecomm_totalvalue":"220"},"google_ads":{"params":{"event_category":"ecommerce","value":220,"items":[{"id":"5135","name":"Oversized Nylon Sweatshirt","category":"#stayhome\/Accessories","quantity":"1","price":"220","google_business_vertical":"retail"}]},"ids":[]}};
-		</script>
-</li>
-<li class="product type-product post-5042 status-publish last instock product_cat-stayhome product_cat-accessories product_cat-jackets has-post-thumbnail shipping-taxable purchasable product-type-simple">
-    <div class="product_thumbnail_wrapper ">
-		<a href="" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
-	        <div class="product_thumbnail with_second_image">
-	            <span class="product_thumbnail_background" style="background-image:url(https://shopkeeper.wp-theme.design/wp-content/uploads/20730576_1-350x435.jpg)"></span>
-	            <img width="350" height="435" src="https://shopkeeper.wp-theme.design/wp-content/uploads/20730576_0-350x435.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy" srcset="https://shopkeeper.wp-theme.design/wp-content/uploads/20730576_0-350x435.jpg 350w, https://shopkeeper.wp-theme.design/wp-content/uploads/20730576_0-242x300.jpg 242w, https://shopkeeper.wp-theme.design/wp-content/uploads/20730576_0-400x497.jpg 400w" sizes="(max-width: 350px) 100vw, 350px" />	        </div><!--.product_thumbnail-->
-		</a>
-		        <div class="product_thumbnail_icons">
-            <a href="#" id="product_id_5042" class="product_quickview_button" data-product_id="5042"></a>                            <div class="icons-separator"></div>
-<div class="yith-wcwl-add-to-wishlist add-to-wishlist-5042  wishlist-fragment on-first-load" data-fragment-ref="5042" data-fragment-options="{&quot;base_url&quot;:&quot;&quot;,&quot;in_default_wishlist&quot;:false,&quot;is_single&quot;:false,&quot;show_exists&quot;:false,&quot;product_id&quot;:5042,&quot;parent_product_id&quot;:5042,&quot;product_type&quot;:&quot;simple&quot;,&quot;show_view&quot;:false,&quot;browse_wishlist_text&quot;:&quot;Browse Wishlist&quot;,&quot;already_in_wishslist_text&quot;:&quot;You love this!&quot;,&quot;product_added_text&quot;:&quot;Product added!&quot;,&quot;heading_icon&quot;:&quot;&quot;,&quot;available_multi_wishlist&quot;:false,&quot;disable_wishlist&quot;:false,&quot;show_count&quot;:false,&quot;ajax_loading&quot;:false,&quot;loop_position&quot;:false,&quot;item&quot;:&quot;add_to_wishlist&quot;}">
-<div class="yith-wcwl-add-button">
-	<a href="" rel="nofollow" data-product-id="5042" data-product-type="simple" data-original-product-id="5042" class="add_to_wishlist single_add_to_wishlist" data-title="Add to Wishlist">
-				<span>Add to Wishlist</span>
-	</a>
-</div>
-			</div>
-        </div>
-    </div><!--.product_thumbnail_wrapper-->
-	<h2 class="woocommerce-loop-product__title">
-		<a href="">Retro Modern Sports Jacket</a>
-	</h2>
-        <div class="product_after_shop_loop">
-        <div class="product_after_shop_loop_switcher">
-	<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>720</bdi></span></span>
-<a href="" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="5042" data-product_sku="" aria-label="Add &ldquo;Retro Modern Sports Jacket&rdquo; to your cart" rel="nofollow">Add to cart</a>
-            </div>
-    </div>
-		<script type="text/javascript">
-			window.pysWooProductData = window.pysWooProductData || [];
-			window.pysWooProductData[ 5042 ] = {"facebook":{"params":{"content_type":"product","content_ids":"[\"5042\"]","content_name":"Retro Modern Sports Jacket","category_name":"#stayhome, Accessories, Jackets","value":720,"currency":"USD","contents":[{"id":"5042","quantity":"1"}]},"pixelIds":["734492269948266"]},"ga":{"event_category":"ecommerce","items":[{"id":"5042","name":"Retro Modern Sports Jacket","category":"#stayhome\/Accessories\/Jackets","quantity":"1","price":"720"}],"non_interaction":false,"ecomm_prodid":"5042","ecomm_pagetype":"cart","ecomm_totalvalue":"720"},"google_ads":{"params":{"event_category":"ecommerce","value":720,"items":[{"id":"5042","name":"Retro Modern Sports Jacket","category":"#stayhome\/Accessories\/Jackets","quantity":"1","price":"720","google_business_vertical":"retail"}]},"ids":[]}};
-		</script>
-</li>
-</ul>
-</div></div></div></div></div><div class="vc_row wpb_row vc_row-fluid wpb_animate_when_almost_visible wpb_fadeIn fadeIn vc_custom_1487082424634"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper">
+								<br>
+</div></div></div></div><div class="vc_row wpb_row vc_row-fluid wpb_animate_when_almost_visible wpb_fadeIn fadeIn vc_custom_1487082424634"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper">
 	<div class="wpb_text_column wpb_content_element  vc_custom_1567749277543" >
 		<div class="wpb_wrapper">
 			<h3 style="text-align: center;">2020 Spring Collection</h3>
@@ -432,7 +308,8 @@ p.demo_store  {
 
 		</div>
 	</div>
-<div class="row"><div class="categories_grid">
+<div class="">
+	<div class="categories_grid">
 			<div class="category_three_cat_1">
 				<div class="category_grid_box">
 					<span class="category_item_bkg" style="background-image:url(https://shopkeeper.wp-theme.design/wp-content/uploads/slide03blonde-1.jpg)"></span>
@@ -465,132 +342,49 @@ p.demo_store  {
 <p style="text-align: center;">Street art salvia irony wolf waistcoat actually lomo meh fap jean shorts.</p>
 		</div>
 	</div>
-<div class="woocommerce columns-3 "><ul class="products columns-3">
-<li class="product type-product post-5026 status-publish first instock product_cat-stayhome product_cat-hoodies product_cat-trousers has-post-thumbnail shipping-taxable purchasable product-type-variable">
+
+
+
+
+<div class="row">
+	{% for high_data in high_data %}
+
+<div class="col-xs-6 col-sm-4">
     <div class="product_thumbnail_wrapper ">
-		<a href="" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
-	        <div class="product_thumbnail with_second_image">
-	            <span class="product_thumbnail_background" style="background-image:url(https://shopkeeper.wp-theme.design/wp-content/uploads/org-d-350x435.jpg)"></span>
-	            <img width="350" height="435" src="https://shopkeeper.wp-theme.design/wp-content/uploads/org-a-350x435.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy" srcset="https://shopkeeper.wp-theme.design/wp-content/uploads/org-a-350x435.jpg 350w, https://shopkeeper.wp-theme.design/wp-content/uploads/org-a-920x1140.jpg 920w, https://shopkeeper.wp-theme.design/wp-content/uploads/org-a-242x300.jpg 242w, https://shopkeeper.wp-theme.design/wp-content/uploads/org-a.jpg 1049w" sizes="(max-width: 350px) 100vw, 350px" />	        </div><!--.product_thumbnail-->
+		<a href="{%url 'product_description' high_data.id%}" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+	        <div class="product_thumbnail ">
+	            <img width="350" height="435" src="{{high_data.pro_image.url}}" class="attachment-woocommerce_thumbnail
+	            size-woocommerce_thumbnail" alt="" loading="lazy"
+					 srcset="{{high_data.pro_image.url}} 350w,
+					  {{high_data.pro_image.url}} 920w,
+					   {{high_data.pro_image.url}} 242w,
+					    {{high_data.pro_image.url}} 1049w" sizes="(max-width: 350px) 100vw, 350px" />
+			</div><!--.product_thumbnail-->
 		</a>
 		        <div class="product_thumbnail_icons">
             <a href="#" id="product_id_5026" class="product_quickview_button" data-product_id="5026"></a>                            <div class="icons-separator"></div>
                         
-<div class="yith-wcwl-add-to-wishlist add-to-wishlist-5026  wishlist-fragment on-first-load" data-fragment-ref="5026" data-fragment-options="{&quot;base_url&quot;:&quot;&quot;,&quot;in_default_wishlist&quot;:false,&quot;is_single&quot;:false,&quot;show_exists&quot;:false,&quot;product_id&quot;:5026,&quot;parent_product_id&quot;:5026,&quot;product_type&quot;:&quot;variable&quot;,&quot;show_view&quot;:false,&quot;browse_wishlist_text&quot;:&quot;Browse Wishlist&quot;,&quot;already_in_wishslist_text&quot;:&quot;You love this!&quot;,&quot;product_added_text&quot;:&quot;Product added!&quot;,&quot;heading_icon&quot;:&quot;&quot;,&quot;available_multi_wishlist&quot;:false,&quot;disable_wishlist&quot;:false,&quot;show_count&quot;:false,&quot;ajax_loading&quot;:false,&quot;loop_position&quot;:false,&quot;item&quot;:&quot;add_to_wishlist&quot;}">
+<div class="yith-wcwl-add-to-wishlist add-to-wishlist-5026  wishlist-fragment on-first-load" data-fragment-ref="5026"
+	 data-fragment-options="{&quot;base_url&quot;:&quot;&quot;,&quot;in_default_wishlist&quot;:false,&quot;is_single&quot;:false,&quot;show_exists&quot;:false,&quot;product_id&quot;:5026,&quot;parent_product_id&quot;:5026,&quot;product_type&quot;:&quot;variable&quot;,&quot;show_view&quot;:false,&quot;browse_wishlist_text&quot;:&quot;Browse Wishlist&quot;,&quot;already_in_wishslist_text&quot;:&quot;You love this!&quot;,&quot;product_added_text&quot;:&quot;Product added!&quot;,&quot;heading_icon&quot;:&quot;&quot;,&quot;available_multi_wishlist&quot;:false,&quot;disable_wishlist&quot;:false,&quot;show_count&quot;:false,&quot;ajax_loading&quot;:false,&quot;loop_position&quot;:false,&quot;item&quot;:&quot;add_to_wishlist&quot;}">
 			
-			<!-- ADD TO WISHLIST -->
-			
-<div class="yith-wcwl-add-button">
-	<a href="?add_to_wishlist=5026" rel="nofollow" data-product-id="5026" data-product-type="variable" data-original-product-id="5026" class="add_to_wishlist single_add_to_wishlist" data-title="Add to Wishlist">
-				<span>Add to Wishlist</span>
-	</a>
-</div>
+
 			</div>
         </div>
     </div><!--.product_thumbnail_wrapper-->
-	<h2 class="woocommerce-loop-product__title">
-		<a href="">Cropped Pointelle Sweater</a>
-	</h2>
-	<div class="star-rating" role="img" aria-label="Rated 4.50 out of 5"><span style="width:90%">Rated <strong class="rating">4.50</strong> out of 5</span></div>	<div class="shopswatchinput " swatch-count="2" start-slider-count="5" prod-img="https://shopkeeper.wp-theme.design/wp-content/uploads/org-a-350x435.jpg">
-	                                <a  href=""  class=" wcvaswatchinput" data-o-src="" style="width:22px; height:22px;">
-                            <div class="wcvashopswatchlabel wcvaround" style="background-color:#ec7a5c; width:22px; float:left; height:22px;"></div>
-                            </a>
-             		                                    <a  href=""  class=" wcvaswatchinput" data-o-src="" style="width:22px; height:22px;">
-                            <div class="wcvashopswatchlabel wcvaround" style="background-color:#728d7f; width:22px; float:left; height:22px;"></div>
-                            </a>
-             		        	</div>
-        <div class="product_after_shop_loop">
-        <div class="product_after_shop_loop_switcher">
-	<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>128</bdi></span></span>
-<a href="" data-quantity="1" class="button product_type_variable add_to_cart_button" data-product_id="5026" data-product_sku="" aria-label="Select options for &ldquo;Cropped Pointelle Sweater&rdquo;" rel="nofollow">Select options</a>
-            </div>
-    </div>
-</li>
-<li class="product type-product post-5110 status-publish instock product_cat-hoodies product_cat-jackets product_cat-trousers has-post-thumbnail shipping-taxable purchasable product-type-variable has-default-attributes">
-    <div class="product_thumbnail_wrapper ">
-		<a href="" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
-	        <div class="product_thumbnail with_second_image">
-	            <span class="product_thumbnail_background" style="background-image:url(https://shopkeeper.wp-theme.design/wp-content/uploads/9596322500_2_1_8_6-350x435.jpg)"></span>
-	            <img width="350" height="435" src="https://shopkeeper.wp-theme.design/wp-content/uploads/9596322500_2_1_8_1-350x435.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy" srcset="https://shopkeeper.wp-theme.design/wp-content/uploads/9596322500_2_1_8_1-350x435.jpg 350w, https://shopkeeper.wp-theme.design/wp-content/uploads/9596322500_2_1_8_1-920x1140.jpg 920w, https://shopkeeper.wp-theme.design/wp-content/uploads/9596322500_2_1_8_1-242x300.jpg 242w, https://shopkeeper.wp-theme.design/wp-content/uploads/9596322500_2_1_8_1.jpg 1049w" sizes="(max-width: 350px) 100vw, 350px" />	        </div><!--.product_thumbnail-->
-		</a>
-		<span class="shopkeeper_new_product">New</span>
-		        <div class="product_thumbnail_icons">
-            <a href="#" id="product_id_5110" class="product_quickview_button" data-product_id="5110"></a>                            <div class="icons-separator"></div>
-<div class="yith-wcwl-add-to-wishlist add-to-wishlist-5110  wishlist-fragment on-first-load" data-fragment-ref="5110" data-fragment-options="{&quot;base_url&quot;:&quot;&quot;,&quot;in_default_wishlist&quot;:false,&quot;is_single&quot;:false,&quot;show_exists&quot;:false,&quot;product_id&quot;:5110,&quot;parent_product_id&quot;:5110,&quot;product_type&quot;:&quot;variable&quot;,&quot;show_view&quot;:false,&quot;browse_wishlist_text&quot;:&quot;Browse Wishlist&quot;,&quot;already_in_wishslist_text&quot;:&quot;You love this!&quot;,&quot;product_added_text&quot;:&quot;Product added!&quot;,&quot;heading_icon&quot;:&quot;&quot;,&quot;available_multi_wishlist&quot;:false,&quot;disable_wishlist&quot;:false,&quot;show_count&quot;:false,&quot;ajax_loading&quot;:false,&quot;loop_position&quot;:false,&quot;item&quot;:&quot;add_to_wishlist&quot;}">
-<div class="yith-wcwl-add-button">
-	<a href="?add_to_wishlist=5110" rel="nofollow" data-product-id="5110" data-product-type="variable" data-original-product-id="5110" class="add_to_wishlist single_add_to_wishlist" data-title="Add to Wishlist">
-				<span>Add to Wishlist</span>
-	</a>
+	<span class="woocommerce-loop-product__title">
+		<a href="{%url 'product_description' high_data.id%}">{{high_data.pro_name}}</a>
+	</span>
+
 </div>
-			</div>
-        </div>
-    </div><!--.product_thumbnail_wrapper-->
-	<h2 class="woocommerce-loop-product__title">
-		<a href="">Oversize Drawstring Sweatshirt</a>
-	</h2>
-	<div class="star-rating" role="img" aria-label="Rated 4.23 out of 5"><span style="width:84.6%">Rated <strong class="rating">4.23</strong> out of 5</span></div>	<div class="shopswatchinput " swatch-count="4" start-slider-count="5" prod-img="https://shopkeeper.wp-theme.design/wp-content/uploads/9596322500_2_1_8_1-350x435.jpg">
-	                                <a  href=""  class=" wcvaswatchinput" data-o-src="https://shopkeeper.wp-theme.design/wp-content/uploads/9596322500_2_1_8_7-350x435.jpg" style="width:22px; height:22px;">
-                            <div class="wcvashopswatchlabel wcvaround" style="background-color:#d8a15f; width:22px; float:left; height:22px;"></div>
-                            </a>
-             		                                    <a  href=""  class=" wcvaswatchinput" data-o-src="https://shopkeeper.wp-theme.design/wp-content/uploads/9596322500_2_1_8_1-350x435.jpg" style="width:22px; height:22px;">
-                            <div class="wcvashopswatchlabel wcvaround" style="background-color:#647242; width:22px; float:left; height:22px;"></div>
-                            </a>
-             		                                    <a  href=""  class=" wcvaswatchinput" data-o-src="https://shopkeeper.wp-theme.design/wp-content/uploads/9596322500_2_1_8_8-350x435.jpg" style="width:22px; height:22px;">
-                            <div class="wcvashopswatchlabel wcvaround" style="background-color:#000000; width:22px; float:left; height:22px;"></div>
-                            </a>
-             		                                    <a  href=""  class=" wcvaswatchinput" data-o-src="https://shopkeeper.wp-theme.design/wp-content/uploads/9596322500_2_1_8_9-350x435.jpg" style="width:22px; height:22px;">
-                            <div class="wcvashopswatchlabel wcvaround" style="background-color:#e8e8e8; width:22px; float:left; height:22px;"></div>
-                            </a>
-             		        	</div>
-        <div class="product_after_shop_loop">
-        <div class="product_after_shop_loop_switcher">
-	<span class="price"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>29</bdi></span></span>
-<a href="" data-quantity="1" class="button product_type_variable add_to_cart_button" data-product_id="5110" data-product_sku="" aria-label="Select options for &ldquo;Oversize Drawstring Sweatshirt&rdquo;" rel="nofollow">Select options</a>
-            </div>
-    </div>
-</li>
-<li class="product type-product post-5033 status-publish last instock product_cat-stayhome product_cat-hoodies product_cat-jackets product_cat-shoes has-post-thumbnail shipping-taxable purchasable product-type-variable has-default-attributes">
-    <div class="product_thumbnail_wrapper ">
-		<a href="" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
-	        <div class="product_thumbnail with_second_image">
-	            <span class="product_thumbnail_background" style="background-image:url(https://shopkeeper.wp-theme.design/wp-content/uploads/9390390802_2_1_9-350x435.jpg)"></span>
-	            <img width="350" height="435" src="https://shopkeeper.wp-theme.design/wp-content/uploads/9390390802_2_1_8-350x435.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" loading="lazy" srcset="https://shopkeeper.wp-theme.design/wp-content/uploads/9390390802_2_1_8-350x435.jpg 350w, https://shopkeeper.wp-theme.design/wp-content/uploads/9390390802_2_1_8-920x1140.jpg 920w, https://shopkeeper.wp-theme.design/wp-content/uploads/9390390802_2_1_8-242x300.jpg 242w, https://shopkeeper.wp-theme.design/wp-content/uploads/9390390802_2_1_8.jpg 1049w" sizes="(max-width: 350px) 100vw, 350px" />	        </div><!--.product_thumbnail-->
-		</a>
-		        <div class="product_thumbnail_icons">
-            <a href="#" id="product_id_5033" class="product_quickview_button" data-product_id="5033"></a>                            <div class="icons-separator"></div>
-                        
-<div class="yith-wcwl-add-to-wishlist add-to-wishlist-5033  wishlist-fragment on-first-load" data-fragment-ref="5033" data-fragment-options="{&quot;base_url&quot;:&quot;&quot;,&quot;in_default_wishlist&quot;:false,&quot;is_single&quot;:false,&quot;show_exists&quot;:false,&quot;product_id&quot;:5033,&quot;parent_product_id&quot;:5033,&quot;product_type&quot;:&quot;variable&quot;,&quot;show_view&quot;:false,&quot;browse_wishlist_text&quot;:&quot;Browse Wishlist&quot;,&quot;already_in_wishslist_text&quot;:&quot;You love this!&quot;,&quot;product_added_text&quot;:&quot;Product added!&quot;,&quot;heading_icon&quot;:&quot;&quot;,&quot;available_multi_wishlist&quot;:false,&quot;disable_wishlist&quot;:false,&quot;show_count&quot;:false,&quot;ajax_loading&quot;:false,&quot;loop_position&quot;:false,&quot;item&quot;:&quot;add_to_wishlist&quot;}">
-			<!-- ADD TO WISHLIST -->
-<div class="yith-wcwl-add-button">
-	<a href="" rel="nofollow" data-product-id="5033" data-product-type="variable" data-original-product-id="5033" class="add_to_wishlist single_add_to_wishlist" data-title="Add to Wishlist">
-				<span>Add to Wishlist</span>
-	</a>
+
+	{% endfor %}
+
 </div>
-			</div>
-        </div>
-    </div><!--.product_thumbnail_wrapper-->
-	<h2 class="woocommerce-loop-product__title">
-		<a href="">Shirred Utility Mini Dress</a>
-	</h2>
-		<div class="shopswatchinput " swatch-count="2" start-slider-count="5" prod-img="https://shopkeeper.wp-theme.design/wp-content/uploads/9390390802_2_1_8-350x435.jpg">
-	                                <a  href=""  class=" wcvaswatchinput" data-o-src="https://shopkeeper.wp-theme.design/wp-content/uploads/1566552928577-350x435.jpg" >
-                            <div class="wcvashopswatchlabel wcvaround"  style="background-image:url(https://shopkeeper.wp-theme.design/wp-content/uploads/camouflage.jpg); background-size: 20px 20px; float:left; width:22px; height:22px;"></div>
-                            </a>
-             		                                    <a  href=""  class=" wcvaswatchinput" data-o-src="https://shopkeeper.wp-theme.design/wp-content/uploads/9390390802_2_1_8-350x435.jpg" style="width:22px; height:22px;">
-                            <div class="wcvashopswatchlabel wcvaround" style="background-color:#000000; width:22px; float:left; height:22px;"></div>
-                            </a>
-             		        	</div>
-        <div class="product_after_shop_loop">
-        <div class="product_after_shop_loop_switcher">
-	<span class="price">
-		<span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>79</bdi></span></span>
-<a href="" data-quantity="1" class="button product_type_variable add_to_cart_button" data-product_id="5033" data-product_sku="" aria-label="Select options for &ldquo;Shirred Utility Mini Dress&rdquo;" rel="nofollow">Select options</a>
-            </div>
-    </div>
-</li>
-</ul>
-</div><div class="vc_btn3-container vc_btn3-center" >
-	<a class="vc_general vc_btn3 vc_btn3-size-md vc_btn3-shape-square vc_btn3-style-classic vc_btn3-color-black" href="" title="">Shop All Bestsellers</a></div></div></div></div></div><div data-vc-full-width="true" data-vc-full-width-init="false" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid wpb_animate_when_almost_visible wpb_fadeIn fadeIn vc_row-no-padding vc_row-o-equal-height vc_row-flex"><div class="wpb_column vc_column_container vc_col-sm-6 vc_col-has-fill"><div class="vc_column-inner vc_custom_1484775352777"><div class="wpb_wrapper">
+								<br>
+
+								<div class="vc_btn3-container vc_btn3-center" >
+	<a class="vc_general vc_btn3 vc_btn3-size-md vc_btn3-shape-square vc_btn3-style-classic vc_btn3-color-black"
+	   href="{%url 'shop'%}" title="">View All</a></div></div></div></div></div><div data-vc-full-width="true" data-vc-full-width-init="false" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid wpb_animate_when_almost_visible wpb_fadeIn fadeIn vc_row-no-padding vc_row-o-equal-height vc_row-flex"><div class="wpb_column vc_column_container vc_col-sm-6 vc_col-has-fill"><div class="vc_column-inner vc_custom_1484775352777"><div class="wpb_wrapper">
 	<div class="wpb_text_column wpb_content_element  vc_custom_1487081401239" >
 		<div class="wpb_wrapper">
 			<h3 style="text-align: left;">Read<br />
@@ -899,7 +693,9 @@ var gbt_cn_info = {"icon_default_class":"spk-icon spk-icon-icon-message","error_
 <script type='text/javascript' id='shopkeeper-scripts-dist-js-extra'>
 var getbowtied_scripts_vars = {"ajax_load_more_locale":"Load More Items","ajax_loading_locale":"Loading","ajax_no_more_items_locale":"No more items available.","smooth_transition":"","pagination_blog":"infinite_scroll","layout_blog":"layout-3","shop_pagination_type":"infinite_scroll","option_minicart":"1","option_minicart_open":"1","catalog_mode":"","product_lightbox":"1","product_gallery_zoom":"1","mobile_product_columns":"2","sticky_header":"1","mobile_sticky_header":"1","back_to_top_button":"1","ajax_url":"\/wp-admin\/admin-ajax.php"};
 </script>
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script defer src="{%static 'wp-content/cache/autoptimize/js/autoptimize_5a628d83fcab103a0b9bf451c1bfb7aa.js'%}"></script>
 </body>
 </html>

@@ -41,6 +41,10 @@
                     <a href="#">Contact</a>
 </li>
 
+
+<li class="">
+                    <a href="{%url 'order_history'%}">Order history</a>
+</li>
 <li class="mega-menu menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
 	<a href="#">Profile</a>
 {% if user.is_authenticated %}
@@ -63,9 +67,6 @@
 </ul>
 
 {% endif %}
-</li>
-<li class="">
-                    <a href="{%url 'order_history'%}">Order_history</a>
 </li>
 </ul>
 
