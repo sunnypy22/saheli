@@ -29,7 +29,7 @@ def checkout(request):
         coffee = Checkout(name=request.user, product=product, ammount=main_price, payment_id=payment['id'],
                           billing_company=billing_company,
                           billing_postcode=billing_postcode, order_address=order_address, billing_phone=billing_phone,
-                          order_comments=order_comments)
+                          order_comments=order_comments,order_status="Prepare To Dispatch")
         coffee.save()
 
         ord_payment_id = coffee.payment_id
@@ -108,7 +108,7 @@ def order_tracking(request):
                           [order_email],  # TO
                           fail_silently=False)
                 return redirect("order_history")
-            elif order_status == "Prepare To Dispatch":
+            elif order_status == "Dispatch":
                 send_mail('Track Your Order with Best Experiance',
                           'Your Order is {status}, You will get your order very soon'.format(status=order_status),
                           request.user.email,  # FROM
@@ -117,7 +117,7 @@ def order_tracking(request):
                 return redirect("order_history")
             else:
                 send_mail('Track Your Order with Best Experiance',
-                          'Your Order is delivered '.format(status=order_status),
+                          'Your Order has been delivered '.format(status=order_status),
                           request.user.email,  # FROM
                           [order_email],  # TO
                           fail_silently=False)
