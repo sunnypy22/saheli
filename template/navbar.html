@@ -18,10 +18,24 @@
                     	<a href="#">About</a></li>
 
 					<li class="">
-                    	<a href="#">Contact</a></li>
-						<li class="">
-                    	<a href="{%url 'order_history'%}">Order History</a></li>
-						<li id="shopkeeper-menu-item-33" class="mega-menu menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                    	<a href="{%url 'contact_us'%}">Contact</a></li>
+						<li  class="mega-menu menu-item menu-item-type-post_type menu-item-object-page
+						 menu-item-has-children">
+							<a href="">Orders</a>
+						<ul class="sub-menu level-0" style="left: 0px;">
+							<li  class="menu-item menu-item-type-post_type menu-item-object-page ">
+							<a href="">Order Updates</a>
+							<ul class="sub-menu level-1">
+								<li>
+									<a  href="{%url 'order_history'%}">Order History</a></li>
+								<li>
+									<a  href="{%url 'order_tracking'%}">Order Tracking</a></li>
+							</ul>
+						</li>
+						</ul>
+						</li>
+						<li class="mega-menu menu-item menu-item-type-post_type menu-item-object-page
+						menu-item-has-children">
 							<a href="">Profile</a>
 <ul class="sub-menu level-0" style="left: 0px;">
 

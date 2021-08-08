@@ -21,12 +21,10 @@ urlpatterns = [
     path('product/blog/', views.blog, name="blog"),
     path('product/blog_detail/', views.blog_detail, name="blog_detail"),
     path('product/about/', views.about, name="about"),
-    path('product/contact_us/', views.contact_us, name="contact_us"),
+    path('contact_us/', views.contact_us, name="contact_us"),
     path('product/faqs/', views.faqs, name="faqs"),
-    path('product/order_tracking/', views.order_tracking, name="order_tracking"),
     path('demo/', views.demo, name="demo"),
     path('filter_data/', views.filter_data, name="filter_data"),
-    path('product_list/', views.product_list, name="product_list"),
     path('try_ajax/', views.try_ajax, name="try_ajax"),
 
 ]

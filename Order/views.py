@@ -4,7 +4,8 @@ from Order.models import Checkout, Order_History
 from Product.models import Cart
 import razorpay
 from django.views.decorators.csrf import csrf_exempt
-
+from django.core.mail import send_mail
+from django.contrib import messages
 
 def checkout(request):
     data = Cart.objects.filter(cart_user=request.user.id)
@@ -69,6 +70,7 @@ def success(request):
             return render(request, 'success.html')
         return render(request, 'success.html')
 
+
 @login_required
 def order_history(request):
     chckout = Checkout.objects.filter(name=request.user)
@@ -76,16 +78,48 @@ def order_history(request):
     key_a = request.GET.get('sort_by')
     if key_a == "New-To-Old":
         New_To_Old = Checkout.objects.all().order_by('-ord_date')
-        return render(request,'order_history.html',{'chckout':New_To_Old,'order_history':order_history})
+        return render(request, 'order_history.html', {'chckout': New_To_Old, 'order_history': order_history})
     elif key_a == "Old-To-New":
         Old_To_New = Checkout.objects.all().order_by('ord_date')
         return render(request, 'order_history.html', {'chckout': Old_To_New, 'order_history': order_history})
     elif key_a == "Success-Payment":
-        success_checkout = Checkout.objects.filter(name=request.user,paid=True)
+        success_checkout = Checkout.objects.filter(name=request.user, paid=True)
         return render(request, 'order_history.html', {'chckout': success_checkout, 'order_history': order_history})
     elif key_a == "Fail-Payment":
         fail_checkout = Checkout.objects.filter(name=request.user, paid=False)
         return render(request, 'order_history.html', {'chckout': fail_checkout, 'order_history': order_history})
     else:
         pass
-    return render(request,'order_history.html',{'chckout':chckout,'order_history':order_history})
+    return render(request, 'order_history.html', {'chckout': chckout, 'order_history': order_history})
+
+
+def order_tracking(request):
+    try:
+        if request.method == "POST":
+            orderid = request.POST.get('orderid')
+            order_email = request.POST.get('order_email')
+            data = Checkout.objects.get(payment_id=orderid)
+            order_status = data.order_status
+            if order_status == "Prepare To Dispatch":
+                send_mail('Track Your Order with Best Experiance',
+                          'Your Order is {status}'.format(status=order_status),
+                          request.user.email,  # FROM
+                          [order_email],  # TO
+                          fail_silently=False)
+            elif order_status == "Prepare To Dispatch":
+                send_mail('Track Your Order with Best Experiance',
+                          'Your Order is {status}, You will get your order very soon'.format(status=order_status),
+                          request.user.email,  # FROM
+                          [order_email],  # TO
+                          fail_silently=False)
+            else:
+                send_mail('Track Your Order with Best Experiance',
+                          'Your Order is delivered '.format(status=order_status),
+                          request.user.email,  # FROM
+                          [order_email],  # TO
+                          fail_silently=False)
+
+        return render(request, 'order_tracking.html')
+    except:
+        messages.error(request,"Please Check With Your Valid Order ID")
+        return redirect("order_history")
