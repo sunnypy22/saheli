@@ -93,6 +93,7 @@ def order_history(request):
     return render(request, 'order_history.html', {'chckout': chckout, 'order_history': order_history})
 
 
+@login_required
 def order_tracking(request):
     try:
         if request.method == "POST":
