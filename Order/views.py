@@ -107,19 +107,23 @@ def order_tracking(request):
                           request.user.email,  # FROM
                           [order_email],  # TO
                           fail_silently=False)
+                return redirect("order_history")
             elif order_status == "Prepare To Dispatch":
                 send_mail('Track Your Order with Best Experiance',
                           'Your Order is {status}, You will get your order very soon'.format(status=order_status),
                           request.user.email,  # FROM
                           [order_email],  # TO
                           fail_silently=False)
+                return redirect("order_history")
             else:
                 send_mail('Track Your Order with Best Experiance',
                           'Your Order is delivered '.format(status=order_status),
                           request.user.email,  # FROM
                           [order_email],  # TO
                           fail_silently=False)
-
+                return redirect("order_history")
+        else:
+            pass
         return render(request, 'order_tracking.html')
     except:
         messages.error(request,"Please Check With Your Valid Order ID")
