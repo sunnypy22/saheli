@@ -320,10 +320,10 @@ p.demo_store  {
 										</a>
 
 
-
-										<span class="onsale">19%</span>
-<!--										<span class="shopkeeper_new_product">New</span>-->
-
+												{% if data.percentage == '0%' %}
+												{% else %}
+										<span class="onsale">{{data.percentage}}</span>
+												{% endif %}
 
 									</div><!--.product_thumbnail_wrapper-->
 
@@ -331,21 +331,7 @@ p.demo_store  {
 									<h2 class="woocommerce-loop-product__title">
 										<a href="{%url 'product_description' data.id%}">{{data.pro_name}}</a>
 									</h2>
-<!--									<div class="shopswatchinput ">-->
-<!--										{% for color in color %}-->
-<!--										{% if color.color_key.id == data.id %}-->
-<!--										<a href="{%url 'product_description' data.id%}">-->
-<!--                            <div class=" wcvaround" style="background-color:{{color.product_Color}};-->
-<!--                             width:22px; float:left; height:22px;">-->
 
-<!--							</div>-->
-<!--                            </a>-->
-
-<!--										{% endif %}-->
-
-<!--										{% endfor %}-->
-
-<!--             		        	</div>-->
 
 									<div class="star-rating" role="img" aria-label="">
 										{% if data.pro_star == "1" %}
@@ -369,9 +355,15 @@ p.demo_store  {
 										<div class="product_after_shop_loop_switcher">
 
 
-	<span class="price"><del aria-hidden="true">
+	<span class="price">
+		{% if data.pro_fake_price == None%}
+
+		{% else %}
+		<del aria-hidden="true">
 		<span class="woocommerce-Price-amount amount">
-			<bdi><span class="woocommerce-Price-currencySymbol">$</span>{{data.pro_fake_price}}</bdi></span></del>
+			<bdi><span class="woocommerce-Price-currencySymbol">$</span>{{data.pro_fake_price}}</bdi></span>
+		</del>
+		{% endif %}
 		<ins><span class="woocommerce-Price-amount amount"><bdi>
 			<span class="woocommerce-Price-currencySymbol">$</span>{{data.pro_price}}</bdi></span></ins></span>
 					<a href="{%url 'product_description' data.id%}" data-quantity="1"

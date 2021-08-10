@@ -58,6 +58,12 @@ class Product(models.Model):
     def __str__(self):
         return self.pro_name
 
+    @property
+    def percentage(self):
+        data1 = int(self.pro_offer_price) / int(self.pro_price)
+        percentage = "{:.0%}".format(data1)
+        return percentage
+
 
 class PostImage(models.Model):
     post = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
