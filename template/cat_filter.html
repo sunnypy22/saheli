@@ -467,9 +467,10 @@ p.demo_store  {
 										</a>
 
 
-
-										<span class="onsale">19%</span>
-
+												{% if data.percentage == '0%' %}
+												{% else %}
+										<span class="onsale">{{data.percentage}}</span>
+												{% endif %}
 
 									</div><!--.product_thumbnail_wrapper-->
 
@@ -512,7 +513,7 @@ p.demo_store  {
 		</del>
 		{% endif %}
 		<ins><span class="woocommerce-Price-amount amount"><bdi>
-			<span class="woocommerce-Price-currencySymbol">$</span>{{data.pro_price}}</bdi></span></ins></span>
+			<span class="woocommerce-Price-currencySymbol">$</span>{{data.offer_price}}</bdi></span></ins></span>
 					<a href="{%url 'product_description' data.id%}" data-quantity="1"
 					   class="button product_type_simple add_to_cart_button"
 					   data-product_id="5135" data-product_sku=""

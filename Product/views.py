@@ -118,6 +118,7 @@ def ajax_filter(request):
 
 def product_description(request, pid):
     pro = Product.objects.get(id=pid)
+    cat = Category.objects.all()
     image = PostImage.objects.filter(post_id=pid)
     size = Product_Size.objects.filter(size_key_id=pid)
     color = Product_Color.objects.filter(color_key_id=pid)
@@ -187,7 +188,7 @@ def product_description(request, pid):
 
     else:
         pass
-    return render(request, 'product_description.html', {'pro': pro, 'size': size, 'color': color, 'image': image})
+    return render(request, 'product_description.html', {'pro': pro,'cat':cat, 'size': size, 'color': color, 'image': image})
 
 
 

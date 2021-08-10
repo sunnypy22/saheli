@@ -78,6 +78,21 @@ var pysOptions = {"staticEvents":{"facebook":{"PageView":[{"params":[],"delay":0
 <link rel="icon" href="{%static 'wp-content/uploads/shopkeeper-logo.png'%}" sizes="192x192" />
 <link rel="apple-touch-icon" href="{%static 'wp-content/uploads/shopkeeper-logo.png'%}" />
 <meta name="msapplication-TileImage" content="{%static 'wp-content/uploads/shopkeeper-logo.png'%}" />
+	<style>
+	.percentage{
+		    background: #f57e60; min-height: 0;
+    min-width: 0;
+    padding: 6px 14px 3px;
+    font-size: 10px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.5em;
+    top: 15px;
+    left: 15px;
+    right: auto !important;
+    border-radius: 10px;
+    color: white;}
+	</style>
 	<style type="text/css" id="wp-custom-css">
 			 .vc-box-shadow {
     -moz-box-shadow: -2px 2px 81px -27px rgba(0,0,0,0.29);
@@ -206,6 +221,7 @@ woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 
 	 data-columns="4" style="opacity: 0; transition: opacity .25s ease-in-out;">
 
 
+
 	<figure class="woocommerce-product-gallery__wrapper">
 		<div data-thumb="{{pro.pro_image.url}}" class="woocommerce-product-gallery__image">
 
@@ -240,10 +256,11 @@ woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 
 				 	sizes="(max-width: 920px) 100vw, 920px" />
 
 		</div>
+
 {% endfor %}
+
 	</figure>
 </div>
-
 
 								</div>
 
@@ -258,13 +275,34 @@ woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 
 									 <div class="product_summary_top">
 
 									 	<nav class="woocommerce-breadcrumb">
-											<a href="">Home</a> <span class="breadcrump_sep">/</span>
-											<a href="">The Shop</a> <span class="breadcrump_sep">/</span>
-											<a href="">Hoodies</a> <span class="breadcrump_sep">/</span>
+											<a href="{%url 'index'%}">Home</a> <span class="breadcrump_sep">/</span>
+											<a href="{%url 'shop'%}">The Shop</a> <span class="breadcrump_sep">/</span>
+											<a href="">{{pro.pro_cat_name.cat_name}}</a> <span class="breadcrump_sep">/</span>
 											Cropped Pointelle Sweater</nav>
+
+
+										 {% if pro.percentage == '0%' %}
+												{% else %}
+										<span class="percentage">{{pro.percentage}}</span>
+												{% endif %}
 	<div class="woocommerce-product-rating">
 		<div class="star-rating" role="img" aria-label="Rated 4.50 out of 5">
-			<span style="width:90%">Rated <strong class="rating">4.50</strong> out of 5 based on
+								{% if pro.pro_star == "1" %}
+											<span style="width:20%">
+										{% elif pro.pro_star == "2" %}
+											<span style="width:40%">
+										{% elif pro.pro_star == "3" %}
+											<span style="width:60%">
+										{% elif pro.pro_star == "4" %}
+											<span style="width:80%">
+										{% elif pro.pro_star == "5" %}
+											<span style="width:100%">
+										{% else %}
+											<span style="width:0%">
+										{% endif %}
+
+
+				Rated <strong class="rating">4.50</strong> out of 5 based on
 				<span class="rating">2</span> customer ratings</span>
 		</div>
 		<a href="" class="woocommerce-review-link" rel="nofollow">
@@ -275,12 +313,25 @@ woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 
 
 
 									 <div class="product_summary_middle">
-										<h1 class="product_title entry-title">{{pro.pro_name}}</h1>									</div><!--.product_summary_top-->
+										<h1 class="product_title entry-title">{{pro.pro_name}}
+
+										</h1>
+
+									 </div><!--.product_summary_top-->
 
 									<p class="price"><span class="woocommerce-Price-amount amount">
 										<bdi>
 								<span class="woocommerce-Price-currencySymbol">&#36;</span>{{pro.pro_price}}</bdi>
-									</span></p>
+									</span>
+											{% if pro.pro_fake_price == None%}
+
+		{% else %}
+		<del aria-hidden="true">
+		<span class="woocommerce-Price-amount amount">
+			<bdi><span class="woocommerce-Price-currencySymbol">$</span>{{pro.pro_fake_price}}</bdi></span>
+		</del>
+		{% endif %}
+									</p>
 
 									<div class="woocommerce-product-details__short-description">
 	<p>Purchase this product on
@@ -476,9 +527,9 @@ woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 
 
 
 	<span class="posted_in">Categories:
-		<a href="" rel="tag">#stayhome</a>,
-		<a href="" rel="tag">Hoodies</a>,
-		<a href="" rel="tag">Trousers</a>
+		<a href="{% url 'shop' %}" rel="tag">#stayhome</a>,
+		{% for cat in cat %}<a href="{% url 'cat_filter' cat.id %}?cat_id={{cat.id}}" rel="tag">{{cat.cat_name}}</a>,
+		{% endfor %}
 	</span>
 
 
