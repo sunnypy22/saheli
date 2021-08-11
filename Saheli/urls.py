@@ -20,6 +20,9 @@ from django.conf.urls import url
 from django.conf import settings
 from Home import views as index_view
 
+admin.site.site_header = "Saheli administration"
+admin.site.site_title = "Saheli administration"
+admin.site.index_title = "Welcome To Saheli administration"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index_view.index, name="index"),
