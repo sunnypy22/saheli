@@ -4,6 +4,11 @@ from .models import Category, Product, PostImage, Wishlist, Cart, Product_Size, 
 
 # Register your models here.
 
+class cart_extra(admin.ModelAdmin):
+    list_display = ['cart_user','cart_product','cart_quantity','cart_color','cart_size','cart_date']
+    list_filter = ['cart_user','cart_product','cart_date']
+    readonly_fields = ['cart_user','cart_price','cart_product','cart_quantity','cart_color','cart_size','cart_date']
+
 
 class cat_extra(admin.ModelAdmin):
     list_display = ['id', 'cat_name']
@@ -13,6 +18,7 @@ class cat_extra(admin.ModelAdmin):
 class wish_list_extra(admin.ModelAdmin):
     list_display = ['wish_list_user', 'wish_list_product']
     list_filter = ('wish_list_product',)
+    readonly_fields = ['wish_list_user', 'wish_list_product','wish_list_status']
 
 
 class size_extra(admin.ModelAdmin):
@@ -59,7 +65,7 @@ class PostAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, cat_extra)
 admin.site.register(Wishlist,wish_list_extra)
-admin.site.register(Cart)
+admin.site.register(Cart, cart_extra)
 
 admin.site.register(Product_Size, size_extra)
 admin.site.register(Product_Color, color_extra)
