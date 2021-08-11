@@ -96,6 +96,8 @@ class Wishlist(models.Model):
     wish_list_status = models.BooleanField(default=False)
 
 
+
+
 class Cart(models.Model):
     cart_user = models.ForeignKey(User, on_delete=models.CASCADE)
     cart_product = models.ForeignKey(Product, on_delete=models.CASCADE)
