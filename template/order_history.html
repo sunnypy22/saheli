@@ -223,8 +223,10 @@ p.demo_store  {
 							<div class="small-5 medium-7 large-6 xlarge-8 columns text-left">
 
 								<nav class="woocommerce-breadcrumb">
-									<a href="">Home</a>
-									<span class="breadcrump_sep">/</span> The Shop</nav>
+									<a href="{%url 'index'%}">Home</a>
+									<span class="breadcrump_sep">/</span>
+									<a href="{%url 'shop'%}">The Shop</a>
+								</nav>
 
 							</div>
 <!--						<a href="/product/shop/?order_by=High-To-Low">Demo</a>-->
@@ -232,11 +234,11 @@ p.demo_store  {
 								<div class="catalog-ordering hide-results">
 									<form class="woocommerce-ordering">
 										<select name="sort_by" class="orderby select2-hidden-accessible" aria-label="Shop order" tabindex="-1" aria-hidden="true">
-											<option value="#">Sort by order History</option>
-                                            <option value="New-To-Old">New To Old Date</option>
-                                            <option value="Old-To-New">Old To New Date</option>
-                                            <option value="Success-Payment">Success Payment</option>
-											<option value="Fail-Payment">Fail Payment</option>
+											<option value="#">Sort by order</option>
+                                            <option value="New-To-Old">Date : New To Old </option>
+                                            <option value="Old-To-New">Date : Old To New</option>
+                                            <option value="Success-Payment">Payment : Success</option>
+											<option value="Fail-Payment">Payment : Fail </option>
 										</select>
 									</form>
 
@@ -268,7 +270,7 @@ p.demo_store  {
 				<th class="product-size">Size</th>
 				<th class="product-colour">Color</th>
 				<th class="product-quantity">Quantity</th>
-				<th class="product-price">payment_id</th>
+				<th class="product-price">Order ID</th>
 				<th class="product-total">paid</th>
 				<th class="product-total">ord. Date</th>
 
@@ -308,17 +310,17 @@ p.demo_store  {
 							</span>
 			</td>
 
-			<td class="product-price" data-title="Payment ID">
+			<td class="product-price" data-title="Order ID">
 				<span class="woocommerce-Price-amount amount"><bdi style="font-size: 12px;">{{j.payment_id}}</bdi></span>
 			</td>
 			<td class="product-subtotal" data-title="Paid">
-				<span class="woocommerce-Price-amount amount"><bdi style="font-size: 12px;">
+				<span class="woocommerce-Price-amount amount">
                 {% if j.paid == True %}
-                    Success
+					<bdi style="font-size: 12px;color: green"> Success </bdi>
                 {% else %}
-                    Fail
+                  <bdi style="font-size: 12px;color: red">  Fail</bdi>
                 {% endif %}
-                    </bdi>
+
 							</span>
 			</td>
 			<td class="product-subtotal" data-title="ord. Date">

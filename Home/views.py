@@ -21,10 +21,7 @@ from django.template.loader import render_to_string
 
 
 def demo(request):
-    cat = Category.objects.all()
-    data = Product.objects.all()
-
-    return render(request, 'demo.html', {'cat': cat, 'data': data})
+    return render(request, 'demo.html')
 
 
 def filter_data(request):
