@@ -127,7 +127,7 @@ def product_description(request, pid):
 
         if "wishlist_form" in request.POST:
 
-            if Wishlist.objects.filter(wish_list_product=pro.id).exists():
+            if Wishlist.objects.filter(wish_list_user = request.user,wish_list_product=pro.id).exists():
                 messages.warning(request, 'Product {} already exists in wishlist!'.format(pro.pro_name))
             else:
                 if request.user.is_authenticated:
