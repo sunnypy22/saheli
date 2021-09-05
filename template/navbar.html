@@ -74,7 +74,11 @@
                     		<span class="tools_button_icon">
 								<i class="spk-icon spk-icon-heart"></i>
 							</span>
-<!--                    		<span class="wishlist_items_number">1</span>-->
+							{% if request.user.is_authenticated %}
+                    		<span class="wishlist_items_number">{{check_wish}}</span>
+							{% else %}
+                    		<span class="wishlist_items_number">0</span>
+							{% endif %}
                 		</a>
             		</li>
 
@@ -83,20 +87,17 @@
                         	<span class="tools_button_icon">
 								<i class="spk-icon spk-icon-cart-shopkeeper"></i>
 							</span>
-<!--                        	<span class="shopping_bag_items_number">2</span>-->
+							{% if request.user.is_authenticated %}
+                        	<span class="shopping_bag_items_number">{{check_cart}}</span>
+							{% else %}
+							<span class="shopping_bag_items_number">0</span>
+							{% endif %}
                     	</a>
 
                     <!-- Mini Cart -->
                 		</li>
 
 
-                    <li class="offcanvas-menu-button search-button">
-                		<a class="tools_button" data-toggle="offCanvasTop1">
-                    		<span class="tools_button_icon">
-								<i class="spk-icon spk-icon-search"></i>
-							</span>
-                		</a>
-            		</li>
 
                 <li class="offcanvas-menu-button hide-for-large">
             		<a class="tools_button" data-toggle="offCanvasRight1">
