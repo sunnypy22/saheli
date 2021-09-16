@@ -116,6 +116,7 @@ def ajax_filter(request):
     else:
         return JsonResponse({'j_docs': 'sunny'})
 
+
 def product_description(request, pid):
     pro = Product.objects.get(id=pid)
     cat = Category.objects.all()
@@ -127,13 +128,13 @@ def product_description(request, pid):
 
         if "wishlist_form" in request.POST:
 
-            if Wishlist.objects.filter(wish_list_user = request.user,wish_list_product=pro.id).exists():
+            if Wishlist.objects.filter(wish_list_user=request.user, wish_list_product=pro.id).exists():
                 messages.warning(request, 'Product {} already exists in wishlist!'.format(pro.pro_name))
             else:
                 if request.user.is_authenticated:
 
                     data = Wishlist.objects.create(wish_list_product_id=pro.id, wish_list_user=request.user,
-                                               wish_list_status=True)
+                                                   wish_list_status=True)
 
                     data.save()
                     return redirect("wishlist")
@@ -188,8 +189,8 @@ def product_description(request, pid):
 
     else:
         pass
-    return render(request, 'product_description.html', {'pro': pro,'cat':cat, 'size': size, 'color': color, 'image': image})
-
+    return render(request, 'product_description.html',
+                  {'pro': pro, 'cat': cat, 'size': size, 'color': color, 'image': image})
 
 
 @login_required
